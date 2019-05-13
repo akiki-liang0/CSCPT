@@ -11,6 +11,8 @@ public class main implements ActionListener,MouseListene,MouseMotionListener,Key
   SuperSocketMaster ssm;
   
   int intPort = 3000;
+  String strIP = ssm.getMyAddress();
+  
   //METHODS
   public void actionPerformed(ActionEvent evt){
   }
