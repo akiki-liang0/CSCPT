@@ -29,9 +29,14 @@ public class clientTest implements actionListener{
     theframe.setVisible(true);
     
     ssm = new SuperSocketMaster(main.strIP, main.intPort, this);
+    ssm.connect();
+    
   }
   
   //MAIN METHOD
-
+  public static void main(String[] args){
+    new clientTest();
+    
+  }
 
 }
