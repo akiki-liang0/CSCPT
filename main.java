@@ -5,12 +5,15 @@ import javax.swing.event.*;
 
 public class main implements ActionListener,MouseListener,MouseMotionListener,KeyListener{
   //PROPERTIES
-  JFrame theframe = new JFrame("can this work thanks");
-  animation thepanel = new animation();
-  Timer thetimer = new Timer(1000/60, this);
-  SuperSocketMaster ssm;
+	JFrame theframe = new JFrame("can this work thanks");
+	animation thepanel = new animation();
+	JTextArea chat = new JTextArea();
+	JScrollPane thescroll = new JScrollPane(chat);
+	JButton send = new JButton("Send");
+	Timer thetimer = new Timer(1000/60, this);
+	SuperSocketMaster ssm;
   
-  int intPort = 3000;
+	int intPort = 3000;
   
   //METHODS
   public void actionPerformed(ActionEvent evt){
@@ -52,6 +55,12 @@ public class main implements ActionListener,MouseListener,MouseMotionListener,Ke
     theframe.pack();
     theframe.setResizable(false);
     theframe.setVisible(true);
+    
+    // the chat
+	thescroll.setBounds(830, 295, 320, 50);
+	thepanel.add(thescroll);
+	send.setBounds(1160, 295, 100, 50);
+	thepanel.add(send);
     
     // super socket master
     ssm = new SuperSocketMaster(intPort, this);
