@@ -5,13 +5,12 @@ import javax.swing.event.*;
 
 public class main implements ActionListener,MouseListener,MouseMotionListener,KeyListener{
   //PROPERTIES
-  JFrame theframe;
-  animation thepanel;
+  JFrame theframe = new JFrame("can this work thanks");
+  animation thepanel = new animation();
   Timer thetimer = new Timer(1000/60, this);
   SuperSocketMaster ssm;
   
   int intPort = 3000;
-  String strIP = ssm.getMyAddress();
   
   //METHODS
   public void actionPerformed(ActionEvent evt){
@@ -41,14 +40,12 @@ public class main implements ActionListener,MouseListener,MouseMotionListener,Ke
   //CONSTRUCTOR
   public main(){
     // panel
-    thepanel = new animation();
     thepanel.setLayout(null);
     thepanel.setPreferredSize(new Dimension(1280, 720));
     thepanel.addMouseListener(this);
     thepanel.addMouseMotionListener(this);
     
     // frame
-    theframe = new JFrame("");
     theframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     theframe.setContentPane(thepanel);
     theframe.addKeyListener(this);
