@@ -3,7 +3,7 @@ import javax.swing.*;
 import java.awt.event.*;
 import javax.swing.event.*;
 
-public class main implements ActionListener,MouseListene,MouseMotionListener,KeyListener{
+public class main implements ActionListener,MouseListener,MouseMotionListener,KeyListener{
   //PROPERTIES
   JFrame theframe;
   animation thepanel;
@@ -32,9 +32,9 @@ public class main implements ActionListener,MouseListene,MouseMotionListener,Key
   }
   public void keyReleased(KeyEvent evt){
   }
-  public void keyTyped(MouseEvent evt){
+  public void keyTyped(KeyEvent evt){
   }
-  public void kayPressed(MouseEvent evt){
+  public void keyPressed(KeyEvent evt){
   }
   
   
@@ -43,16 +43,17 @@ public class main implements ActionListener,MouseListene,MouseMotionListener,Key
     // panel
     thepanel = new animation();
     thepanel.setLayout(null);
-    thepanel.setPreferredSize(new Dimension(0,0));
+    thepanel.setPreferredSize(new Dimension(1280, 720));
     thepanel.addMouseListener(this);
     thepanel.addMouseMotionListener(this);
     
     // frame
     theframe = new JFrame("");
-    theframe.setDefaultCLoseOperation(JFrame.EXIT_ON_CLOSE);
+    theframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     theframe.setContentPane(thepanel);
     theframe.addKeyListener(this);
     theframe.pack();
+    theframe.setResizable(false);
     theframe.setVisible(true);
     
     // super socket master
