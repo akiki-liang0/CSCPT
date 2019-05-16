@@ -7,8 +7,9 @@ public class animation extends JPanel{
 	
 	// METHODS
 	public void paintComponent(Graphics g){
-		// background
-		g.setColor(Color.YELLOW);
+		// background 
+		
+		g.setColor(Color.BLUE);
 		g.fillRect(0, 0, 1280, 720);
 		
 		// game board
