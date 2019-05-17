@@ -10,6 +10,7 @@ public class animation extends JPanel{
 	
 	// METHODS
 	public void paintComponent(Graphics g){
+<<<<<<< HEAD
 		// this is the flag
 		/*
 		try{
@@ -22,6 +23,11 @@ public class animation extends JPanel{
 		
 		// background
 		g.setColor(new Color(255, 234, 167));
+=======
+		// background 
+		
+		g.setColor(Color.BLUE);
+>>>>>>> 2befc7bae89845f69e1c7f264d63583a4ab0f9ff
 		g.fillRect(0, 0, 1280, 720);
 		
 		// game board
