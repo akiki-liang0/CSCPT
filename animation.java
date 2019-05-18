@@ -7,26 +7,28 @@ import javax.swing.*;
 public class animation extends JPanel{
 	// PROPERTIES
 	BufferedImage flag;
+	BufferedImage gameBoard;
 	
 	// METHODS
 	public void paintComponent(Graphics g){
 		// this is the flag
-		/*
 		try{
 			flag = ImageIO.read(new File("flag.jpg"));
+			gameBoard = ImageIO.read(new File("gameBoard.png"));
 		}catch(IOException e){
 			
 		}
-		g.drawImage(flag, 0, 0, null);
-		*/
+		//g.drawImage(flag, 0, 0, null);
+		
 		
 		// background
 		g.setColor(new Color(255, 234, 167));
 		g.fillRect(0, 0, 1280, 720);
 		
 		// game board
-		g.setColor(Color.WHITE);
-		g.fillRect(10, 60, 675, 600);
+		g.drawImage(gameBoard, 10, 100, null);
+		//g.setColor(Color.WHITE);
+		//g.fillRect(10, 60, 675, 600);
 		
 		// chat area
 		g.setColor(new Color(116, 185, 255));
