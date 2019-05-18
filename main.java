@@ -12,29 +12,38 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 	JScrollPane thescroll = new JScrollPane(chat);
 	JButton send = new JButton("Send");
 	Timer thetimer = new Timer(1000/60, this);
-	
 	JButton darkON = new JButton("ON");
 	JButton darkOFF = new JButton("OFF");
-	
 	SuperSocketMaster ssm;
   
 	int intPort = 3000;
   
 	//METHODS
 	public void actionPerformed(ActionEvent evt){
-		if(evt.getSource() == darkON){
+		if(evt.getSource() == thetimer){
+			thepanel.repaint();
+		}else if(evt.getSource() == darkON){
 			thepanel.blnDarkMode = true;
 			darkON.setEnabled(false);
 			darkOFF.setEnabled(true);
-			//chatArea.setBackground(Color.BLACK);
+			chatArea.setBackground(Color.BLACK);
+			chatArea.setForeground(Color.WHITE);
+			chat.setBackground(Color.BLACK);
+			chat.setForeground(Color.WHITE);
 		}else if(evt.getSource() == darkOFF){
 			thepanel.blnDarkMode = false;
 			darkON.setEnabled(true);
 			darkOFF.setEnabled(false);
 			chatArea.setBackground(Color.WHITE);
-		}
-		if(evt.getSource() == thetimer){
-			thepanel.repaint();
+			chatArea.setForeground(Color.BLACK);
+			chat.setBackground(Color.WHITE);
+			chat.setForeground(Color.BLACK);
+		}else if(evt.getSource() == send){
+			ssm.sendText(chat.getText());
+			chatArea.append("me: "+chat.getText()+"\n");
+			chat.setText("");
+		}else if(evt.getSource() == ssm){
+			chatArea.append("opponent: "+ssm.readText() + "\n");
 		}
 	}
 	public void mouseMoved(MouseEvent evt){
@@ -75,12 +84,13 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 		theframe.setVisible(true);
 		
 		// the chat
-		chatArea.setBounds(830, 20, 430, 265);
+		chatArea.setBounds(830, 30, 430, 255);
 		thepanel.add(chatArea);
 		thescroll.setBounds(830, 295, 320, 50);
 		thepanel.add(thescroll);
 		send.setBounds(1160, 295, 100, 50);
 		thepanel.add(send);
+		send.addActionListener(this);
 		
 		// dark mode
 		darkON.setBounds(705, 10, 55, 25);
