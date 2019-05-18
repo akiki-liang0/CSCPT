@@ -11,12 +11,28 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 	JScrollPane thescroll = new JScrollPane(chat);
 	JButton send = new JButton("Send");
 	Timer thetimer = new Timer(1000/60, this);
+	
+	JButton darkON = new JButton("ON");
+	JButton darkOFF = new JButton("OFF");
+	
 	SuperSocketMaster ssm;
   
 	int intPort = 3000;
   
 	//METHODS
 	public void actionPerformed(ActionEvent evt){
+		if(evt.getSource() == darkON){
+			thepanel.blnDarkMode = true;
+			darkON.setEnabled(false);
+			darkOFF.setEnabled(true);
+		}else if(evt.getSource() == darkOFF){
+			thepanel.blnDarkMode = false;
+			darkON.setEnabled(true);
+			darkOFF.setEnabled(false);
+		}
+		if(evt.getSource() == thetimer){
+			thepanel.repaint();
+		}
 	}
 	public void mouseMoved(MouseEvent evt){
 	}
@@ -60,6 +76,15 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 		thepanel.add(thescroll);
 		send.setBounds(1160, 295, 100, 50);
 		thepanel.add(send);
+		
+		// dark mode
+		darkON.setBounds(705, 10, 55, 25);
+		thepanel.add(darkON);
+		darkON.addActionListener(this);
+		darkOFF.setBounds(755, 10, 55, 25);
+		thepanel.add(darkOFF); 
+		darkOFF.addActionListener(this);
+		darkOFF.setEnabled(false);
 		
 		// super socket master
 		ssm = new SuperSocketMaster(intPort, this);
