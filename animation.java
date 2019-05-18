@@ -45,9 +45,12 @@ public class animation extends JPanel{
 
 
 
+<<<<<<< HEAD
 
 
 
 
 
 
+=======
+>>>>>>> parent of c8fe311... Update animation.java
