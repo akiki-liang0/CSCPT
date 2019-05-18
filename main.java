@@ -7,7 +7,8 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 	//PROPERTIES
 	JFrame theframe = new JFrame("can this work thanks");
 	animation thepanel = new animation();
-	JTextArea chat = new JTextArea();
+	JTextArea chatArea = new JTextArea();
+	JTextField chat = new JTextField();
 	JScrollPane thescroll = new JScrollPane(chat);
 	JButton send = new JButton("Send");
 	Timer thetimer = new Timer(1000/60, this);
@@ -25,10 +26,12 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 			thepanel.blnDarkMode = true;
 			darkON.setEnabled(false);
 			darkOFF.setEnabled(true);
+			//chatArea.setBackground(Color.BLACK);
 		}else if(evt.getSource() == darkOFF){
 			thepanel.blnDarkMode = false;
 			darkON.setEnabled(true);
 			darkOFF.setEnabled(false);
+			chatArea.setBackground(Color.WHITE);
 		}
 		if(evt.getSource() == thetimer){
 			thepanel.repaint();
@@ -72,6 +75,8 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 		theframe.setVisible(true);
 		
 		// the chat
+		chatArea.setBounds(830, 20, 430, 265);
+		thepanel.add(chatArea);
 		thescroll.setBounds(830, 295, 320, 50);
 		thepanel.add(thescroll);
 		send.setBounds(1160, 295, 100, 50);
