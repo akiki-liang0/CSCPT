@@ -5,13 +5,13 @@ import java.awt.image.*;
 import javax.swing.*;
 
 public class animation extends JPanel{
-	// PROPERTIES
+	//PROPERTIES
 	BufferedImage flag;
 	BufferedImage gameBoard;
 	BufferedImage gameBoardDark;
 	boolean blnDarkMode = false;
 	
-	// METHODS
+	//METHODS
 	public void paintComponent(Graphics g){
 		// this is the flag
 		try{
@@ -36,11 +36,11 @@ public class animation extends JPanel{
 		if(blnDarkMode == true){
 			g.drawImage(gameBoardDark, 10, 100, null);
 			g.setColor(Color.WHITE);
-			g.drawString("Dark Mode", 640, 25);
+			g.drawString("Dark Mode", 640, 28);
 		}else{
 			g.drawImage(gameBoard, 10, 100, null);
 			g.setColor(Color.BLACK);
-			g.drawString("Dark Mode", 640, 25);
+			g.drawString("Dark Mode", 640, 28);
 		}
 		//g.setColor(Color.WHITE);
 		//g.fillRect(10, 60, 675, 600);
@@ -48,13 +48,17 @@ public class animation extends JPanel{
 		// chat area
 		g.setColor(new Color(116, 185, 255));
 		g.fillRect(820, 10, 450, 345);
+		g.setColor(Color.BLACK);
+		g.drawString("Chat", 1040, 25);
 		
 		// rankings
 		g.setColor(new Color(250, 177, 160));
 		g.fillRect(820, 365, 450, 345);
+		g.setColor(Color.BLACK);
+		g.drawString("Rankings", 1025, 380);
 	}
 	
-	// CONSTRUCTOR
+	//CONSTRUCTOR
 	public animation(){
 		super();
 	}
