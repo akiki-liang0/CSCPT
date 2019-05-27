@@ -34,7 +34,7 @@ public class animation extends JPanel{
 		}
 		//g.drawImage(flag, 0, 0, null);
 		
-		// need to put this first before the other screens
+		//need to put this first before the other screens
 		g.drawImage(mainMenu, 0, 0, null);
 		
 		// background
