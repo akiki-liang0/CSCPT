@@ -9,6 +9,11 @@ public class animation extends JPanel{
 	BufferedImage flag;
 	BufferedImage gameBoard;
 	BufferedImage gameBoardDark;
+	BufferedImage mainMenu;
+	BufferedImage helpScreen1;
+	BufferedImage helpScreen2;
+	BufferedImage helpScreen3;
+	BufferedImage connectionScreen;
 	boolean blnDarkMode = false;
 	
 	//METHODS
@@ -18,11 +23,19 @@ public class animation extends JPanel{
 			flag = ImageIO.read(new File("flag.jpg"));
 			gameBoard = ImageIO.read(new File("gameBoard.png"));
 			gameBoardDark = ImageIO.read(new File("gameBoardDark.png"));
+			// screens 
+			mainMenu = ImageIO.read(new File("Pics/menu.png"));
+			helpScreen1 = ImageIO.read(new File("Pics/helpScreen1.png"));
+			helpScreen2 = ImageIO.read(new File("Pics/helpScreen2.png"));
+			helpScreen3 = ImageIO.read(new File("Pics/helpScreen3.png"));
+			connectionScreen = ImageIO.read(new File("Pics/connectionScreen.png"));
 		}catch(IOException e){
 			
 		}
 		//g.drawImage(flag, 0, 0, null);
 		
+		// need to put this first before the other screens
+		g.drawImage(mainMenu, 0, 0, null);
 		
 		// background
 		if(blnDarkMode == true){
@@ -56,7 +69,9 @@ public class animation extends JPanel{
 		g.fillRect(820, 365, 450, 345);
 		g.setColor(Color.BLACK);
 		g.drawString("Rankings", 1025, 380);
+		
 	}
+	
 	
 	//CONSTRUCTOR
 	public animation(){
