@@ -59,6 +59,44 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 	public void mouseReleased(MouseEvent evt){
 	}
 	public void mouseClicked(MouseEvent evt){
+		if(thepanel.blnMainMenu == true){
+			if(evt.getX() >= 180 && evt.getX() <= 440 && evt.getY() >= 590 && evt.getY() <= 670){
+				thepanel.blnSettings = true; 
+				thepanel.blnMainMenu = false;
+			}else if(evt.getX() >= 860 && evt.getX() <= 1120 && evt.getY() >= 590 && evt.getY() <= 670){
+				thepanel.blnHelp1 = true;
+				thepanel.blnMainMenu = false;
+			}else if(evt.getX() >= 500 && evt.getX() <= 800 && evt.getY() >= 520 && evt.getY() <= 670){
+				thepanel.blnGameStart = true;
+				thepanel.blnMainMenu = false;
+			}
+		}else if(thepanel.blnSettings == true){
+			if(evt.getX() >= 993 && evt.getX() <= 1201 && evt.getY() >= 26 && evt.getY() <= 81){
+				thepanel.blnMainMenu = true;
+				thepanel.blnSettings = false;
+			}
+		}else if(thepanel.blnHelp1 == true){
+			if(evt.getX() >= 1178 && evt.getX() <= 1232 && evt.getY() >= 608 && evt.getY() <= 682){
+				thepanel.blnHelp2 = true;
+				thepanel.blnHelp1 = false;
+			}
+		}else if(thepanel.blnHelp2 == true){
+			if(evt.getX() >= 1178 && evt.getX() <= 1232 && evt.getY() >= 608 && evt.getY() <= 682){
+				thepanel.blnHelp3 = true;
+				thepanel.blnHelp2 = false;
+			}else if(evt.getX() >= 47 && evt.getX() <= 101 && evt.getY() >= 608 && evt.getY() <= 682){
+				thepanel.blnHelp1 = true;
+				thepanel.blnHelp2 = false;
+			}
+		}else if(thepanel.blnHelp3 == true){
+			if(evt.getX() >= 1012 && evt.getX() <= 1217 && evt.getY() >= 44 && evt.getY() <= 108){
+				thepanel.blnMainMenu = true;
+				thepanel.blnHelp3 = false;
+			}else if(evt.getX() >= 47 && evt.getX() <= 101 && evt.getY() >= 608 && evt.getY() <= 682){
+				thepanel.blnHelp2 = true;
+				thepanel.blnHelp3 = false;
+			}
+		}
 	}
 	public void keyReleased(KeyEvent evt){
 	}
