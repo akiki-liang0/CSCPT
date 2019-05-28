@@ -23,7 +23,7 @@ public class animation extends JPanel{
 	public void paintComponent(Graphics g){
 		// this is the flag
 		try{
-			gameBoard = ImageIO.read(new File("gameBoard.png"));
+			gameBoard = ImageIO.read(new File("Pics/board.png"));
 			gameBoardDark = ImageIO.read(new File("gameBoardDark.png"));
 			// screens 
 			mainMenu = ImageIO.read(new File("Pics/menu.png"));
