@@ -14,14 +14,16 @@ public class animation extends JPanel{
 	BufferedImage helpScreen3;
 	BufferedImage connectionScreen;
 	BufferedImage settingsScreen;
+	boolean blnMainMenu = true;
 	boolean blnGameStart = false;
 	boolean blnSettings = false;
-	boolean blnHelp = false;
+	boolean blnHelp1 = false;
+	boolean blnHelp2 = false;
+	boolean blnHelp3 = false;
 	boolean blnDarkMode = false;
 	
 	//METHODS
 	public void paintComponent(Graphics g){
-		// this is the flag
 		try{
 			gameBoard = ImageIO.read(new File("Pics/board.png"));
 			gameBoardDark = ImageIO.read(new File("gameBoardDark.png"));
@@ -36,13 +38,16 @@ public class animation extends JPanel{
 			
 		}
 		
-		//need to put this first before the other screens
-		g.drawImage(mainMenu, 0, 0, null);
-		
-		if(blnSettings == true){
+		if(blnMainMenu == true){
+			g.drawImage(mainMenu, 0, 0, null);
+		}else if(blnSettings == true){
 			g.drawImage(settingsScreen, 0, 0, null);
-		}else if(blnHelp == true){
+		}else if(blnHelp1 == true){
 			g.drawImage(helpScreen1, 0, 0, null);
+		}else if(blnHelp2 == true){
+			g.drawImage(helpScreen2, 0, 0, null);
+		}else if(blnHelp3 == true){
+			g.drawImage(helpScreen3, 0, 0, null);
 		}else if(blnGameStart == true){
 			// background
 			if(blnDarkMode == true){
@@ -50,7 +55,7 @@ public class animation extends JPanel{
 			}else{
 				g.setColor(new Color(255, 234, 167));
 			}
-			g.fillRect(0, 0, 1280, 720);
+			//g.fillRect(0, 0, 1280, 720);
 			
 			// game board
 			if(blnDarkMode == true){
