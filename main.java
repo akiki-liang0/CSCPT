@@ -83,23 +83,25 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 		theframe.setResizable(false);
 		theframe.setVisible(true);
 		
-		// the chat
-		chatArea.setBounds(830, 30, 430, 255);
-		thepanel.add(chatArea);
-		thescroll.setBounds(830, 295, 320, 50);
-		thepanel.add(thescroll);
-		send.setBounds(1160, 295, 100, 50);
-		thepanel.add(send);
-		send.addActionListener(this);
+		if(thepanel.blnGameStart == true){
+			// the chat
+			chatArea.setBounds(830, 30, 430, 255);
+			thepanel.add(chatArea);
+			thescroll.setBounds(830, 295, 320, 50);
+			thepanel.add(thescroll);
+			send.setBounds(1160, 295, 100, 50);
+			thepanel.add(send);
+			send.addActionListener(this);
 		
-		// dark mode
-		darkON.setBounds(705, 10, 55, 25);
-		thepanel.add(darkON);
-		darkON.addActionListener(this);
-		darkOFF.setBounds(755, 10, 55, 25);
-		thepanel.add(darkOFF); 
-		darkOFF.addActionListener(this);
-		darkOFF.setEnabled(false);
+			// dark mode
+			darkON.setBounds(705, 10, 55, 25);
+			thepanel.add(darkON);
+			darkON.addActionListener(this);
+			darkOFF.setBounds(755, 10, 55, 25);
+			thepanel.add(darkOFF); 
+			darkOFF.addActionListener(this);
+			darkOFF.setEnabled(false);
+		}
 		
 		// super socket master
 		ssm = new SuperSocketMaster(intPort, this);
