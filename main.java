@@ -9,11 +9,13 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 	animation thepanel = new animation();
 	JTextArea chatArea = new JTextArea();
 	JTextField chat = new JTextField();
-	JScrollPane thescroll = new JScrollPane(chat);
+	JScrollPane thescroll = new JScrollPane(chatArea);
 	JButton send = new JButton("Send");
 	Timer thetimer = new Timer(1000/60, this);
 	JButton darkON = new JButton("ON");
 	JButton darkOFF = new JButton("OFF");
+	JTextField portNumber = new JTextField();
+	JTextField serverIP = new JTextField();
 	SuperSocketMaster ssm;
   
 	int intPort = 3000;
@@ -89,12 +91,20 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 				thepanel.blnHelp2 = false;
 			}
 		}else if(thepanel.blnHelp3 == true){
-			if(evt.getX() >= 1012 && evt.getX() <= 1217 && evt.getY() >= 44 && evt.getY() <= 108){
-				thepanel.blnMainMenu = true;
+			if(evt.getX() >= 1178 && evt.getX() <= 1232 && evt.getY() >= 608 && evt.getY() <= 682){
+				thepanel.blnHelp4 = true;
 				thepanel.blnHelp3 = false;
 			}else if(evt.getX() >= 47 && evt.getX() <= 101 && evt.getY() >= 608 && evt.getY() <= 682){
 				thepanel.blnHelp2 = true;
 				thepanel.blnHelp3 = false;
+			}
+		}else if(thepanel.blnHelp4 == true){
+			if(evt.getX() >= 1012 && evt.getX() <= 1217 && evt.getY() >= 44 && evt.getY() <= 108){
+				thepanel.blnMainMenu = true;
+				thepanel.blnHelp4 = false;
+			}else if(evt.getX() >= 47 && evt.getX() <= 101 && evt.getY() >= 608 && evt.getY() <= 682){
+				thepanel.blnHelp3 = true;
+				thepanel.blnHelp4 = false;
 			}
 		}
 	}
@@ -121,12 +131,22 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 		theframe.setResizable(false);
 		theframe.setVisible(true);
 		
+		// settings screen
+		if(thepanel.blnSettings == true){
+			portNumber.setBounds(250, 25, 247, 135);
+			thepanel.add(portNumber);
+			portNumber.addActionListener(this);
+			serverIP.setBounds(250, 25, 192, 198);
+			thepanel.add(serverIP);
+			serverIP.addActionListener(this);
+		}
+		// game screen
 		if(thepanel.blnGameStart == true){
 			// the chat
-			chatArea.setBounds(830, 30, 430, 255);
-			thepanel.add(chatArea);
-			thescroll.setBounds(830, 295, 320, 50);
+			thescroll.setBounds(830, 30, 430, 255);
 			thepanel.add(thescroll);
+			chat.setBounds(830, 295, 320, 50);
+			thepanel.add(chat);
 			send.setBounds(1160, 295, 100, 50);
 			thepanel.add(send);
 			send.addActionListener(this);
