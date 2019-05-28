@@ -12,6 +12,7 @@ public class animation extends JPanel{
 	BufferedImage helpScreen1;
 	BufferedImage helpScreen2;
 	BufferedImage helpScreen3;
+	BufferedImage helpScreen4;
 	BufferedImage connectionScreen;
 	BufferedImage settingsScreen;
 	boolean blnMainMenu = true;
@@ -20,6 +21,7 @@ public class animation extends JPanel{
 	boolean blnHelp1 = false;
 	boolean blnHelp2 = false;
 	boolean blnHelp3 = false;
+	boolean blnHelp4 = false;
 	boolean blnDarkMode = false;
 	
 	//METHODS
@@ -32,6 +34,7 @@ public class animation extends JPanel{
 			helpScreen1 = ImageIO.read(new File("Pics/helpScreen1.png"));
 			helpScreen2 = ImageIO.read(new File("Pics/helpScreen2.png"));
 			helpScreen3 = ImageIO.read(new File("Pics/helpScreen3.png"));
+			helpScreen4 = ImageIO.read(new File("Pics/helpScreen4.png"));
 			connectionScreen = ImageIO.read(new File("Pics/connectionScreen.png"));
 			settingsScreen = ImageIO.read(new File("Pics/settingScreen.png"));
 		}catch(IOException e){
@@ -48,12 +51,14 @@ public class animation extends JPanel{
 			g.drawImage(helpScreen2, 0, 0, null);
 		}else if(blnHelp3 == true){
 			g.drawImage(helpScreen3, 0, 0, null);
+		}else if(blnHelp4 == true){
+			g.drawImage(helpScreen4, 0, 0, null);
 		}else if(blnGameStart == true){
 			// background
 			if(blnDarkMode == true){
 				g.setColor(Color.BLACK);
 			}else{
-				g.setColor(new Color(255, 234, 167));
+				//g.setColor(new Color(255, 234, 167));
 			}
 			//g.fillRect(0, 0, 1280, 720);
 			
@@ -63,12 +68,10 @@ public class animation extends JPanel{
 				g.setColor(Color.WHITE);
 				g.drawString("Dark Mode", 640, 28);
 			}else{
-				g.drawImage(gameBoard, 10, 100, null);
+				g.drawImage(gameBoard, 0, 0, null);
 				g.setColor(Color.BLACK);
 				g.drawString("Dark Mode", 640, 28);
 			}
-			//g.setColor(Color.WHITE);
-			//g.fillRect(10, 60, 675, 600);
 			
 			// chat area
 			g.setColor(new Color(116, 185, 255));
@@ -81,6 +84,7 @@ public class animation extends JPanel{
 			g.fillRect(820, 365, 450, 345);
 			g.setColor(Color.BLACK);
 			g.drawString("Rankings", 1025, 380);
+			
 		}
 	}
 	
