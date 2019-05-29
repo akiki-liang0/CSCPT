@@ -28,16 +28,16 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 			thepanel.blnDarkMode = true;
 			darkON.setEnabled(false);
 			darkOFF.setEnabled(true);
-			chatArea.setBackground(Color.BLACK);
-			chatArea.setForeground(Color.WHITE);
+			thescroll.setBackground(Color.BLACK);
+			thescroll.setForeground(Color.WHITE);
 			chat.setBackground(Color.BLACK);
 			chat.setForeground(Color.WHITE);
 		}else if(evt.getSource() == darkOFF){
 			thepanel.blnDarkMode = false;
 			darkON.setEnabled(true);
 			darkOFF.setEnabled(false);
-			chatArea.setBackground(Color.WHITE);
-			chatArea.setForeground(Color.BLACK);
+			thescroll.setBackground(Color.WHITE);
+			thescroll.setForeground(Color.BLACK);
 			chat.setBackground(Color.WHITE);
 			chat.setForeground(Color.BLACK);
 		}else if(evt.getSource() == send){
@@ -59,6 +59,15 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 			send.setBounds(1160, 295, 100, 50);
 			thepanel.add(send);
 			send.addActionListener(this);
+			// dark mode (might not include)
+			darkON.setBounds(705, 10, 55, 25);
+			thepanel.add(darkON);
+			darkON.addActionListener(this);
+			darkOFF.setBounds(755, 10, 55, 25);
+			thepanel.add(darkOFF); 
+			darkOFF.addActionListener(this);
+			darkOFF.setEnabled(false);
+		
 		// when user is on settings screen
 		}else if(thepanel.blnSettings == true){
 			portNumber.setVisible(true);
@@ -147,19 +156,6 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 		thepanel.setPreferredSize(new Dimension(1280, 720));
 		thepanel.addMouseListener(this);
 		thepanel.addMouseMotionListener(this);
-		
-		/*
-		if(thepanel.blnGameStart == true){
-			// dark mode
-			darkON.setBounds(705, 10, 55, 25);
-			thepanel.add(darkON);
-			darkON.addActionListener(this);
-			darkOFF.setBounds(755, 10, 55, 25);
-			thepanel.add(darkOFF); 
-			darkOFF.addActionListener(this);
-			darkOFF.setEnabled(false);
-		}
-		*/
 		
 		// frame
 		theframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
