@@ -49,6 +49,26 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 		}
 	}
 	public void mouseMoved(MouseEvent evt){
+		// when the game starts 
+		if(thepanel.blnGameStart == true){
+			// the chat
+			thescroll.setBounds(830, 30, 430, 255);
+			thepanel.add(thescroll);
+			chat.setBounds(830, 295, 320, 50);
+			thepanel.add(chat);
+			send.setBounds(1160, 295, 100, 50);
+			thepanel.add(send);
+			send.addActionListener(this);
+		// when user is on settings screen
+		}else if(thepanel.blnSettings == true){
+			// the text fields
+			portNumber.setBounds(247, 135, 250, 25);
+			thepanel.add(portNumber);
+			portNumber.addActionListener(this);
+			serverIP.setBounds(192, 198, 250, 25);
+			thepanel.add(serverIP);
+			serverIP.addActionListener(this);
+		}
 	}
 	public void mouseDragged(MouseEvent evt){
     }
@@ -123,34 +143,8 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 		thepanel.addMouseListener(this);
 		thepanel.addMouseMotionListener(this);
 		
-		// frame
-		theframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		theframe.setContentPane(thepanel);
-		theframe.addKeyListener(this);
-		theframe.pack();
-		theframe.setResizable(false);
-		theframe.setVisible(true);
-		
-		// settings screen
-		if(thepanel.blnSettings == true){
-			portNumber.setBounds(250, 25, 247, 135);
-			thepanel.add(portNumber);
-			portNumber.addActionListener(this);
-			serverIP.setBounds(250, 25, 192, 198);
-			thepanel.add(serverIP);
-			serverIP.addActionListener(this);
-		}
-		// game screen
+		/*
 		if(thepanel.blnGameStart == true){
-			// the chat
-			thescroll.setBounds(830, 30, 430, 255);
-			thepanel.add(thescroll);
-			chat.setBounds(830, 295, 320, 50);
-			thepanel.add(chat);
-			send.setBounds(1160, 295, 100, 50);
-			thepanel.add(send);
-			send.addActionListener(this);
-		
 			// dark mode
 			darkON.setBounds(705, 10, 55, 25);
 			thepanel.add(darkON);
@@ -160,6 +154,15 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 			darkOFF.addActionListener(this);
 			darkOFF.setEnabled(false);
 		}
+		*/
+		
+		// frame
+		theframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		theframe.setContentPane(thepanel);
+		theframe.addKeyListener(this);
+		theframe.pack();
+		theframe.setResizable(false);
+		theframe.setVisible(true);
 		
 		// super socket master
 		ssm = new SuperSocketMaster(intPort, this);
