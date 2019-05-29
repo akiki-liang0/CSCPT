@@ -53,26 +53,6 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 		}
 	}
 	public void mouseMoved(MouseEvent evt){
-		// when the game starts 
-		if(thepanel.blnGameStart == true){
-			// the chat
-			thepanel.add(thescroll);
-			thepanel.add(send);
-			thepanel.add(chat);
-			thepanel.add(darkON);
-			thepanel.add(darkOFF); 
-		// when user is on settings screen
-		}else if(thepanel.blnSettings == true){
-			portNumber.setVisible(true);
-			serverIP.setVisible(true);
-			// the text fields
-			portNumber.setBounds(247, 135, 250, 25);
-			thepanel.add(portNumber);
-			portNumber.addActionListener(this);
-			serverIP.setBounds(192, 198, 250, 25);
-			thepanel.add(serverIP);
-			serverIP.addActionListener(this);
-		}
 	}
 	public void mouseDragged(MouseEvent evt){
     }
@@ -89,12 +69,23 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 			if(evt.getX() >= 180 && evt.getX() <= 440 && evt.getY() >= 590 && evt.getY() <= 670){
 				thepanel.blnSettings = true; 
 				thepanel.blnMainMenu = false;
+				// when user is on settings screen
+				portNumber.setVisible(true);
+				serverIP.setVisible(true);
+				thepanel.add(portNumber);
+				thepanel.add(serverIP);
 			}else if(evt.getX() >= 860 && evt.getX() <= 1120 && evt.getY() >= 590 && evt.getY() <= 670){
 				thepanel.blnHelp1 = true;
 				thepanel.blnMainMenu = false;
 			}else if(evt.getX() >= 500 && evt.getX() <= 800 && evt.getY() >= 520 && evt.getY() <= 670){
 				thepanel.blnGameStart = true;
 				thepanel.blnMainMenu = false;
+				// when the game starts 
+				thepanel.add(thescroll);
+				thepanel.add(send);
+				thepanel.add(chat);
+				thepanel.add(darkON);
+				thepanel.add(darkOFF); 
 			}
 		}else if(thepanel.blnSettings == true){
 			if(evt.getX() >= 993 && evt.getX() <= 1201 && evt.getY() >= 26 && evt.getY() <= 81){
@@ -160,6 +151,12 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 		darkOFF.setBounds(755, 10, 55, 25);
 		darkOFF.addActionListener(this);
 		darkOFF.setEnabled(false);
+		
+		// settings screen
+		portNumber.setBounds(247, 135, 250, 25);
+		portNumber.addActionListener(this);
+		serverIP.setBounds(192, 198, 250, 25);
+		serverIP.addActionListener(this);
 		
 		// frame
 		theframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
