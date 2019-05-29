@@ -19,7 +19,7 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 	SuperSocketMaster ssm;
   
 	int intPort = 3000;
-  
+		
 	//METHODS
 	public void actionPerformed(ActionEvent evt){
 		if(evt.getSource() == thetimer){
@@ -61,6 +61,8 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 			send.addActionListener(this);
 		// when user is on settings screen
 		}else if(thepanel.blnSettings == true){
+			portNumber.setVisible(true);
+			serverIP.setVisible(true);
 			// the text fields
 			portNumber.setBounds(247, 135, 250, 25);
 			thepanel.add(portNumber);
@@ -96,6 +98,9 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 			if(evt.getX() >= 993 && evt.getX() <= 1201 && evt.getY() >= 26 && evt.getY() <= 81){
 				thepanel.blnMainMenu = true;
 				thepanel.blnSettings = false;
+				// get rid of text fields
+				portNumber.setVisible(false);
+				serverIP.setVisible(false);
 			}
 		}else if(thepanel.blnHelp1 == true){
 			if(evt.getX() >= 1178 && evt.getX() <= 1232 && evt.getY() >= 608 && evt.getY() <= 682){
@@ -103,7 +108,7 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 				thepanel.blnHelp1 = false;
 			}
 		}else if(thepanel.blnHelp2 == true){
-			if(evt.getX() >= 1178 && evt.getX() <= 1232 && evt.getY() >= 608 && evt.getY() <= 682){
+	     		if(evt.getX() >= 1178 && evt.getX() <= 1232 && evt.getY() >= 608 && evt.getY() <= 682){
 				thepanel.blnHelp3 = true;
 				thepanel.blnHelp2 = false;
 			}else if(evt.getX() >= 47 && evt.getX() <= 101 && evt.getY() >= 608 && evt.getY() <= 682){
