@@ -8,8 +8,8 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 	JFrame theframe = new JFrame("can this work thanks");
 	animation thepanel = new animation();
 	JTextArea chatArea = new JTextArea();
-	JTextField chat = new JTextField();
 	JScrollPane thescroll = new JScrollPane(chatArea);
+	JTextField chat = new JTextField();
 	JButton send = new JButton("Send");
 	Timer thetimer = new Timer(1000/60, this);
 	JButton darkON = new JButton("ON");
@@ -28,6 +28,8 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 			thepanel.blnDarkMode = true;
 			darkON.setEnabled(false);
 			darkOFF.setEnabled(true);
+			chatArea.setBackground(Color.BLACK);
+			chatArea.setForeground(Color.WHITE);
 			thescroll.setBackground(Color.BLACK);
 			thescroll.setForeground(Color.WHITE);
 			chat.setBackground(Color.BLACK);
@@ -36,6 +38,8 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 			thepanel.blnDarkMode = false;
 			darkON.setEnabled(true);
 			darkOFF.setEnabled(false);
+			chatArea.setBackground(Color.WHITE);
+			chatArea.setForeground(Color.BLACK);
 			thescroll.setBackground(Color.WHITE);
 			thescroll.setForeground(Color.BLACK);
 			chat.setBackground(Color.WHITE);
@@ -52,22 +56,11 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 		// when the game starts 
 		if(thepanel.blnGameStart == true){
 			// the chat
-			thescroll.setBounds(830, 30, 430, 255);
 			thepanel.add(thescroll);
-			chat.setBounds(830, 295, 320, 50);
-			thepanel.add(chat);
-			send.setBounds(1160, 295, 100, 50);
 			thepanel.add(send);
-			send.addActionListener(this);
-			// dark mode (might not include)
-			darkON.setBounds(705, 10, 55, 25);
+			thepanel.add(chat);
 			thepanel.add(darkON);
-			darkON.addActionListener(this);
-			darkOFF.setBounds(755, 10, 55, 25);
 			thepanel.add(darkOFF); 
-			darkOFF.addActionListener(this);
-			darkOFF.setEnabled(false);
-		
 		// when user is on settings screen
 		}else if(thepanel.blnSettings == true){
 			portNumber.setVisible(true);
@@ -156,6 +149,17 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 		thepanel.setPreferredSize(new Dimension(1280, 720));
 		thepanel.addMouseListener(this);
 		thepanel.addMouseMotionListener(this);
+		
+		// the chat
+		thescroll.setBounds(830, 30, 430, 255);
+		chat.setBounds(830, 295, 320, 50);
+		send.setBounds(1160, 295, 100, 50);
+		send.addActionListener(this);
+		darkON.setBounds(705, 10, 55, 25);
+		darkON.addActionListener(this);
+		darkOFF.setBounds(755, 10, 55, 25);
+		darkOFF.addActionListener(this);
+		darkOFF.setEnabled(false);
 		
 		// frame
 		theframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
