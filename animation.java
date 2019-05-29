@@ -28,7 +28,7 @@ public class animation extends JPanel{
 	public void paintComponent(Graphics g){
 		try{
 			gameBoard = ImageIO.read(new File("Pics/board.png"));
-			gameBoardDark = ImageIO.read(new File("gameBoardDark.png"));
+			//gameBoardDark = ImageIO.read(new File("gameBoardDark.png"));
 			// screens 
 			mainMenu = ImageIO.read(new File("Pics/menu.png"));
 			helpScreen1 = ImageIO.read(new File("Pics/helpScreen1.png"));
@@ -54,36 +54,15 @@ public class animation extends JPanel{
 		}else if(blnHelp4 == true){
 			g.drawImage(helpScreen4, 0, 0, null);
 		}else if(blnGameStart == true){
-			// background
-			if(blnDarkMode == true){
-				g.setColor(Color.BLACK);
-			}else{
-				//g.setColor(new Color(255, 234, 167));
-			}
-			//g.fillRect(0, 0, 1280, 720);
-			
-			// game board
-			if(blnDarkMode == true){
-				g.drawImage(gameBoardDark, 10, 100, null);
-				g.setColor(Color.WHITE);
-				g.drawString("Dark Mode", 640, 28);
-			}else{
-				g.drawImage(gameBoard, 0, 0, null);
-				g.setColor(Color.BLACK);
-				g.drawString("Dark Mode", 640, 28);
-			}
-			
+			g.drawImage(gameBoard, 0, 0, null);
+			g.setColor(Color.BLACK);
+			g.drawString("Dark Mode", 640, 28);
 			// chat area
-			g.setColor(new Color(116, 185, 255));
-			g.fillRect(820, 10, 450, 345);
 			g.setColor(Color.BLACK);
 			g.drawString("Chat", 1040, 25);
-			
 			// rankings
-			g.setColor(new Color(250, 177, 160));
-			g.fillRect(820, 365, 450, 345);
 			g.setColor(Color.BLACK);
-			g.drawString("Rankings", 1025, 380);
+			g.drawString("Rankings", 1025, 385);
 			
 		}
 	}
