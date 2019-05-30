@@ -23,12 +23,17 @@ public class animation extends JPanel{
 	boolean blnHelp3 = false;
 	boolean blnHelp4 = false;
 	boolean blnDarkMode = false;
+	BufferedImage playPressed;
+	BufferedImage helpPressed;
+	BufferedImage settingsPressed;
+	
+	BufferedImage fiveStarB;
 	
 	//METHODS
 	public void paintComponent(Graphics g){
+		// loading all the images
 		try{
 			gameBoard = ImageIO.read(new File("Pics/board.png"));
-			//gameBoardDark = ImageIO.read(new File("gameBoardDark.png"));
 			// screens 
 			mainMenu = ImageIO.read(new File("Pics/menu.png"));
 			helpScreen1 = ImageIO.read(new File("Pics/helpScreen1.png"));
@@ -37,14 +42,27 @@ public class animation extends JPanel{
 			helpScreen4 = ImageIO.read(new File("Pics/helpScreen4.png"));
 			connectionScreen = ImageIO.read(new File("Pics/connectionScreen.png"));
 			settingsScreen = ImageIO.read(new File("Pics/settingScreen.png"));
+			playPressed = ImageIO.read(new File("Pics/ButtonPressed/MenuPlayPressed.png"));
+			helpPressed = ImageIO.read(new File("Pics/ButtonPressed/MenuHelpPressed.png"));
+			settingsPressed = ImageIO.read(new File("Pics/ButtonPressed/MenuSettingsPressed.png"));
+			// pieces
+			fiveStarB = ImageIO.read(new File("Pics/Black/FiveStarGeneralB.png"));
 		}catch(IOException e){
 			
 		}
 		
+		// drawing main menu screen
 		if(blnMainMenu == true){
 			g.drawImage(mainMenu, 0, 0, null);
+		// drawing settings page
 		}else if(blnSettings == true){
-			g.drawImage(settingsScreen, 0, 0, null);
+			try{
+				g.drawImage(settingsPressed, 0, 0, null);
+				Thread.sleep(1000);
+				g.drawImage(settingsScreen, 0, 0, null);
+			}catch(InterruptedException e){
+			}
+		// drawing help screens 1-4
 		}else if(blnHelp1 == true){
 			g.drawImage(helpScreen1, 0, 0, null);
 		}else if(blnHelp2 == true){
@@ -53,6 +71,7 @@ public class animation extends JPanel{
 			g.drawImage(helpScreen3, 0, 0, null);
 		}else if(blnHelp4 == true){
 			g.drawImage(helpScreen4, 0, 0, null);
+		// drawing things when the game starts
 		}else if(blnGameStart == true){
 			g.drawImage(gameBoard, 0, 0, null);
 			g.setColor(Color.BLACK);
@@ -64,9 +83,9 @@ public class animation extends JPanel{
 			g.setColor(Color.BLACK);
 			g.drawString("Rankings", 1025, 385);
 			
+			g.drawImage(fiveStarB, 214, 214, null);
 		}
 	}
-	
 	
 	//CONSTRUCTOR
 	public animation(){
