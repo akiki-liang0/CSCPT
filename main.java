@@ -24,6 +24,7 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 	public void actionPerformed(ActionEvent evt){
 		if(evt.getSource() == thetimer){
 			thepanel.repaint();
+		// chat background turns black, text turns white
 		}else if(evt.getSource() == darkON){
 			thepanel.blnDarkMode = true;
 			darkON.setEnabled(false);
@@ -34,6 +35,7 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 			thescroll.setForeground(Color.WHITE);
 			chat.setBackground(Color.BLACK);
 			chat.setForeground(Color.WHITE);
+		// chat background turns white, text turns black
 		}else if(evt.getSource() == darkOFF){
 			thepanel.blnDarkMode = false;
 			darkON.setEnabled(true);
@@ -65,61 +67,78 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 	public void mouseReleased(MouseEvent evt){
 	}
 	public void mouseClicked(MouseEvent evt){
+		// user on main menu page
 		if(thepanel.blnMainMenu == true){
+			// going to settings page
 			if(evt.getX() >= 180 && evt.getX() <= 440 && evt.getY() >= 590 && evt.getY() <= 670){
-				thepanel.blnSettings = true; 
+				thepanel.blnSettings = true;
 				thepanel.blnMainMenu = false;
-				// when user is on settings screen
-				portNumber.setVisible(true);
-				serverIP.setVisible(true);
+				// adding the text fields to the panel
 				thepanel.add(portNumber);
 				thepanel.add(serverIP);
-			}else if(evt.getX() >= 860 && evt.getX() <= 1120 && evt.getY() >= 590 && evt.getY() <= 670){
+			// going to the help screens
+			}else if(evt.getX() >= 860 && evt.getX() <= 1120 && evt.getY() >= 590 && evt.getY() <= 670 && thepanel.blnSettings == false){
+				
 				thepanel.blnHelp1 = true;
 				thepanel.blnMainMenu = false;
+			// going to play
 			}else if(evt.getX() >= 500 && evt.getX() <= 800 && evt.getY() >= 520 && evt.getY() <= 670){
 				thepanel.blnGameStart = true;
 				thepanel.blnMainMenu = false;
-				// when the game starts 
+				// adding the components of the chat onto the panel
 				thepanel.add(thescroll);
 				thepanel.add(send);
 				thepanel.add(chat);
 				thepanel.add(darkON);
 				thepanel.add(darkOFF); 
 			}
+		// user on settings page
 		}else if(thepanel.blnSettings == true){
+			// going back to the main menu
 			if(evt.getX() >= 993 && evt.getX() <= 1201 && evt.getY() >= 26 && evt.getY() <= 81){
 				thepanel.blnMainMenu = true;
-				thepanel.blnSettings = false;
-				// get rid of text fields
+				
+				// getting rid of the text fields
 				portNumber.setVisible(false);
 				serverIP.setVisible(false);
 			}
+		// user on the first help screen 
 		}else if(thepanel.blnHelp1 == true){
+			thepanel.blnSettings = false;
+			// going to next help screen
 			if(evt.getX() >= 1178 && evt.getX() <= 1232 && evt.getY() >= 608 && evt.getY() <= 682){
 				thepanel.blnHelp2 = true;
 				thepanel.blnHelp1 = false;
 			}
+		// user on second help screen
 		}else if(thepanel.blnHelp2 == true){
-	     		if(evt.getX() >= 1178 && evt.getX() <= 1232 && evt.getY() >= 608 && evt.getY() <= 682){
+			// going to previous help screen
+	     	if(evt.getX() >= 1178 && evt.getX() <= 1232 && evt.getY() >= 608 && evt.getY() <= 682){
 				thepanel.blnHelp3 = true;
 				thepanel.blnHelp2 = false;
+			// going to next help screen
 			}else if(evt.getX() >= 47 && evt.getX() <= 101 && evt.getY() >= 608 && evt.getY() <= 682){
 				thepanel.blnHelp1 = true;
 				thepanel.blnHelp2 = false;
 			}
+		// user on third help screen
 		}else if(thepanel.blnHelp3 == true){
+			// going to previous help screen
 			if(evt.getX() >= 1178 && evt.getX() <= 1232 && evt.getY() >= 608 && evt.getY() <= 682){
 				thepanel.blnHelp4 = true;
 				thepanel.blnHelp3 = false;
+			// going to next help screen
 			}else if(evt.getX() >= 47 && evt.getX() <= 101 && evt.getY() >= 608 && evt.getY() <= 682){
 				thepanel.blnHelp2 = true;
 				thepanel.blnHelp3 = false;
 			}
+		// user on fourth help screen
 		}else if(thepanel.blnHelp4 == true){
+			// going to previous help screen
 			if(evt.getX() >= 1012 && evt.getX() <= 1217 && evt.getY() >= 44 && evt.getY() <= 108){
 				thepanel.blnMainMenu = true;
 				thepanel.blnHelp4 = false;
+			// going to main menu
 			}else if(evt.getX() >= 47 && evt.getX() <= 101 && evt.getY() >= 608 && evt.getY() <= 682){
 				thepanel.blnHelp3 = true;
 				thepanel.blnHelp4 = false;
