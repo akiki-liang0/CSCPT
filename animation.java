@@ -16,27 +16,29 @@ public class animation extends JPanel{
 	// Game Screen
 	BufferedImage gameBoard;
 	BufferedImage gameBoardDark;
+	boolean blnGameStart = false;
 	boolean blnDarkMode = false;
+	boolean blnGameInProgress = false;
 		//Pieces Images
 		BufferedImage fiveStarB;
 	// Settings
 	BufferedImage settingsScreen;
-	boolean blnGameStart = false;
 	boolean blnSettings = false;
 	// Help Screen
 	BufferedImage helpScreen1;
 	BufferedImage helpScreen2;
 	BufferedImage helpScreen3;
 	BufferedImage helpScreen4;
+	
 	boolean blnHelp1 = false;
 	boolean blnHelp2 = false;
 	boolean blnHelp3 = false;
 	boolean blnHelp4 = false;
 	// Win Screen
 	// Lose Screen
-	//Connection Screen
+	// Connection Screen
 	BufferedImage connectionScreen;
-
+	boolean blnConnect = false;
 	
 	//METHODS
 	public void paintComponent(Graphics g){
@@ -82,6 +84,8 @@ public class animation extends JPanel{
 		}else if(blnHelp4 == true){
 			g.drawImage(helpScreen4, 0, 0, null);
 		// drawing things when the game starts
+		}else if(blnConnect == true){
+			g.drawImage(connectionScreen, 0, 0, null);
 		}else if(blnGameStart == true){
 			if(blnDarkMode == true){
 				g.drawImage(gameBoardDark, 0, 0, null);
