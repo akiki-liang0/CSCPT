@@ -82,21 +82,20 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 			}else if(evt.getX() >= 860 && evt.getX() <= 1120 && evt.getY() >= 590 && evt.getY() <= 670 && thepanel.blnSettings == false){
 				thepanel.blnHelp1 = true;
 				thepanel.blnMainMenu = false;
-			// going to play
+			// pressing play, going to connection screen
 			}else if(evt.getX() >= 500 && evt.getX() <= 800 && evt.getY() >= 520 && evt.getY() <= 670){
-				thepanel.blnGameStart = true;
-				thepanel.blnMainMenu = false;
-				// adding the components of the chat onto the panel
-				thepanel.add(thescroll);
-				thepanel.add(send);
-				thepanel.add(chat);
-				thepanel.add(darkON);
-				thepanel.add(darkOFF);
-				thescroll.setVisible(true);
-				send.setVisible(true);
-				chat.setVisible(true);
-				darkON.setVisible(true);
-				darkOFF.setVisible(true);
+				if(thepanel.blnGameInProgress == true){
+					thepanel.blnGameStart = true;
+					thepanel.blnMainMenu = false;
+					thescroll.setVisible(true);
+					send.setVisible(true);
+					chat.setVisible(true);
+					darkON.setVisible(true);
+					darkOFF.setVisible(true);
+				}else{
+					thepanel.blnConnect = true;
+					thepanel.blnMainMenu = false;
+				}
 			}
 		// user on settings page
 		}else if(thepanel.blnSettings == true){
@@ -148,12 +147,30 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 				thepanel.blnHelp3 = true;
 				thepanel.blnHelp4 = false;
 			}
+		// user on connect screen
+		}else if(thepanel.blnConnect == true){
+			if(evt.getX() >= 580 && evt.getX() <= 770 && evt.getY() >= 420 && evt.getY() <= 480){
+				thepanel.blnGameStart = true;
+				thepanel.blnConnect = false;
+				// adding the components of the chat onto the panel
+				thepanel.add(thescroll);
+				thepanel.add(send);
+				thepanel.add(chat);
+				thepanel.add(darkON);
+				thepanel.add(darkOFF);
+				thescroll.setVisible(true);
+				send.setVisible(true);
+				chat.setVisible(true);
+				darkON.setVisible(true);
+				darkOFF.setVisible(true);
+			}
 		// user on the game screen
 		}else if(thepanel.blnGameStart == true){ 
 			// going back to the main menu
 			if(evt.getX() >= 0 && evt.getX() <= 200 && evt.getY() >= 0 && evt.getY() <= 50){
 				thepanel.blnMainMenu = true;
 				thepanel.blnGameStart = false;
+				thepanel.blnGameInProgress = true;
 				// removing components of the chat from game screen
 				thescroll.setVisible(false);
 				send.setVisible(false);
