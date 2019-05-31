@@ -76,9 +76,10 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 				// adding the text fields to the panel
 				thepanel.add(portNumber);
 				thepanel.add(serverIP);
+				portNumber.setVisible(false);
+				serverIP.setVisible(false);
 			// going to the help screens
 			}else if(evt.getX() >= 860 && evt.getX() <= 1120 && evt.getY() >= 590 && evt.getY() <= 670 && thepanel.blnSettings == false){
-				
 				thepanel.blnHelp1 = true;
 				thepanel.blnMainMenu = false;
 			// going to play
@@ -90,14 +91,18 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 				thepanel.add(send);
 				thepanel.add(chat);
 				thepanel.add(darkON);
-				thepanel.add(darkOFF); 
+				thepanel.add(darkOFF);
+				thescroll.setVisible(true);
+				send.setVisible(true);
+				chat.setVisible(true);
+				darkON.setVisible(true);
+				darkOFF.setVisible(true);
 			}
 		// user on settings page
 		}else if(thepanel.blnSettings == true){
 			// going back to the main menu
 			if(evt.getX() >= 993 && evt.getX() <= 1201 && evt.getY() >= 26 && evt.getY() <= 81){
 				thepanel.blnMainMenu = true;
-				
 				// getting rid of the text fields
 				portNumber.setVisible(false);
 				serverIP.setVisible(false);
@@ -142,6 +147,19 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 			}else if(evt.getX() >= 47 && evt.getX() <= 101 && evt.getY() >= 608 && evt.getY() <= 682){
 				thepanel.blnHelp3 = true;
 				thepanel.blnHelp4 = false;
+			}
+		// user on the game screen
+		}else if(thepanel.blnGameStart == true){ 
+			// going back to the main menu
+			if(evt.getX() >= 0 && evt.getX() <= 200 && evt.getY() >= 0 && evt.getY() <= 50){
+				thepanel.blnMainMenu = true;
+				thepanel.blnGameStart = false;
+				// removing components of the chat from game screen
+				thescroll.setVisible(false);
+				send.setVisible(false);
+				chat.setVisible(false);
+				darkON.setVisible(false);
+				darkOFF.setVisible(false);
 			}
 		}
 	}
