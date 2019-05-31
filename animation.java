@@ -6,28 +6,37 @@ import javax.swing.*;
 
 public class animation extends JPanel{
 	//PROPERTIES
+	// Main Menu
+	BufferedImage mainMenu;
+	BufferedImage playPressed;
+	BufferedImage helpPressed;
+	BufferedImage settingsPressed;
+	boolean blnMainMenu = true;
+	
+	// Game Screen
 	BufferedImage gameBoard;
 	BufferedImage gameBoardDark;
-	BufferedImage mainMenu;
+	boolean blnDarkMode = false;
+		//Pieces Images
+		BufferedImage fiveStarB;
+	// Settings
+	BufferedImage settingsScreen;
+	boolean blnGameStart = false;
+	boolean blnSettings = false;
+	// Help Screen
 	BufferedImage helpScreen1;
 	BufferedImage helpScreen2;
 	BufferedImage helpScreen3;
 	BufferedImage helpScreen4;
-	BufferedImage connectionScreen;
-	BufferedImage settingsScreen;
-	boolean blnMainMenu = true;
-	boolean blnGameStart = false;
-	boolean blnSettings = false;
 	boolean blnHelp1 = false;
 	boolean blnHelp2 = false;
 	boolean blnHelp3 = false;
 	boolean blnHelp4 = false;
-	boolean blnDarkMode = false;
-	BufferedImage playPressed;
-	BufferedImage helpPressed;
-	BufferedImage settingsPressed;
-	
-	BufferedImage fiveStarB;
+	// Win Screen
+	// Lose Screen
+	//Connection Screen
+	BufferedImage connectionScreen;
+
 	
 	//METHODS
 	public void paintComponent(Graphics g){

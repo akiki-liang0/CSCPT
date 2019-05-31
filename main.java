@@ -7,15 +7,21 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 	//PROPERTIES
 	JFrame theframe = new JFrame("can this work thanks");
 	animation thepanel = new animation();
+	Timer thetimer = new Timer(1000/60, this);
+	// Game screen
 	JTextArea chatArea = new JTextArea();
 	JScrollPane thescroll = new JScrollPane(chatArea);
 	JTextField chat = new JTextField();
 	JButton send = new JButton("Send");
-	Timer thetimer = new Timer(1000/60, this);
 	JButton darkON = new JButton("ON");
 	JButton darkOFF = new JButton("OFF");
+	// Settings
 	JTextField portNumber = new JTextField();
 	JTextField serverIP = new JTextField();
+	// Connection Screen
+	JTextField userName = new JTextField("Enter your user name");
+	JTextField portNumberConnect = new JTextField("Enter your port number");
+	JTextField serverIPConnect = new JTextField("Enter your server's IP");
 	SuperSocketMaster ssm;
   
 	int intPort = 3000;
