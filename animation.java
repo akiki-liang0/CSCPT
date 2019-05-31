@@ -16,6 +16,7 @@ public class animation extends JPanel{
 	BufferedImage connectionScreen;
 	BufferedImage settingsScreen;
 	boolean blnMainMenu = true;
+	boolean blnConnect = false;
 	boolean blnGameStart = false;
 	boolean blnSettings = false;
 	boolean blnHelp1 = false;
@@ -23,6 +24,7 @@ public class animation extends JPanel{
 	boolean blnHelp3 = false;
 	boolean blnHelp4 = false;
 	boolean blnDarkMode = false;
+	boolean blnGameInProgress = false;
 	BufferedImage playPressed;
 	BufferedImage helpPressed;
 	BufferedImage settingsPressed;
@@ -73,6 +75,8 @@ public class animation extends JPanel{
 		}else if(blnHelp4 == true){
 			g.drawImage(helpScreen4, 0, 0, null);
 		// drawing things when the game starts
+		}else if(blnConnect == true){
+			g.drawImage(connectionScreen, 0, 0, null);
 		}else if(blnGameStart == true){
 			if(blnDarkMode == true){
 				g.drawImage(gameBoardDark, 0, 0, null);
