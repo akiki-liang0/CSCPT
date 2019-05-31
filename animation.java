@@ -34,6 +34,7 @@ public class animation extends JPanel{
 		// loading all the images
 		try{
 			gameBoard = ImageIO.read(new File("Pics/board.png"));
+			gameBoardDark = ImageIO.read(new File("Pics/boardDark.png"));
 			// screens 
 			mainMenu = ImageIO.read(new File("Pics/menu.png"));
 			helpScreen1 = ImageIO.read(new File("Pics/helpScreen1.png"));
@@ -73,7 +74,11 @@ public class animation extends JPanel{
 			g.drawImage(helpScreen4, 0, 0, null);
 		// drawing things when the game starts
 		}else if(blnGameStart == true){
-			g.drawImage(gameBoard, 0, 0, null);
+			if(blnDarkMode == true){
+				g.drawImage(gameBoardDark, 0, 0, null);
+			}else{
+				g.drawImage(gameBoard, 0, 0, null);
+			}
 			g.setColor(Color.BLACK);
 			g.drawString("Dark Mode", 640, 28);
 			// chat area
@@ -85,6 +90,7 @@ public class animation extends JPanel{
 			
 			g.drawImage(fiveStarB, 214, 214, null);
 		}
+		
 	}
 	
 	//CONSTRUCTOR
