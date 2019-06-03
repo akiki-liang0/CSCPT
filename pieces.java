@@ -2,8 +2,8 @@ public class pieces{
 	// properties
 	/** Whether or not a piece is visible */
 	boolean isVisible;
-	/** A given piece's rank */
-	int intRank;
+	/** Ranking, piece #, piece */
+	String strpieceCode;
 	/** The x-coordinate of a piece */
 	int intX;
 	/** The y-coordinate of a piece */
@@ -14,9 +14,11 @@ public class pieces{
 	boolean inBattle;
 	
 	// methods
-	/** Moves the piece to the desired location */
-	public void move(){
-		
+	/** Returns row + column of current piece for movement */
+	public String[] getPosition(String strpieceCode){
+		String[] pieceData;
+		pieceData = strpieceCode.split("/");
+		return pieceData;
 	}
 	/** When two pieces battle, the winner is decided based on their rank */
 	public void battle(int intRank){
@@ -25,9 +27,9 @@ public class pieces{
 	
 	/** Constructs a piece */
 	// constructor
-	public pieces(boolean isVisible, int intRank, int intX, int intY, boolean isClient, boolean inBattle){
+	public pieces(boolean isVisible, String strpieceCode, int intX, int intY, boolean isClient, boolean inBattle){
 		this.isVisible = isVisible;
-		this.intRank = intRank;
+		this.strpieceCode = strpieceCode;
 		this.intX = intX;
 		this.intY = intY;
 		this.isClient = isClient;
