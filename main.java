@@ -82,8 +82,8 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 				// adding the text fields to the panel
 				thepanel.add(portNumber);
 				thepanel.add(serverIP);
-				portNumber.setVisible(false);
-				serverIP.setVisible(false);
+				portNumber.setVisible(true);
+				serverIP.setVisible(true);
 			// going to the help screens
 			}else if(evt.getX() >= 860 && evt.getX() <= 1120 && evt.getY() >= 590 && evt.getY() <= 670 && thepanel.blnSettings == false){
 				thepanel.blnHelp1 = true;
