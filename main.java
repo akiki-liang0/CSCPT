@@ -67,6 +67,8 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 	public void mouseExited(MouseEvent evt){
 	}
 	public void mouseEntered(MouseEvent evt){
+
+		//why cant i PUSHHH
 	}
 	public void mousePressed(MouseEvent evt){
 	}
