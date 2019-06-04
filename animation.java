@@ -2,6 +2,7 @@ import java.io.*;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.*;
+import java.awt.font.*;
 import javax.swing.*;
 
 public class animation extends JPanel{
@@ -36,7 +37,9 @@ public class animation extends JPanel{
 	public boolean blnHelp3 = false;
 	public boolean blnHelp4 = false;
 	// Win Screen
+	boolean blnwin = false;
 	// Lose Screen
+	boolean blnloss = false;
 	// Connection Screen
 	public BufferedImage connectionScreen;
 	public boolean blnConnect = false;
@@ -103,6 +106,15 @@ public class animation extends JPanel{
 			g.drawString("Rankings", 1025, 385);
 			
 			g.drawImage(fiveStarB, 214, 214, null);
+		}else if(blnwin == true){
+			//load font
+			try {
+				g.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("Stencil Std Bold.ttf")));
+		   } catch (IOException|FontFormatException e) {
+				//Handle exception
+		   }
+		}else if(blnloss == true){
+
 		}
 		
 	}
