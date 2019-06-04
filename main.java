@@ -67,6 +67,11 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 	public void mouseExited(MouseEvent evt){
 	}
 	public void mouseEntered(MouseEvent evt){
+
+		/*why cant i PUSHHH
+		 so help me good God almightly amen pls 
+		 */
+
 	}
 	public void mousePressed(MouseEvent evt){
 	}
@@ -175,6 +180,48 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 	public void keyTyped(KeyEvent evt){
 	}
 	public void keyPressed(KeyEvent evt){
+	}
+	//returns array representative of requested view of board
+
+	public String[][] Board(Boolean opponent){
+		String[] csvSplit = new String[];
+		String[][] arrBoard = new String[7][7];
+		String[][] oppBoard = new String[7][7];
+
+		//read csv to array
+		try {	
+		file = new BufferedReader(new FileReader("csv.txt"));
+			for (int i = 0; i < 8; i++) {
+				String line = file.readline();
+
+				//split by commas, piece-relavant data is separated by "/"
+				csvSplit = file.split(",");
+				//for each string in array split
+				for (String string : csvSplit) {
+					for(int row = 0; row < 8; row++){
+						for(int col = 0; col < 8; col++){
+						arrBoard[row][col] = string;
+
+						//loop through array replace [0][0] with [8][8] and so forth
+						for(int newrow = 7; newrow >= 0; newrow--){
+							for(int newcol = 7; newcol >= 0; newcol--){
+								oppBoard[newrow][newcol] = arrBoard[row][col];
+							}
+						}
+					}
+					}
+					
+				}
+			}
+		} catch (IOException e) {
+			System.out.println("Error loading file");
+		}
+
+		if(boolean opponent == true){
+			return oppBoard;
+		}else{
+			return arrBoard;
+		}
 	}
   
     //CONSTRUCTOR
