@@ -1,3 +1,4 @@
+import java.io.*;
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
@@ -24,6 +25,7 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 	JTextField serverIPConnect = new JTextField("Enter your server's IP");
 	SuperSocketMaster ssm;
   
+	PrintWriter connections = null;
 	int intPort = 3000;
 		
 	//METHODS
@@ -109,6 +111,15 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 			// going back to the main menu
 			if(evt.getX() >= 993 && evt.getX() <= 1201 && evt.getY() >= 26 && evt.getY() <= 81){
 				thepanel.blnMainMenu = true;
+				// copying text field contents to a text file
+				try{
+					connections = new PrintWriter(new FileWriter("connections.txt"));
+					connections.println(portNumber.getText());
+					connections.println(serverIP.getText());
+					connections.close();
+				}catch(IOException e){
+					
+				}
 				// getting rid of the text fields
 				portNumber.setVisible(false);
 				serverIP.setVisible(false);
