@@ -65,6 +65,20 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 	public void mouseMoved(MouseEvent evt){
 	}
 	public void mouseDragged(MouseEvent evt){
+		/*if opponent is White
+		 *you can only select black pieces
+		 * vice versa
+		 * */
+		 String[][] board;
+		 
+		 String data = board[0][0];
+		 String[] dataArr = data.split("/");
+		 String oppColour = dataArr[2];
+		 
+		 if(oppColour.equals("W")){
+			 
+		 }else if(oppColour.equals("B")){
+		 }
     }
 	public void mouseExited(MouseEvent evt){
 	}
