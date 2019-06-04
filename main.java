@@ -1,3 +1,4 @@
+import java.io.*;
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
@@ -24,6 +25,7 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 	JTextField serverIPConnect = new JTextField("Enter your server's IP");
 	SuperSocketMaster ssm;
   
+	PrintWriter connections = null;
 	int intPort = 3000;
 		
 	//METHODS
@@ -63,6 +65,20 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 	public void mouseMoved(MouseEvent evt){
 	}
 	public void mouseDragged(MouseEvent evt){
+		/*if opponent is White
+		 *you can only select black pieces
+		 * vice versa
+		 * */
+		 String[][] board;
+		 
+		 String data = board[0][0];
+		 String[] dataArr = data.split("/");
+		 String oppColour = dataArr[2];
+		 
+		 if(oppColour.equals("W")){
+			 
+		 }else if(oppColour.equals("B")){
+		 }
     }
 	public void mouseExited(MouseEvent evt){
 	}
@@ -79,6 +95,7 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 			// going to settings page
 			if(evt.getX() >= 180 && evt.getX() <= 440 && evt.getY() >= 590 && evt.getY() <= 670){
 				thepanel.blnSettings = true;
+				
 				thepanel.blnMainMenu = false;
 				// adding the text fields to the panel
 				thepanel.add(portNumber);
@@ -110,6 +127,15 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 			// going back to the main menu
 			if(evt.getX() >= 993 && evt.getX() <= 1201 && evt.getY() >= 26 && evt.getY() <= 81){
 				thepanel.blnMainMenu = true;
+				// copying text field contents to a text file
+				try{
+					connections = new PrintWriter(new FileWriter("connections.txt"));
+					connections.println(portNumber.getText());
+					connections.println(serverIP.getText());
+					connections.close();
+				}catch(IOException e){
+					
+				}
 				// getting rid of the text fields
 				portNumber.setVisible(false);
 				serverIP.setVisible(false);
@@ -271,3 +297,4 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 
 
 }
+
