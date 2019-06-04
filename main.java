@@ -68,10 +68,6 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 	}
 	public void mouseEntered(MouseEvent evt){
 
-		/*why cant i PUSHHH
-		 so help me good God almightly amen pls 
-		 */
-
 	}
 	public void mousePressed(MouseEvent evt){
 	}
@@ -189,7 +185,7 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 
 		//read csv to array
 		try {	
-		file = new BufferedReader(new FileReader("csv.txt"));
+		file = new BufferedReader(new FileReader("csv.csv"));
 			for (int i = 0; i < 8; i++) {
 				String line = file.readline();
 
@@ -222,7 +218,8 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 			return arrBoard;
 		}
 	}
-  
+	
+
     //CONSTRUCTOR
 	public main(){
 		// panel
