@@ -8,40 +8,41 @@ import javax.swing.*;
 public class animation extends JPanel{
 	//PROPERTIES
 	// Main Menu
-	BufferedImage mainMenu;
-	BufferedImage playPressed;
-	BufferedImage helpPressed;
-	BufferedImage settingsPressed;
-	boolean blnMainMenu = false;
+	public BufferedImage mainMenu;
+	public BufferedImage menuPlayPressed;
+	public BufferedImage menuHelpPressed;
+	public BufferedImage menuSettingsPressed;
+	public boolean blnMainMenu = false;
 	
 	// Game Screen
-	BufferedImage gameBoard;
-	BufferedImage gameBoardDark;
-	boolean blnGameStart = true;
-	boolean blnDarkMode = false;
-	boolean blnGameInProgress = false;
+	public BufferedImage gameBoard;
+	public BufferedImage gameBoardDark;
+	public boolean blnGameStart = true;
+	public boolean blnDarkMode = false;
+	public boolean blnGameInProgress = false;
+
 		//Pieces Images
-		BufferedImage fiveStarB;
+		public BufferedImage fiveStarB;
 	// Settings
-	BufferedImage settingsScreen;
-	boolean blnSettings = false;
+	public BufferedImage settingsScreen;
+	public boolean blnSettings = false;
 	// Help Screen
-	BufferedImage helpScreen1;
-	BufferedImage helpScreen2;
-	BufferedImage helpScreen3;
-	BufferedImage helpScreen4;
+	public BufferedImage helpScreen1;
+	public BufferedImage helpScreen2;
+	public BufferedImage helpScreen3;
+	public BufferedImage helpScreen4;
 	
-	boolean blnHelp1 = false;
-	boolean blnHelp2 = false;
-	boolean blnHelp3 = false;
-	boolean blnHelp4 = false;
+	public boolean blnHelp1 = false;
+	public boolean blnHelp2 = false;
+	public boolean blnHelp3 = false;
+	public boolean blnHelp4 = false;
 	// Win Screen
 	boolean blnwin = false;
 	// Lose Screen
 	boolean blnloss = false;
 	// Connection Screen
-	BufferedImage connectionScreen;
-	boolean blnConnect = false;
+	public BufferedImage connectionScreen;
+	public boolean blnConnect = false;
 	
 	//METHODS
 	public void paintComponent(Graphics g){
@@ -57,13 +58,13 @@ public class animation extends JPanel{
 			helpScreen4 = ImageIO.read(new File("Pics/helpScreen4.png"));
 			connectionScreen = ImageIO.read(new File("Pics/connectionScreen.png"));
 			settingsScreen = ImageIO.read(new File("Pics/settingScreen.png"));
-			playPressed = ImageIO.read(new File("Pics/ButtonPressed/MenuPlayPressed.png"));
-			helpPressed = ImageIO.read(new File("Pics/ButtonPressed/MenuHelpPressed.png"));
-			settingsPressed = ImageIO.read(new File("Pics/ButtonPressed/MenuSettingsPressed.png"));
+			menuPlayPressed = ImageIO.read(new File("Pics/ButtonPressed/MenuPlayPressed.png"));
+			menuHelpPressed = ImageIO.read(new File("Pics/ButtonPressed/MenuHelpPressed.png"));
+			menuSettingsPressed = ImageIO.read(new File("Pics/ButtonPressed/MenuSettingsPressed.png"));
 			// pieces
 			fiveStarB = ImageIO.read(new File("Pics/Black/FiveStarGeneralB.png"));
 		}catch(IOException e){
-			
+			System.out.println("Interrupted Exception");
 		}
 		
 		// drawing main menu screen
@@ -71,12 +72,12 @@ public class animation extends JPanel{
 			g.drawImage(mainMenu, 0, 0, null);
 		// drawing settings page
 		}else if(blnSettings == true){
-			try{
-				g.drawImage(settingsPressed, 0, 0, null);
-				Thread.sleep(1000);
+			//try{
+				g.drawImage(menuSettingsPressed, 0, 0, null);
+				//Thread.sleep(1000);
 				g.drawImage(settingsScreen, 0, 0, null);
-			}catch(InterruptedException e){
-			}
+			//}catch(InterruptedException e){
+			//}
 		// drawing help screens 1-4
 		}else if(blnHelp1 == true){
 			g.drawImage(helpScreen1, 0, 0, null);
@@ -123,12 +124,3 @@ public class animation extends JPanel{
 		super();
 	}
 }
-
-
-
-
-
-
-
-
-
