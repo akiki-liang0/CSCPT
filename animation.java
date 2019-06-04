@@ -7,6 +7,7 @@ import javax.swing.*;
 public class animation extends JPanel{
 	//PROPERTIES
 	// Main Menu
+<<<<<<< HEAD
 	public BufferedImage mainMenu;
 	public BufferedImage menuPlayPressed;
 	public BufferedImage menuHelpPressed;
@@ -19,6 +20,20 @@ public class animation extends JPanel{
 	public boolean blnGameStart = false;
 	public boolean blnDarkMode = false;
 	public boolean blnGameInProgress = false;
+=======
+	BufferedImage mainMenu;
+	BufferedImage playPressed;
+	BufferedImage helpPressed;
+	BufferedImage settingsPressed;
+	boolean blnMainMenu = false;
+	
+	// Game Screen
+	BufferedImage gameBoard;
+	BufferedImage gameBoardDark;
+	boolean blnGameStart = true;
+	boolean blnDarkMode = false;
+	boolean blnGameInProgress = false;
+>>>>>>> aa4952f862c552ddbecc2c0483abef1d3590f628
 		//Pieces Images
 		public BufferedImage fiveStarB;
 	// Settings
