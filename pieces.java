@@ -1,17 +1,17 @@
 public class pieces{
 	// properties
 	/** Whether or not a piece is visible */
-	boolean isVisible;
+	public boolean isVisible;
 	/** A given piece's rank */
-	int intRank;
+	public int intRank;
 	/** The x-coordinate of a piece */
-	int intX;
+	public int intX;
 	/** The y-coordinate of a piece */
-	int intY;
+	public int intY;
 	/** Whether or not a piece belongs to the client */
-	boolean isClient;
+	public boolean isClient;
 	/** Whether or not a piece is in battle */
-	boolean inBattle;
+	public boolean inBattle;
 	
 	// methods
 	/** Moves the piece to the desired location */
