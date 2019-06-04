@@ -1,3 +1,4 @@
+import java.io.*;
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
@@ -24,6 +25,7 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 	JTextField serverIPConnect = new JTextField("Enter your server's IP");
 	SuperSocketMaster ssm;
   
+	PrintWriter connections = null;
 	int intPort = 3000;
 		
 	//METHODS
@@ -63,6 +65,20 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 	public void mouseMoved(MouseEvent evt){
 	}
 	public void mouseDragged(MouseEvent evt){
+		/*if opponent is White
+		 *you can only select black pieces
+		 * vice versa
+		 * */
+		 String[][] board;
+		 
+		 /*//String data = board[0][0];
+		 String[] dataArr = data.split("/");
+		 String oppColour = dataArr[2];
+		 
+		 if(oppColour.equals("W")){
+			 
+		 }else if(oppColour.equals("B")){
+		 }*/
     }
 	public void mouseExited(MouseEvent evt){
 	}
@@ -115,6 +131,15 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 			// going back to the main menu
 			if(evt.getX() >= 993 && evt.getX() <= 1201 && evt.getY() >= 26 && evt.getY() <= 81){
 				thepanel.blnMainMenu = true;
+				// copying text field contents to a text file
+				try{
+					connections = new PrintWriter(new FileWriter("connections.txt"));
+					connections.println(portNumber.getText());
+					connections.println(serverIP.getText());
+					connections.close();
+				}catch(IOException e){
+					
+				}
 				// getting rid of the text fields
 				portNumber.setVisible(false);
 				serverIP.setVisible(false);
@@ -183,19 +208,19 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 	}
 	//returns array representative of requested view of board
 
-	public String[][] Board(Boolean opponent){
-		String[] csvSplit = new String[];
-		String[][] arrBoard = new String[7][7];
-		String[][] oppBoard = new String[7][7];
+	public String[][] Board(boolean opponent){
+		String[] csvSplit = new String[72];
+		String[][] arrBoard = new String[8][7];
+		String[][] oppBoard = new String[8][7];
 
 		//read csv to array
 		try {	
-		file = new BufferedReader(new FileReader("csv.txt"));
+			BufferedReader file = new BufferedReader(new FileReader("csv.txt"));
 			for (int i = 0; i < 8; i++) {
-				String line = file.readline();
+				String line = file.readLine();
 
 				//split by commas, piece-relavant data is separated by "/"
-				csvSplit = file.split(",");
+				csvSplit = line.split(",");
 				//for each string in array split
 				for (String string : csvSplit) {
 					for(int row = 0; row < 8; row++){
@@ -216,8 +241,8 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 		} catch (IOException e) {
 			System.out.println("Error loading file");
 		}
-
-		if(boolean opponent == true){
+		
+		if(opponent == true){
 			return oppBoard;
 		}else{
 			return arrBoard;
