@@ -70,11 +70,6 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 	public void mouseExited(MouseEvent evt){
 	}
 	public void mouseEntered(MouseEvent evt){
-
-		/*why cant i PUSHHH
-		 so help me good God almightly amen pls 
-		 */
-
 	}
 	public void mousePressed(MouseEvent evt){
 	}
@@ -99,19 +94,17 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 				thepanel.blnMainMenu = false;
 			// going to play
 			}else if(evt.getX() >= 500 && evt.getX() <= 800 && evt.getY() >= 520 && evt.getY() <= 670){
-				thepanel.blnGameStart = true;
+				if(thepanel.blnGameInProgress == true){
+					thepanel.blnGameStart = true;
+					thescroll.setVisible(true);
+					send.setVisible(true);
+					chat.setVisible(true);
+					darkON.setVisible(true);
+					darkOFF.setVisible(true);
+				}else{
+					thepanel.blnConnect = true;
+				}
 				thepanel.blnMainMenu = false;
-				// adding the components of the chat onto the panel
-				thepanel.add(thescroll);
-				thepanel.add(send);
-				thepanel.add(chat);
-				thepanel.add(darkON);
-				thepanel.add(darkOFF);
-				thescroll.setVisible(true);
-				send.setVisible(true);
-				chat.setVisible(true);
-				darkON.setVisible(true);
-				darkOFF.setVisible(true);
 			}
 		// user on settings page
 		}else if(thepanel.blnSettings == true){
@@ -172,12 +165,24 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 				thepanel.blnHelp3 = true;
 				thepanel.blnHelp4 = false;
 			}
+		}else if(thepanel.blnConnect == true){
+			if(evt.getX() >= 580 && evt.getX() <= 770 && evt.getY() >= 420 && evt.getY() <= 480){
+				thepanel.blnGameStart = true;
+				thepanel.blnConnect = false;
+				// adding the components of the chat onto the panel
+				thepanel.add(thescroll);
+				thepanel.add(send);
+				thepanel.add(chat);
+				thepanel.add(darkON);
+				thepanel.add(darkOFF);
+			}
 		// user on the game screen
 		}else if(thepanel.blnGameStart == true){ 
 			// going back to the main menu
 			if(evt.getX() >= 0 && evt.getX() <= 200 && evt.getY() >= 0 && evt.getY() <= 50){
 				thepanel.blnMainMenu = true;
 				thepanel.blnGameStart = false;
+				thepanel.blnGameInProgress = true;
 				// removing components of the chat from game screen
 				thescroll.setVisible(false);
 				send.setVisible(false);
@@ -199,11 +204,10 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 		String[] csvSplit = new String[72];
 		String[][] arrBoard = new String[8][7];
 		String[][] oppBoard = new String[8][7];
-		BufferedReader file = null;
 
 		//read csv to array
 		try {	
-		file = new BufferedReader(new FileReader("csv.txt"));
+		BufferedReader file = new BufferedReader(new FileReader("csv.txt"));
 			for (int i = 0; i < 8; i++) {
 				String line = file.readLine();
 
