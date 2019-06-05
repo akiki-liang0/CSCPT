@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.event.*;
 import javax.swing.event.*;
 
-public class main implements ActionListener, MouseListener, MouseMotionListener, KeyListener{
+public class main implements ActionListener, MouseListener, MouseMotionListener, KeyListener, FocusListener{
 	//PROPERTIES
 	JFrame theframe = new JFrame("can this work thanks");
 	animation thepanel = new animation();
@@ -20,14 +20,15 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 	JTextField portNumber = new JTextField();
 	JTextField serverIP = new JTextField();
 	// Connection Screen
-	JTextField userName = new JTextField("Enter your user name");
-	JTextField portNumberConnect = new JTextField("Enter your port number");
-	JTextField serverIPConnect = new JTextField("Enter your server's IP");
+	JTextField username = new JTextField("Username");
+	JTextField portIPConnect = new JTextField("Port #, IP Address");
 	SuperSocketMaster ssm;
   
 	int intPort = 3000;
 	
 	PrintWriter connections = null;
+	
+	int test = 0;
 		
 	//METHODS
 	public void actionPerformed(ActionEvent evt){
@@ -81,7 +82,6 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 			// going to settings page
 			if(evt.getX() >= 180 && evt.getX() <= 440 && evt.getY() >= 590 && evt.getY() <= 670){
 				thepanel.blnSettings = true;
-				
 				thepanel.blnMainMenu = false;
 				// adding the text fields to the panel
 				thepanel.add(portNumber);
@@ -94,17 +94,24 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 				thepanel.blnMainMenu = false;
 			// going to play
 			}else if(evt.getX() >= 500 && evt.getX() <= 800 && evt.getY() >= 520 && evt.getY() <= 670){
-				if(thepanel.blnGameInProgress == true){
+				thepanel.blnMainMenu = false;
+				// going to connection screen
+				if(thepanel.blnGameInProgress == false){
+					thepanel.blnConnect = true;
+					thepanel.add(username);
+					thepanel.add(portIPConnect);
+					username.setForeground(Color.GRAY);
+					portIPConnect.setForeground(Color.GRAY);
+				// resuming game after already having connected
+				}else{
 					thepanel.blnGameStart = true;
 					thescroll.setVisible(true);
 					send.setVisible(true);
 					chat.setVisible(true);
 					darkON.setVisible(true);
 					darkOFF.setVisible(true);
-				}else{
-					thepanel.blnConnect = true;
 				}
-				thepanel.blnMainMenu = false;
+				
 			}
 		// user on settings page
 		}else if(thepanel.blnSettings == true){
@@ -166,9 +173,12 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 				thepanel.blnHelp4 = false;
 			}
 		}else if(thepanel.blnConnect == true){
-			if(evt.getX() >= 580 && evt.getX() <= 770 && evt.getY() >= 420 && evt.getY() <= 480){
+			// if user clicks play and they have filled in the connection requirements
+			if(evt.getX() >= 580 && evt.getX() <= 770 && evt.getY() >= 420 && evt.getY() <= 480 && !username.getText().equals("Username") && !portIPConnect.getText().equals("Port #, IP Address")){
 				thepanel.blnGameStart = true;
 				thepanel.blnConnect = false;
+				username.setVisible(false);
+				portIPConnect.setVisible(false);
 				// adding the components of the chat onto the panel
 				thepanel.add(thescroll);
 				thepanel.add(send);
@@ -197,6 +207,26 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 	public void keyTyped(KeyEvent evt){
 	}
 	public void keyPressed(KeyEvent evt){
+	}
+	// methods for placeholder text in the jtextfields
+	public void focusGained(FocusEvent evt){
+		if(username.getText().equals("Username") && username.isFocusOwner() == true){
+			username.setText("");
+			username.setForeground(Color.BLACK);
+		}else if(portIPConnect.getText().equals("Port #, IP Address") && portIPConnect.isFocusOwner() == true){
+			portIPConnect.setText("");
+			portIPConnect.setForeground(Color.BLACK);
+		}
+	}
+	public void focusLost(FocusEvent evt){
+		if(username.getText().equals("")){
+			username.setForeground(Color.GRAY);
+			username.setText("Username");
+		}
+		if(portIPConnect.getText().equals("")){
+			portIPConnect.setForeground(Color.GRAY);
+			portIPConnect.setText("Port #, IP Address");
+		}
 	}
 	//returns array representative of requested view of board
 
@@ -265,6 +295,14 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 		portNumber.addActionListener(this);
 		serverIP.setBounds(192, 198, 250, 25);
 		serverIP.addActionListener(this);
+		
+		// connection screen
+		username.setBounds(450, 292, 450, 25);
+		username.addActionListener(this);
+		username.addFocusListener(this);
+		portIPConnect.setBounds(450, 351, 450, 25);
+		portIPConnect.addActionListener(this);
+		portIPConnect.addFocusListener(this);
 		
 		// frame
 		theframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
