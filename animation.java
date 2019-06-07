@@ -108,11 +108,11 @@ public class animation extends JPanel{
 			g.drawImage(fiveStarB, 214, 214, null);
 		}else if(blnwin == true){
 			//load font
-			try {
+			/*try {
 				g.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("Stencil Std Bold.ttf")));
 		   } catch (IOException|FontFormatException e) {
 				//Handle exception
-		   }
+		   }*/
 		}else if(blnloss == true){
 
 		}
