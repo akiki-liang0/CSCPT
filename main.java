@@ -24,6 +24,8 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 	JTextField username = new JTextField("Username");
 	JTextField portIPConnect = new JTextField("Port #, IP Address");
 	SuperSocketMaster ssm;
+	// the game logic
+	int intTurn = 1;
   
 	int intPort = 3000;
 	
@@ -59,6 +61,7 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 			chat.setForeground(Color.BLACK);
 		}else if(evt.getSource() == lockIn){
 			lockIn.setVisible(false);
+			thepanel.blnLockedIn = true; 
 			// adding the components of the chat onto the panel
 			thepanel.add(thescroll);
 			thepanel.add(send);
@@ -76,6 +79,21 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 	public void mouseMoved(MouseEvent evt){
 	}
 	public void mouseDragged(MouseEvent evt){
+		// if the game just started and the players are rearranging their pieces on the board
+		if(thepanel.blnGameStart == true){
+			
+		// if the player has locked in their pieces
+		}else if(thepanel.blnLockedIn == true){
+			// if it's the server's turn
+			if(intTurn == 1){
+				// stuff happens and then: 
+				intTurn = 2;
+			// if it's the client's turn 
+			}else if(intTurn == 2){
+				// stuff happens and then:
+				intTurn = 1;
+			}
+		}
     }
 	public void mouseExited(MouseEvent evt){
 	}
@@ -189,14 +207,6 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 				username.setVisible(false);
 				portIPConnect.setVisible(false);
 				thepanel.add(lockIn);
-				/*
-				// adding the components of the chat onto the panel
-				thepanel.add(thescroll);
-				thepanel.add(send);
-				thepanel.add(chat);
-				thepanel.add(darkON);
-				thepanel.add(darkOFF);
-				*/
 			}
 		// user on the game screen
 		}else if(thepanel.blnGameStart == true){ 
@@ -258,7 +268,7 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 				//for each string in array split
 				for (String string : csvSplit) {
 					for(int row = 0; row < 8; row++){
-						for(int col = 0; col < 8; col++){
+						for(int col = 0; col < 7; col++){
 						arrBoard[row][col] = string;
 
 						//loop through array replace [0][0] with [8][8] and so forth
