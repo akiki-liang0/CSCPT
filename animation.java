@@ -20,9 +20,11 @@ public class animation extends JPanel{
 	public boolean blnGameStart = true;
 	public boolean blnDarkMode = false;
 	public boolean blnGameInProgress = false;
-
-		//Pieces Images
-		public BufferedImage fiveStarB;
+	
+	//Pieces Images
+	public BufferedImage fiveStarB, fourStarB, threeStarB, twoStarB, oneStarB, colonelB, ltColonelB, majorB, captainB, firstLieutB, secondLieutB, sergeantB, privateB, spyB, flagB;
+	public BufferedImage fiveStarW, fourStarW, threeStarW, twoStarW, oneStarW, colonelW, ltColonelW, majorW, captainW, firstLieutW, secondLieutW, sergeantW, privateW, spyW, flagW;
+		
 	// Settings
 	public BufferedImage settingsScreen;
 	public boolean blnSettings = false;
@@ -63,6 +65,36 @@ public class animation extends JPanel{
 			menuSettingsPressed = ImageIO.read(new File("Pics/ButtonPressed/MenuSettingsPressed.png"));
 			// pieces
 			fiveStarB = ImageIO.read(new File("Pics/Black/FiveStarGeneralB.png"));
+			fiveStarW = ImageIO.read(new File("Pics/White/FiveStarGeneralW.png"));
+			fourStarB = ImageIO.read(new File("Pics/Black/FourStarGeneralB.png"));
+			fourStarW = ImageIO.read(new File("Pics/White/FourStarGeneralW.png"));
+			threeStarB = ImageIO.read(new File("Pics/Black/ThreeStarGeneralB.png"));
+			threeStarB = ImageIO.read(new File("Pics/White/ThreeStarGeneralW.png"));
+			twoStarB = ImageIO.read(new File("Pics/Black/TwoStarGeneralB.png"));
+			twoStarW = ImageIO.read(new File("Pics/White/TwoStarGeneralW.png"));
+			oneStarB = ImageIO.read(new File("Pics/Black/OneStarGeneralB.png"));
+			oneStarW = ImageIO.read(new File("Pics/White/OneStarGeneralW.png"));
+			colonelB = ImageIO.read(new File("Pics/Black/ColonelB.png"));
+			colonelW = ImageIO.read(new File("Pics/White/ColonelW.png"));
+			ltColonelB = ImageIO.read(new File("Pics/Black/LtColonelB.png"));
+			ltColonelW = ImageIO.read(new File("Pics/White/LtColonelW.png"));
+			majorB = ImageIO.read(new File("Pics/Black/MajorB.png"));
+			majorW = ImageIO.read(new File("Pics/White/MajorW.png"));
+			captainB = ImageIO.read(new File("Pics/Black/CaptainB.png"));
+			captainW = ImageIO.read(new File("Pics/White/CaptainW.png"));
+			firstLieutB	= ImageIO.read(new File("Pics/Black/FirstLtB.png"));
+			firstLieutW	= ImageIO.read(new File("Pics/White/FirstLtW.png"));
+			secondLieutB = ImageIO.read(new File("Pics/Black/SecondLtB.png"));
+			secondLieutB = ImageIO.read(new File("Pics/White/SecondLtW.png"));
+			sergeantB = ImageIO.read(new File("Pics/Black/SergeantB.png"));
+			sergeantW = ImageIO.read(new File("Pics/White/SergeantW.png"));
+			privateB = ImageIO.read(new File("Pics/Black/PrivateB.png"));
+			privateW = ImageIO.read(new File("Pics/White/PrivateW.png"));
+			spyB = ImageIO.read(new File("Pics/Black/SpyB.png"));
+			spyW = ImageIO.read(new File("Pics/White/SpyW.png"));
+			flagB = ImageIO.read(new File("Pics/Black/FlagB.png"));
+			flagW = ImageIO.read(new File("Pics/White/F;agW.png"));
+
 		}catch(IOException e){
 			System.out.println("Interrupted Exception");
 		}
@@ -105,14 +137,16 @@ public class animation extends JPanel{
 			g.setColor(Color.BLACK);
 			g.drawString("Rankings", 1025, 385);
 			
-			g.drawImage(fiveStarB, 214, 214, null);
+			g.drawImage(fiveStarB, 70+(75*3), 70+(75*3), null);
 		}else if(blnwin == true){
 			//load font
+			/*
 			try {
 				g.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("Stencil Std Bold.ttf")));
 		   } catch (IOException|FontFormatException e) {
 				//Handle exception
 		   }
+		   */
 		}else if(blnloss == true){
 
 		}

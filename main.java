@@ -16,6 +16,7 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 	JButton send = new JButton("Send");
 	JButton darkON = new JButton("ON");
 	JButton darkOFF = new JButton("OFF");
+	JButton lockIn = new JButton("LOCK IN");
 	// Settings
 	JTextField portNumber = new JTextField();
 	JTextField serverIP = new JTextField();
@@ -56,6 +57,14 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 			thescroll.setForeground(Color.BLACK);
 			chat.setBackground(Color.WHITE);
 			chat.setForeground(Color.BLACK);
+		}else if(evt.getSource() == lockIn){
+			lockIn.setVisible(false);
+			// adding the components of the chat onto the panel
+			thepanel.add(thescroll);
+			thepanel.add(send);
+			thepanel.add(chat);
+			thepanel.add(darkON);
+			thepanel.add(darkOFF);
 		}else if(evt.getSource() == send){
 			ssm.sendText(chat.getText());
 			chatArea.append("me: "+chat.getText()+"\n");
@@ -179,12 +188,15 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 				thepanel.blnConnect = false;
 				username.setVisible(false);
 				portIPConnect.setVisible(false);
+				thepanel.add(lockIn);
+				/*
 				// adding the components of the chat onto the panel
 				thepanel.add(thescroll);
 				thepanel.add(send);
 				thepanel.add(chat);
 				thepanel.add(darkON);
 				thepanel.add(darkOFF);
+				*/
 			}
 		// user on the game screen
 		}else if(thepanel.blnGameStart == true){ 
@@ -278,6 +290,10 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 		thepanel.setPreferredSize(new Dimension(1280, 720));
 		thepanel.addMouseListener(this);
 		thepanel.addMouseMotionListener(this);
+		
+		// button to lock pieces in
+		lockIn.setBounds(830, 20, 430, 325);
+		lockIn.addActionListener(this);
 		
 		// the chat
 		thescroll.setBounds(830, 30, 430, 255);
