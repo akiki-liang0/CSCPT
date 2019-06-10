@@ -267,8 +267,8 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 				csvSplit = line.split(",");
 				//for each string in array split
 				for (String string : csvSplit) {
-					for(int row = 0; row < 8; row++){
-						for(int col = 0; col < 7; col++){
+					for(int row = 0; row < 7; row++){
+						for(int col = 0; col < 8; col++){
 						arrBoard[row][col] = string;
 
 						//loop through array replace [0][0] with [8][8] and so forth
