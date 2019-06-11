@@ -21,7 +21,6 @@ public class animation extends JPanel{
 	public boolean blnGameStart = true;
 	public boolean blnDarkMode = false;
 	public boolean blnGameInProgress = false;
-	public boolean blnLockedIn = false;
 
 	//Pieces Images
 	public BufferedImage fiveStarB, fourStarB, threeStarB, twoStarB, oneStarB, colonelB, ltColonelB, majorB, captainB, firstLieutB, secondLieutB, sergeantB, privateB, spyB, flagB;
