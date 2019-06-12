@@ -255,9 +255,9 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 	}
 	//returns array representative of requested view of board
 	
-	public static String[][] Board(boolean opponent){
+	public static String[][] Board(boolean server){
 		String strLine, strSplit[] = new String[9];
-		String[][] oppBoard = new String[8][9], arrBoard = new String[8][9];
+		String[][] serverBoard = new String[8][9], clientBoard = new String[8][9];
 		//read csv to array
 		try{	
 			BufferedReader file = new BufferedReader(new FileReader("csv.csv"));
@@ -266,10 +266,10 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 						strLine = file.readLine();
 						strSplit = strLine.split(",");
 						for(int col = 0; col < 9; col++){
-							arrBoard[row][col] = strSplit[col];
-							oppBoard[7-row][8-col] = strSplit[col];
-							//System.out.print(arrBoard[row][col] + "\t");
-							//System.out.print(oppBoard[7-row][8-col] + "\t");
+							clientBoard[row][col] = strSplit[col];
+							serverBoard[7-row][8-col] = strSplit[col];
+							//System.out.print(clientBoard[row][col] + "\t");
+							//System.out.print(serverBoard[7-row][8-col] + "\t");
 						}
 					}
 				file.close();
@@ -278,10 +278,10 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 		}catch(ExceptionInInitializerError e){
 			
 		}
-		if(opponent == true){
-			return oppBoard;
+		if(server == true){
+			return serverBoard;
 		}else{
-			return arrBoard;
+			return clientBoard;
 		}
 	}
 	public static String[][] drawPieces(String[][] Board){
@@ -294,7 +294,8 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 		for(int row = 0; row < 8; row++){
 			for(int col = 0; col < 9; col++){
 					Board[row][col] = strPieceInfo;
-					System.out.println(strPieceInfo);
+					//System.out.println(strPieceInfo);
+					System.out.println(Board[row][col]);
 					pieceSplit = strPieceInfo.split("/");// split into an array by "/"
 					if(pieceSplit[2].equals("W")){// if piece is white
 						if (pieceSplit[0].equals("0")){// if id = flag
