@@ -81,7 +81,7 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 	public void mouseMoved(MouseEvent evt){
 	}
 	public void mouseDragged(MouseEvent evt){
-		// if the game just started and the players are rearranging their pieces on the board
+	// if the game just started and the players are rearranging their pieces on the board
 		if(thepanel.blnGameStart == true){
 			
 		// if the player has locked in their pieces
@@ -97,6 +97,7 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 			}
 		}*/
     }
+
 	public void mouseExited(MouseEvent evt){
 	}
 	public void mouseEntered(MouseEvent evt){
@@ -254,7 +255,6 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 		}
 	}
 	//returns array representative of requested view of board
-	
 	public static String[][] Board(boolean server){
 		String strLine, strSplit[] = new String[9];
 		String[][] serverBoard = new String[8][9], clientBoard = new String[8][9];// server = white, client = black
@@ -291,8 +291,7 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 			return clientBoard;
 		}
 	}
-	 
-	// comment
+
     //CONSTRUCTOR
 	public main(){
 		// panel

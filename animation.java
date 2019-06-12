@@ -127,7 +127,7 @@ public class animation extends JPanel{
 		}else if(blnConnect == true){
 			g.drawImage(connectionScreen, 0, 0, null);
 		}else if(blnGameStart == true){
-			
+
 			drawPieces(main.strBoard, g);
 			//image drawing test DO NOT DELETE
 			/*BufferedImage pieceImage = null;
