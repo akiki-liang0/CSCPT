@@ -129,15 +129,15 @@ public class animation extends JPanel{
 			int intX = 70, intY = 70;
 			for(int row = 0; row < 8; row++){
 				for(int col = 0; col < 9; col++){
-					System.out.print(main.strBoard[row][col] + "\t");
+					//System.out.print(main.strBoard[row][col] + "\t");
 					//if (col == 9) System.out.print("\n");
 					/*try{
 						pieceImage = ImageIO.read(new File(main.strPieces[row][col]));
 					}catch(IOException e){
 						System.out.println("Inturrupted Exception when drawing pieces");
 					}
-					g.drawImage(pieceImage, intX, intY, null);*/
-					intX += 75;
+					g.drawImage(pieceImage, intX, intY, null);
+					intX += 75;*/
 				}
 				intX = 0;
 				intY += 75;
