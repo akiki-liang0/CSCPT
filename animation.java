@@ -12,14 +12,15 @@ public class animation extends JPanel{
 	public BufferedImage menuPlayPressed;
 	public BufferedImage menuHelpPressed;
 	public BufferedImage menuSettingsPressed;
-	public boolean blnMainMenu = false;
+	public boolean blnMainMenu = true;
 	
 	// Game Screen
 	public BufferedImage gameBoard;
 	public BufferedImage gameBoardDark;
-	public boolean blnGameStart = true;
+	public boolean blnGameStart = false;
 	public boolean blnDarkMode = false;
 	public boolean blnGameInProgress = false;
+	public boolean blnLockedIn = false;
 	
 	//Pieces Images
 	public BufferedImage fiveStarB, fourStarB, threeStarB, twoStarB, oneStarB, colonelB, ltColonelB, majorB, captainB, firstLieutB, secondLieutB, sergeantB, privateB, spyB, flagB;
@@ -93,7 +94,7 @@ public class animation extends JPanel{
 			spyB = ImageIO.read(new File("Pics/Black/SpyB.png"));
 			spyW = ImageIO.read(new File("Pics/White/SpyW.png"));
 			flagB = ImageIO.read(new File("Pics/Black/FlagB.png"));
-			flagW = ImageIO.read(new File("Pics/White/F;agW.png"));
+			flagW = ImageIO.read(new File("Pics/White/F;agW.png")); 
 
 		}catch(IOException e){
 			System.out.println("Interrupted Exception");
