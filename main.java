@@ -19,7 +19,6 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 	JButton lockIn = new JButton("LOCK IN");
 	// draw map methods
 	static String[][] strBoard = Board(false);
-	//static String[][] strPieces = drawPieces(strBoard);
 	// Settings
 	JTextField portNumber = new JTextField();
 	JTextField serverIP = new JTextField();
@@ -62,16 +61,16 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 			thescroll.setForeground(Color.BLACK);
 			chat.setBackground(Color.WHITE);
 			chat.setForeground(Color.BLACK);
-		}/*else if(evt.getSource() == lockIn){
+		}else if(evt.getSource() == lockIn){
 			lockIn.setVisible(false);
-			//thepanel.blnLockedIn = true; 
+			thepanel.blnLockedIn = true; 
 			// adding the components of the chat onto the panel
 			thepanel.add(thescroll);
 			thepanel.add(send);
 			thepanel.add(chat);
 			thepanel.add(darkON);
 			thepanel.add(darkOFF);
-		}*/else if(evt.getSource() == send){
+		}else if(evt.getSource() == send){
 			ssm.sendText(chat.getText());
 			chatArea.append("me: "+chat.getText()+"\n");
 			chat.setText("");
@@ -293,7 +292,7 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 		}
 	}
 	 
-	
+	// comment
     //CONSTRUCTOR
 	public main(){
 		// panel
