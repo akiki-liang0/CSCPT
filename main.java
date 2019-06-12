@@ -16,6 +16,10 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 	JButton send = new JButton("Send");
 	JButton darkON = new JButton("ON");
 	JButton darkOFF = new JButton("OFF");
+	JButton lockIn = new JButton("LOCK IN");
+	// draw map methods
+	static String[][] strBoard = Board(false);
+	//static String[][] strPieces = drawPieces(strBoard);
 	// Settings
 	JTextField portNumber = new JTextField();
 	JTextField serverIP = new JTextField();
@@ -23,6 +27,8 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 	JTextField username = new JTextField("Username");
 	JTextField portIPConnect = new JTextField("Port #, IP Address");
 	SuperSocketMaster ssm;
+	// the game logic
+	int intTurn = 1;
   
 	int intPort = 3000;
 	
@@ -56,7 +62,16 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 			thescroll.setForeground(Color.BLACK);
 			chat.setBackground(Color.WHITE);
 			chat.setForeground(Color.BLACK);
-		}else if(evt.getSource() == send){
+		}/*else if(evt.getSource() == lockIn){
+			lockIn.setVisible(false);
+			//thepanel.blnLockedIn = true; 
+			// adding the components of the chat onto the panel
+			thepanel.add(thescroll);
+			thepanel.add(send);
+			thepanel.add(chat);
+			thepanel.add(darkON);
+			thepanel.add(darkOFF);
+		}*/else if(evt.getSource() == send){
 			ssm.sendText(chat.getText());
 			chatArea.append("me: "+chat.getText()+"\n");
 			chat.setText("");
@@ -67,6 +82,21 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 	public void mouseMoved(MouseEvent evt){
 	}
 	public void mouseDragged(MouseEvent evt){
+		// if the game just started and the players are rearranging their pieces on the board
+		if(thepanel.blnGameStart == true){
+			
+		// if the player has locked in their pieces
+		}/*else if(thepanel.blnLockedIn == true){
+			// if it's the server's turn
+			if(intTurn == 1){
+				// stuff happens and then: 
+				intTurn = 2;
+			// if it's the client's turn 
+			}else if(intTurn == 2){
+				// stuff happens and then:
+				intTurn = 1;
+			}
+		}*/
     }
 	public void mouseExited(MouseEvent evt){
 	}
@@ -125,7 +155,7 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 					connections.println(serverIP.getText());
 					connections.close();
 				}catch(IOException e){
-					
+					System.out.println("IOException in settings page");
 				}
 				// getting rid of the text fields
 				portNumber.setVisible(false);
@@ -179,15 +209,11 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 				thepanel.blnConnect = false;
 				username.setVisible(false);
 				portIPConnect.setVisible(false);
-				// adding the components of the chat onto the panel
-				thepanel.add(thescroll);
-				thepanel.add(send);
-				thepanel.add(chat);
-				thepanel.add(darkON);
-				thepanel.add(darkOFF);
+				thepanel.add(lockIn);
 			}
 		// user on the game screen
 		}else if(thepanel.blnGameStart == true){ 
+			
 			// going back to the main menu
 			if(evt.getX() >= 0 && evt.getX() <= 200 && evt.getY() >= 0 && evt.getY() <= 50){
 				thepanel.blnMainMenu = true;
@@ -229,47 +255,44 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 		}
 	}
 	//returns array representative of requested view of board
-
-	public String[][] Board(boolean opponent){
-		String[] csvSplit = new String[72];
-		String[][] arrBoard = new String[8][7];
-		String[][] oppBoard = new String[8][7];
-
+	
+	public static String[][] Board(boolean server){
+		String strLine, strSplit[] = new String[9];
+		String[][] serverBoard = new String[8][9], clientBoard = new String[8][9];// server = white, client = black
 		//read csv to array
-		try {	
-		BufferedReader file = new BufferedReader(new FileReader("csv.txt"));
-			for (int i = 0; i < 8; i++) {
-				String line = file.readLine();
-
-				//split by commas, piece-relavant data is separated by "/"
-				csvSplit = line.split(",");
-				//for each string in array split
-				for (String string : csvSplit) {
+		try{	
+			BufferedReader file = new BufferedReader(new FileReader("csv.csv"));
+					
 					for(int row = 0; row < 8; row++){
-						for(int col = 0; col < 8; col++){
-						arrBoard[row][col] = string;
-
-						//loop through array replace [0][0] with [8][8] and so forth
-						for(int newrow = 7; newrow >= 0; newrow--){
-							for(int newcol = 7; newcol >= 0; newcol--){
-								oppBoard[newrow][newcol] = arrBoard[row][col];
-							}
+						strLine = file.readLine();
+						strSplit = strLine.split(",");
+						for(int col = 0; col < 9; col++){
+							clientBoard[row][col] = strSplit[col];
+							serverBoard[7-row][8-col] = strSplit[col];
+							//System.out.print(clientBoard[row][col] + "\t");
+							//System.out.print(serverBoard[7-row][8-col] + "\t");
 						}
 					}
+					//System.out.println("TESTTTTTTTTTTTTTTTT");
+					for(int row = 0; row < 8; row++){
+						for(int col = 0; col < 9; col++){
+							//System.out.print(clientBoard[row][col] + "\t");
+							//System.out.print(serverBoard[7-row][8-col] + "\t");
+						}
+						//System.out.println("");
 					}
-					
-				}
-			}
-		} catch (IOException e) {
+					//System.out.println("END TESTTTTTTTTTTTTT");
+				file.close();
+		}catch (IOException e){
 			System.out.println("Error loading file");
 		}
-
-		if(opponent == true){
-			return oppBoard;
+		if(server == true){
+			return serverBoard;
 		}else{
-			return arrBoard;
+			return clientBoard;
 		}
 	}
+	 
 	
     //CONSTRUCTOR
 	public main(){
@@ -321,10 +344,16 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 		thetimer.start();
     }
   
+  
     //MAIN METHOD
     public static void main(String[] args){
       new main();
       
     }
+    /*
+     //if statements for pieces
+     if(
+     
+     */
    
 }
