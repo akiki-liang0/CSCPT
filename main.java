@@ -29,6 +29,7 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 	SuperSocketMaster ssm;
 	// the game logic
 	int intTurn = 1;
+	String strTemp[];
   
 	int intPort = 3000;
 	
@@ -82,6 +83,19 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 	public void mouseMoved(MouseEvent evt){
 	}
 	public void mouseDragged(MouseEvent evt){
+		for(int xLower = 70; xLower <= 670; xLower += 75){
+			for(int xUpper = 135; xUpper <= 735; xUpper += 75){
+				for(int yLower = 70; yLower <= 595; yLower += 75){
+					for(int yUpper = 135; yUpper <= 660; yUpper += 75){
+						if(evt.getX() >= xLower && evt.getX() <= xUpper && evt.getX() >= yLower && evt.getX() <= yUpper){
+							strTemp = strBoard[xLower/70 - 1][yLower/70 - 1].split("/");
+							System.out.println(strTemp[0]+strTemp[1]+strTemp[2]);
+							strBoard[xLower/70 - 1][yLower/70 - 1] = "N/N/N";
+						}
+					}
+				}
+			}
+		}
 		// if the game just started and the players are rearranging their pieces on the board
 		if(thepanel.blnGameStart == true){
 			
@@ -295,7 +309,7 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 			for(int col = 0; col < 9; col++){
 					Board[row][col] = strPieceInfo;
 					//System.out.println(strPieceInfo);
-					System.out.println(Board[row][col]);
+					//System.out.println(Board[row][col]);
 					pieceSplit = strPieceInfo.split("/");// split into an array by "/"
 					if(pieceSplit[2].equals("W")){// if piece is white
 						if (pieceSplit[0].equals("0")){// if id = flag
@@ -424,7 +438,7 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
     //MAIN METHOD
     public static void main(String[] args){
       new main();
-      
+      System.out.println(strBoard[0][1]);
     }
     /*
      //if statements for pieces
