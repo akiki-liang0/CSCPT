@@ -12,12 +12,12 @@ public class animation extends JPanel{
 	public BufferedImage menuPlayPressed;
 	public BufferedImage menuHelpPressed;
 	public BufferedImage menuSettingsPressed;
-	public boolean blnMainMenu = true;
+	public boolean blnMainMenu = false;
 	
 	// Game Screen
 	public BufferedImage gameBoard;
 	public BufferedImage gameBoardDark;
-	public boolean blnGameStart = false;
+	public boolean blnGameStart = true;
 	public boolean blnDarkMode = false;
 	public boolean blnGameInProgress = false;
 	public boolean blnLockedIn = false;

@@ -17,6 +17,9 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 	JButton darkON = new JButton("ON");
 	JButton darkOFF = new JButton("OFF");
 	JButton lockIn = new JButton("LOCK IN");
+	// draw map methods
+	static String[][] strBoard = Board(true);
+	static String[][] strPieces = drawPieces(strBoard);
 	// Settings
 	JTextField portNumber = new JTextField();
 	JTextField serverIP = new JTextField();
@@ -152,7 +155,7 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 					connections.println(serverIP.getText());
 					connections.close();
 				}catch(IOException e){
-					
+					System.out.println("IOException in settings page");
 				}
 				// getting rid of the text fields
 				portNumber.setVisible(false);
@@ -251,46 +254,120 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 		}
 	}
 	//returns array representative of requested view of board
-
-	public String[][] Board(boolean opponent){
-		String[] csvSplit = new String[72];
-		String[][] arrBoard = new String[8][7];
-		String[][] oppBoard = new String[8][7];
-
+	
+	public static String[][] Board(boolean opponent){
+		String strLine, strSplit[] = new String[9];
+		String[][] oppBoard = new String[8][9], arrBoard = new String[8][9];
 		//read csv to array
-		try {	
-		BufferedReader file = new BufferedReader(new FileReader("csv.txt"));
-			for (int i = 0; i < 8; i++) {
-				String line = file.readLine();
-
-				//split by commas, piece-relavant data is separated by "/"
-				csvSplit = line.split(",");
-				//for each string in array split
-				for (String string : csvSplit) {
-					for(int row = 0; row < 7; row++){
-						for(int col = 0; col < 8; col++){
-						arrBoard[row][col] = string;
-
-						//loop through array replace [0][0] with [8][8] and so forth
-						for(int newrow = 7; newrow >= 0; newrow--){
-							for(int newcol = 7; newcol >= 0; newcol--){
-								oppBoard[newrow][newcol] = arrBoard[row][col];
-							}
+		try{	
+			BufferedReader file = new BufferedReader(new FileReader("csv.csv"));
+					
+					for(int row = 0; row < 8; row++){
+						strLine = file.readLine();
+						strSplit = strLine.split(",");
+						for(int col = 0; col < 9; col++){
+							arrBoard[row][col] = strSplit[col];
+							oppBoard[7-row][8-col] = strSplit[col];
+							//System.out.print(arrBoard[row][col] + "\t");
+							//System.out.print(oppBoard[7-row][8-col] + "\t");
 						}
 					}
-					}
-					
-				}
-			}
-		} catch (IOException e) {
+				file.close();
+		}catch (IOException e){
 			System.out.println("Error loading file");
+		}catch(ExceptionInInitializerError e){
+			
 		}
-
 		if(opponent == true){
 			return oppBoard;
 		}else{
 			return arrBoard;
 		}
+	}
+	public static String[][] drawPieces(String[][] Board){
+		// drawing to board
+		String[] pieceSplit = new String[3];//splits "///" format in each cell of array
+		String[][] boardPieces = new String[8][9];
+		String strPieceInfo = "";
+		String strImageName = "";
+		try{
+		for(int row = 0; row < 8; row++){
+			for(int col = 0; col < 9; col++){
+					Board[row][col] = strPieceInfo;
+					System.out.println(strPieceInfo);
+					pieceSplit = strPieceInfo.split("/");// split into an array by "/"
+					if(pieceSplit[2].equals("W")){// if piece is white
+						if (pieceSplit[0].equals("0")){// if id = flag
+							strImageName = "Pics/White/FlagW.png";
+						}else if (pieceSplit[0].equals("1")){// if id = spy
+							strImageName = "Pics/White/SpyW.png";
+						}else if (pieceSplit[0].equals("2")){// if id = private
+							strImageName = "Pics/White/PrivateW.png";
+						}else if (pieceSplit[0].equals("3")){// if id = sergeant
+							strImageName = "Pics/White/SergeantW.png";
+						}else if (pieceSplit[0].equals("4")){// if id = 2nd lieut
+							strImageName = "Pics/White/SecondLtW.png";
+						}else if (pieceSplit[0].equals("5")){// if id = 1st lieut
+							strImageName = "Pics/White/FirstLtW.png";
+						}else if (pieceSplit[0].equals("6")){// if id = captain
+							strImageName = "Pics/White/CaptainW.png";
+						}else if (pieceSplit[0].equals("7")){// if id = major
+							strImageName = "Pics/White/MajorW.png";
+						}else if (pieceSplit[0].equals("8")){// if id = Lt Colonel
+							strImageName = "Pics/White/LtColonelW.png";
+						}else if (pieceSplit[0].equals("9")){// if id = Colonel
+							strImageName = "Pics/White/ColonelW.png";
+						}else if (pieceSplit[0].equals("10")){// if id = general 1
+							strImageName = "Pics/White/ObeStarGeneralW.png";
+						}else if (pieceSplit[0].equals("11")){// if id = general 2
+							strImageName = "Pics/White/TwoStarGeneralW.png";
+						}else if (pieceSplit[0].equals("12")){// if id = general 3
+							strImageName = "Pics/White/ThreeStarGeneralW.png";
+						}else if (pieceSplit[0].equals("13")){// if id = general 4
+							strImageName = "Pics/White/FourStarGeneralW.png";
+						}else if (pieceSplit[0].equals("14")){// if id = general 5
+							strImageName = "Pics/White/FiveStarGeneralW.png";
+						}
+					}else if(pieceSplit[2].equals("B")){// if piece is black
+						if (pieceSplit[0].equals("0")){// if id = flag
+							strImageName = "Pics/Black/FlagB.png";
+						}else if (pieceSplit[0].equals("1")){// if id = spy
+							strImageName = "Pics/Black/SpyB.png";
+						}else if (pieceSplit[0].equals("2")){// if id = private
+							strImageName = "Pics/Black/PrivateB.png";
+						}else if (pieceSplit[0].equals("3")){// if id = sergeant
+							strImageName = "Pics/Black/SergeantB.png";
+						}else if (pieceSplit[0].equals("4")){// if id = 2nd lieut
+							strImageName = "Pics/Black/SecondLtB.png";
+						}else if (pieceSplit[0].equals("5")){// if id = 1st lieut
+							strImageName = "Pics/Black/FirstLtB.png";
+						}else if (pieceSplit[0].equals("6")){// if id = captain
+							strImageName = "Pics/Black/CaptainB.png";
+						}else if (pieceSplit[0].equals("7")){// if id = major
+							strImageName = "Pics/Black/MajorB.png";
+						}else if (pieceSplit[0].equals("8")){// if id = Lt Colonel
+							strImageName = "Pics/Black/LtColonelB.png";
+						}else if (pieceSplit[0].equals("9")){// if id = Colonel
+							strImageName = "Pics/Black/ColonelB.png";
+						}else if (pieceSplit[0].equals("10")){// if id = general 1
+							strImageName = "Pics/Black/ObeStarGeneralB.png";
+						}else if (pieceSplit[0].equals("11")){// if id = general 2
+							strImageName = "Pics/Black/TwoStarGeneralB.png";
+						}else if (pieceSplit[0].equals("12")){// if id = general 3
+							strImageName = "Pics/Black/ThreeStarGeneralB.png";
+						}else if (pieceSplit[0].equals("13")){// if id = general 4
+							strImageName = "Pics/Black/FourStarGeneralB.png";
+						}else if (pieceSplit[0].equals("14")){// if id = general 5
+							strImageName = "Pics/Black/FiveStarGeneralB.png";
+						}
+					}
+					boardPieces[row][col] = strImageName;
+			}
+		}
+		}catch(ArrayIndexOutOfBoundsException e){
+			
+		}
+		return boardPieces;
 	}
 	
     //CONSTRUCTOR
@@ -300,10 +377,6 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 		thepanel.setPreferredSize(new Dimension(1280, 720));
 		thepanel.addMouseListener(this);
 		thepanel.addMouseMotionListener(this);
-		
-		// button to lock pieces in
-		lockIn.setBounds(830, 20, 430, 325);
-		lockIn.addActionListener(this);
 		
 		// the chat
 		thescroll.setBounds(830, 30, 430, 255);
@@ -352,7 +425,10 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
       new main();
       
     }
+    /*
+     //if statements for pieces
+     if(
+     
+     */
    
 }
-
-
