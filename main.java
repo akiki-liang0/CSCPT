@@ -348,10 +348,4 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
       new main();
       
     }
-    /*
-     //if statements for pieces
-     if(
-     
-     */
-   
 }

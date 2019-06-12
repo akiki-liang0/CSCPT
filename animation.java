@@ -129,7 +129,6 @@ public class animation extends JPanel{
 		}else if(blnGameStart == true){
 
 			drawPieces(main.strBoard, g);
-			//image drawing test DO NOT DELETE
 			/*BufferedImage pieceImage = null;
 			int intX = 70, intY = 70;
 			System.out.println(main.strBoard[0][0]);
