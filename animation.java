@@ -17,7 +17,7 @@ public class animation extends JPanel{
 	// Game Screen
 	public BufferedImage gameBoard;
 	public BufferedImage gameBoardDark;
-	public boolean blnGameStart = true;
+	public boolean blnGameStart =  true;
 	public boolean blnDarkMode = false;
 	public boolean blnGameInProgress = false;
 	public boolean blnLockedIn = false;
