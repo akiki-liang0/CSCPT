@@ -124,28 +124,6 @@ public class animation extends JPanel{
 		}else if(blnConnect == true){
 			g.drawImage(connectionScreen, 0, 0, null);
 		}else if(blnGameStart == true){
-			
-			/*BufferedImage pieceImage = null;
-			int intX = 70, intY = 70;
-			System.out.println(main.strBoard[0][0]);
-			System.out.println("TESTTTTTTT 2");
-			for(int row = 0; row < 8; row++){
-				for(int col = 0; col < 9; col++){
-					System.out.print(main.strBoard[row][col] + "\t");
-					//if (col == 9) System.out.print("\n");
-					try{
-						pieceImage = ImageIO.read(new File(main.strPieces[row][col]));
-					}catch(IOException e){
-						System.out.println("Inturrupted Exception when drawing pieces");
-					}
-					g.drawImage(pieceImage, intX, intY, null);
-					intX += 75;
-				}
-				intX = 0;
-				intY += 75;
-				System.out.println("");
-			}
-			System.out.println("End TEST");*/
 			if(blnDarkMode == true){
 				g.drawImage(gameBoardDark, 0, 0, null);
 			}else{
@@ -159,8 +137,7 @@ public class animation extends JPanel{
 			// rankings
 			g.setColor(Color.BLACK);
 			g.drawString("Rankings", 1025, 385);
-			drawPieces(main.strBoard, g);
-			//g.drawImage(fiveStarB, 70+(75*3), 70+(75*3), null);
+			drawPieces(main.strBoard, g);// drawing pieces
 		}else if(blnwin == true){
 			//load font
 			/*
@@ -181,9 +158,10 @@ public class animation extends JPanel{
 		String strPieceInfo = "";// "///" string
 		String strImageName = "";// name for image
 		int intX = 70, intY = 70;
-		try{
 		for(int row = 0; row < 8; row++){
 			for(int col = 0; col < 9; col++){
+		try{
+		
 					strPieceInfo = Board[row][col];
 					System.out.print(Board[row][col] + "\t");
 					//System.out.println(strPieceInfo);
@@ -210,7 +188,7 @@ public class animation extends JPanel{
 						}else if (pieceSplit[0].equals("9")){// if id = Colonel
 							strImageName = "Pics/White/ColonelW.png";
 						}else if (pieceSplit[0].equals("10")){// if id = general 1
-							strImageName = "Pics/White/ObeStarGeneralW.png";
+							strImageName = "Pics/White/OneStarGeneralW.png";
 						}else if (pieceSplit[0].equals("11")){// if id = general 2
 							strImageName = "Pics/White/TwoStarGeneralW.png";
 						}else if (pieceSplit[0].equals("12")){// if id = general 3
@@ -242,7 +220,7 @@ public class animation extends JPanel{
 						}else if (pieceSplit[0].equals("9")){// if id = Colonel
 							strImageName = "Pics/Black/ColonelB.png";
 						}else if (pieceSplit[0].equals("10")){// if id = general 1
-							strImageName = "Pics/Black/ObeStarGeneralB.png";
+							strImageName = "Pics/Black/OneStarGeneralB.png";
 						}else if (pieceSplit[0].equals("11")){// if id = general 2
 							strImageName = "Pics/Black/TwoStarGeneralB.png";
 						}else if (pieceSplit[0].equals("12")){// if id = general 3
@@ -252,18 +230,25 @@ public class animation extends JPanel{
 						}else if (pieceSplit[0].equals("14")){// if id = general 5
 							strImageName = "Pics/Black/FiveStarGeneralB.png";
 						}
+					}else if(pieceSplit[2].equals("N")){
+							strImageName = "";
 					}
-					//draw image;
-					g.drawImage(ImageIO.read(new File(strImageName)), intX, intY, null);
+					
+					
+		}catch(ArrayIndexOutOfBoundsException e){
+			
+		}
+		try{
+			//draw image;
+			g.drawImage(ImageIO.read(new File(strImageName)), intX, intY, null);
+		}
+		catch(IOException e){
+			
+		}
 					intX += 75;
 			}
 			intX = 70;
 			intY += 75;
-		}
-		}catch(ArrayIndexOutOfBoundsException e){
-			
-		}catch(IOException e){
-			
 		}
 	}
 	//CONSTRUCTOR
