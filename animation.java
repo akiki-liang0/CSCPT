@@ -21,13 +21,22 @@ public class animation extends JPanel{
 	public boolean blnDarkMode = false;
 	public boolean blnGameInProgress = false;
 	public boolean blnLockedIn = false;
+	public boolean blnServer = false;
 	
 	//Pieces Images
 	public BufferedImage fiveStarB, fourStarB, threeStarB, twoStarB, oneStarB, colonelB, ltColonelB, majorB, captainB, firstLieutB, secondLieutB, sergeantB, privateB, spyB, flagB;
 	public BufferedImage fiveStarW, fourStarW, threeStarW, twoStarW, oneStarW, colonelW, ltColonelW, majorW, captainW, firstLieutW, secondLieutW, sergeantW, privateW, spyW, flagW;
 	//Piece selection box
+	public boolean blnPieceLeft = false;
+	public boolean blnPieceRight = false;
+	public boolean blnPieceUp = false;
+	public boolean blnPieceDown = false;
+	public boolean blnPieceSelected = false;
 	public BufferedImage selectionBox;
-	int intSelectX = 0, intSelectY = 0;
+	public int intSelectX = 0, intSelectY = 0;
+	//Piece moved
+	public boolean blnPieceMoved = false;
+	public int intFinalX = 0, intFinalY = 0;
 	// Settings
 	public BufferedImage settingsScreen;
 	public boolean blnSettings = false;
@@ -116,6 +125,20 @@ public class animation extends JPanel{
 		   */
 		}else if(blnloss == true){
 
+		}
+		// selecting the piece
+		if(blnPieceSelected == true){
+			g.drawImage(selectionBox, intSelectX, intSelectY, null);
+		}
+		if(blnPieceMoved == true){
+			/*System.out.println("moved");
+			blnPieceSelected = false;
+			try{
+				g.drawImage(ImageIO.read(new File (main.strBoard[intSelectX * 75 + 60][intSelectY * 75 + 60])), intFinalX, intFinalY, null);
+			}catch(IOException e){
+				
+			}
+			blnPieceMoved = false;*/
 		}
 		
 	}
