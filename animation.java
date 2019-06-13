@@ -160,8 +160,7 @@ public class animation extends JPanel{
 		int intX = 70, intY = 70;
 		for(int row = 0; row < 8; row++){
 			for(int col = 0; col < 9; col++){
-		try{
-		
+				try{
 					strPieceInfo = Board[row][col];
 					System.out.print(Board[row][col] + "\t");
 					//System.out.println(strPieceInfo);
@@ -233,19 +232,17 @@ public class animation extends JPanel{
 					}else if(pieceSplit[2].equals("N")){
 							strImageName = "";
 					}
+				}catch(ArrayIndexOutOfBoundsException e){
 					
+				}
+				try{
+					//draw image;
+					g.drawImage(ImageIO.read(new File(strImageName)), intX, intY, null);
+				}
+				catch(IOException e){
 					
-		}catch(ArrayIndexOutOfBoundsException e){
-			
-		}
-		try{
-			//draw image;
-			g.drawImage(ImageIO.read(new File(strImageName)), intX, intY, null);
-		}
-		catch(IOException e){
-			
-		}
-					intX += 75;
+				}
+				intX += 75;
 			}
 			intX = 70;
 			intY += 75;
