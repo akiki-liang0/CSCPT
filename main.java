@@ -282,10 +282,9 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 		}
 	}
 	//returns array representative of requested view of board
-	
-	public static String[][] Board(boolean server){
+		public static String[][] Board(boolean server){
 		String strLine, strSplit[] = new String[9];
-		String[][] serverBoard = new String[8][9], clientBoard = new String[8][9];
+		String[][] serverBoard = new String[8][9], clientBoard = new String[8][9];// server = white, client = black
 		//read csv to array
 		try{	
 			BufferedReader file = new BufferedReader(new FileReader("csv.csv"));
@@ -300,103 +299,24 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 							//System.out.print(serverBoard[7-row][8-col] + "\t");
 						}
 					}
+					//System.out.println("TESTTTTTTTTTTTTTTTT");
+					for(int row = 0; row < 8; row++){
+						for(int col = 0; col < 9; col++){
+							//System.out.print(clientBoard[row][col] + "\t");
+							//System.out.print(serverBoard[7-row][8-col] + "\t");
+						}
+						//System.out.println("");
+					}
+					//System.out.println("END TESTTTTTTTTTTTTT");
 				file.close();
 		}catch (IOException e){
 			System.out.println("Error loading file");
-		}catch(ExceptionInInitializerError e){
-			
 		}
 		if(server == true){
 			return serverBoard;
 		}else{
 			return clientBoard;
 		}
-	}
-	public static String[][] drawPieces(String[][] Board){
-		// drawing to board
-		String[] pieceSplit = new String[3];//splits "///" format in each cell of array
-		String[][] boardPieces = new String[8][9];
-		String strPieceInfo = "";
-		String strImageName = "";
-		try{
-		for(int row = 0; row < 8; row++){
-			for(int col = 0; col < 9; col++){
-					Board[row][col] = strPieceInfo;
-					//System.out.println(strPieceInfo);
-					//System.out.println(Board[row][col]);
-					pieceSplit = strPieceInfo.split("/");// split into an array by "/"
-					if(pieceSplit[2].equals("W")){// if piece is white
-						if (pieceSplit[0].equals("0")){// if id = flag
-							strImageName = "Pics/White/FlagW.png";
-						}else if (pieceSplit[0].equals("1")){// if id = spy
-							strImageName = "Pics/White/SpyW.png";
-						}else if (pieceSplit[0].equals("2")){// if id = private
-							strImageName = "Pics/White/PrivateW.png";
-						}else if (pieceSplit[0].equals("3")){// if id = sergeant
-							strImageName = "Pics/White/SergeantW.png";
-						}else if (pieceSplit[0].equals("4")){// if id = 2nd lieut
-							strImageName = "Pics/White/SecondLtW.png";
-						}else if (pieceSplit[0].equals("5")){// if id = 1st lieut
-							strImageName = "Pics/White/FirstLtW.png";
-						}else if (pieceSplit[0].equals("6")){// if id = captain
-							strImageName = "Pics/White/CaptainW.png";
-						}else if (pieceSplit[0].equals("7")){// if id = major
-							strImageName = "Pics/White/MajorW.png";
-						}else if (pieceSplit[0].equals("8")){// if id = Lt Colonel
-							strImageName = "Pics/White/LtColonelW.png";
-						}else if (pieceSplit[0].equals("9")){// if id = Colonel
-							strImageName = "Pics/White/ColonelW.png";
-						}else if (pieceSplit[0].equals("10")){// if id = general 1
-							strImageName = "Pics/White/ObeStarGeneralW.png";
-						}else if (pieceSplit[0].equals("11")){// if id = general 2
-							strImageName = "Pics/White/TwoStarGeneralW.png";
-						}else if (pieceSplit[0].equals("12")){// if id = general 3
-							strImageName = "Pics/White/ThreeStarGeneralW.png";
-						}else if (pieceSplit[0].equals("13")){// if id = general 4
-							strImageName = "Pics/White/FourStarGeneralW.png";
-						}else if (pieceSplit[0].equals("14")){// if id = general 5
-							strImageName = "Pics/White/FiveStarGeneralW.png";
-						}
-					}else if(pieceSplit[2].equals("B")){// if piece is black
-						if (pieceSplit[0].equals("0")){// if id = flag
-							strImageName = "Pics/Black/FlagB.png";
-						}else if (pieceSplit[0].equals("1")){// if id = spy
-							strImageName = "Pics/Black/SpyB.png";
-						}else if (pieceSplit[0].equals("2")){// if id = private
-							strImageName = "Pics/Black/PrivateB.png";
-						}else if (pieceSplit[0].equals("3")){// if id = sergeant
-							strImageName = "Pics/Black/SergeantB.png";
-						}else if (pieceSplit[0].equals("4")){// if id = 2nd lieut
-							strImageName = "Pics/Black/SecondLtB.png";
-						}else if (pieceSplit[0].equals("5")){// if id = 1st lieut
-							strImageName = "Pics/Black/FirstLtB.png";
-						}else if (pieceSplit[0].equals("6")){// if id = captain
-							strImageName = "Pics/Black/CaptainB.png";
-						}else if (pieceSplit[0].equals("7")){// if id = major
-							strImageName = "Pics/Black/MajorB.png";
-						}else if (pieceSplit[0].equals("8")){// if id = Lt Colonel
-							strImageName = "Pics/Black/LtColonelB.png";
-						}else if (pieceSplit[0].equals("9")){// if id = Colonel
-							strImageName = "Pics/Black/ColonelB.png";
-						}else if (pieceSplit[0].equals("10")){// if id = general 1
-							strImageName = "Pics/Black/ObeStarGeneralB.png";
-						}else if (pieceSplit[0].equals("11")){// if id = general 2
-							strImageName = "Pics/Black/TwoStarGeneralB.png";
-						}else if (pieceSplit[0].equals("12")){// if id = general 3
-							strImageName = "Pics/Black/ThreeStarGeneralB.png";
-						}else if (pieceSplit[0].equals("13")){// if id = general 4
-							strImageName = "Pics/Black/FourStarGeneralB.png";
-						}else if (pieceSplit[0].equals("14")){// if id = general 5
-							strImageName = "Pics/Black/FiveStarGeneralB.png";
-						}
-					}
-					boardPieces[row][col] = strImageName;
-			}
-		}
-		}catch(ArrayIndexOutOfBoundsException e){
-			
-		}
-		return boardPieces;
 	}
 	
     //CONSTRUCTOR
@@ -453,11 +373,5 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
     public static void main(String[] args){
       new main();
       System.out.println(strBoard[0][1]);
-    }
-    /*
-     //if statements for pieces
-     if(
-     
-     */
-   
+    }   
 }
