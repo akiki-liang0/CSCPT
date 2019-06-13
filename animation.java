@@ -64,38 +64,6 @@ public class animation extends JPanel{
 			menuPlayPressed = ImageIO.read(new File("Pics/ButtonPressed/MenuPlayPressed.png"));
 			menuHelpPressed = ImageIO.read(new File("Pics/ButtonPressed/MenuHelpPressed.png"));
 			menuSettingsPressed = ImageIO.read(new File("Pics/ButtonPressed/MenuSettingsPressed.png"));
-			// pieces
-			fiveStarB = ImageIO.read(new File("Pics/Black/FiveStarGeneralB.png"));
-			fiveStarW = ImageIO.read(new File("Pics/White/FiveStarGeneralW.png"));
-			fourStarB = ImageIO.read(new File("Pics/Black/FourStarGeneralB.png"));
-			fourStarW = ImageIO.read(new File("Pics/White/FourStarGeneralW.png"));
-			threeStarB = ImageIO.read(new File("Pics/Black/ThreeStarGeneralB.png"));
-			threeStarB = ImageIO.read(new File("Pics/White/ThreeStarGeneralW.png"));
-			twoStarB = ImageIO.read(new File("Pics/Black/TwoStarGeneralB.png"));
-			twoStarW = ImageIO.read(new File("Pics/White/TwoStarGeneralW.png"));
-			oneStarB = ImageIO.read(new File("Pics/Black/OneStarGeneralB.png"));
-			oneStarW = ImageIO.read(new File("Pics/White/OneStarGeneralW.png"));
-			colonelB = ImageIO.read(new File("Pics/Black/ColonelB.png"));
-			colonelW = ImageIO.read(new File("Pics/White/ColonelW.png"));
-			ltColonelB = ImageIO.read(new File("Pics/Black/LtColonelB.png"));
-			ltColonelW = ImageIO.read(new File("Pics/White/LtColonelW.png"));
-			majorB = ImageIO.read(new File("Pics/Black/MajorB.png"));
-			majorW = ImageIO.read(new File("Pics/White/MajorW.png"));
-			captainB = ImageIO.read(new File("Pics/Black/CaptainB.png"));
-			captainW = ImageIO.read(new File("Pics/White/CaptainW.png"));
-			firstLieutB	= ImageIO.read(new File("Pics/Black/FirstLtB.png"));
-			firstLieutW	= ImageIO.read(new File("Pics/White/FirstLtW.png"));
-			secondLieutB = ImageIO.read(new File("Pics/Black/SecondLtB.png"));
-			secondLieutB = ImageIO.read(new File("Pics/White/SecondLtW.png"));
-			sergeantB = ImageIO.read(new File("Pics/Black/SergeantB.png"));
-			sergeantW = ImageIO.read(new File("Pics/White/SergeantW.png"));
-			privateB = ImageIO.read(new File("Pics/Black/PrivateB.png"));
-			privateW = ImageIO.read(new File("Pics/White/PrivateW.png"));
-			spyB = ImageIO.read(new File("Pics/Black/SpyB.png"));
-			spyW = ImageIO.read(new File("Pics/White/SpyW.png"));
-			flagB = ImageIO.read(new File("Pics/Black/FlagB.png"));
-			flagW = ImageIO.read(new File("Pics/White/F;agW.png")); 
-
 		}catch(IOException e){
 			System.out.println("Interrupted Exception");
 		}
@@ -105,12 +73,7 @@ public class animation extends JPanel{
 			g.drawImage(mainMenu, 0, 0, null);
 		// drawing settings page
 		}else if(blnSettings == true){
-			//try{
-				g.drawImage(menuSettingsPressed, 0, 0, null);
-				//Thread.sleep(1000);
-				g.drawImage(settingsScreen, 0, 0, null);
-			//}catch(InterruptedException e){
-			//}
+			g.drawImage(settingsScreen, 0, 0, null);
 		// drawing help screens 1-4
 		}else if(blnHelp1 == true){
 			g.drawImage(helpScreen1, 0, 0, null);
@@ -162,8 +125,6 @@ public class animation extends JPanel{
 			for(int col = 0; col < 9; col++){
 				try{
 					strPieceInfo = Board[row][col];
-					System.out.print(Board[row][col] + "\t");
-					//System.out.println(strPieceInfo);
 					pieceSplit = strPieceInfo.split("/");// split into an array by "/"
 					if(pieceSplit[2].equals("W")){// if piece is white
 						if (pieceSplit[0].equals("0")){// if id = flag
