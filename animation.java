@@ -271,4 +271,3 @@ public class animation extends JPanel{
 		super();
 	}
 }
-
