@@ -25,7 +25,9 @@ public class animation extends JPanel{
 	//Pieces Images
 	public BufferedImage fiveStarB, fourStarB, threeStarB, twoStarB, oneStarB, colonelB, ltColonelB, majorB, captainB, firstLieutB, secondLieutB, sergeantB, privateB, spyB, flagB;
 	public BufferedImage fiveStarW, fourStarW, threeStarW, twoStarW, oneStarW, colonelW, ltColonelW, majorW, captainW, firstLieutW, secondLieutW, sergeantW, privateW, spyW, flagW;
-		
+	//Piece selection box
+	public BufferedImage selectionBox;
+	int intSelectX = 0, intSelectY = 0;
 	// Settings
 	public BufferedImage settingsScreen;
 	public boolean blnSettings = false;
@@ -64,6 +66,8 @@ public class animation extends JPanel{
 			menuPlayPressed = ImageIO.read(new File("Pics/ButtonPressed/MenuPlayPressed.png"));
 			menuHelpPressed = ImageIO.read(new File("Pics/ButtonPressed/MenuHelpPressed.png"));
 			menuSettingsPressed = ImageIO.read(new File("Pics/ButtonPressed/MenuSettingsPressed.png"));
+			//selection box
+			selectionBox = ImageIO.read(new File("Pics/selectionSquare.png"));
 		}catch(IOException e){
 			System.out.println("Interrupted Exception");
 		}
