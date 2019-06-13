@@ -18,7 +18,7 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 	JButton darkOFF = new JButton("OFF");
 	JButton lockIn = new JButton("LOCK IN");
 	// draw map methods
-	static String[][] strBoard = Board(false);
+	static String[][] strBoard = Board(true);
 	// Settings
 	JTextField portNumber = new JTextField();
 	JTextField serverIP = new JTextField();
@@ -82,21 +82,6 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 	public void mouseMoved(MouseEvent evt){
 	}
 	public void mouseDragged(MouseEvent evt){
-		/*
-		for(int xLower = 70; xLower <= 670; xLower += 75){
-			for(int xUpper = 135; xUpper <= 735; xUpper += 75){
-				for(int yLower = 70; yLower <= 595; yLower += 75){
-					for(int yUpper = 135; yUpper <= 660; yUpper += 75){
-						if(evt.getX() >= xLower && evt.getX() <= xUpper && evt.getX() >= yLower && evt.getX() <= yUpper){
-							strTemp = strBoard[xLower/70 - 1][yLower/70 - 1].split("/");
-							System.out.println(strTemp[0]+strTemp[1]+strTemp[2]);
-							strBoard[xLower/70 - 1][yLower/70 - 1] = "N/N/N";
-						}
-					}
-				}
-			}
-		}
-		*/
 		// if the game just started and the players are rearranging their pieces on the board
 		if(thepanel.blnGameStart == true){
 			
@@ -118,16 +103,11 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 	public void mouseEntered(MouseEvent evt){
 	}
 	public void mousePressed(MouseEvent evt){
-		for(int xLower = 70; xLower <= 670; xLower += 75){
-			for(int xUpper = 135; xUpper <= 735; xUpper += 75){
-				for(int yLower = 70; yLower <= 595; yLower += 75){
-					for(int yUpper = 135; yUpper <= 660; yUpper += 75){
-						if(evt.getX() >= xLower && evt.getX() <= xUpper && evt.getX() >= yLower && evt.getX() <= yUpper){
-							strTemp = strBoard[xLower/70 - 1][yLower/70 - 1].split("/");
-							System.out.println(strTemp[0]+strTemp[1]+strTemp[2]);
-							strBoard[xLower/70 - 1][yLower/70 - 1] = "N/N/N";
-						}
-					}
+		for(int row = 0; row < 8; row++){
+			for(int col = 0; col < 9; col++){
+				if(evt.getX() >= (col * 75) + 70 && evt.getX() <= (col * 75) +  135 && evt.getY() >= (row * 75) + 70 && evt.getY() <= (row * 75) +  135){
+					strTemp = strBoard[row][col].split("/");
+					strBoard[row][col] = "N/N/N";
 				}
 			}
 		}
@@ -176,6 +156,7 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 			// going back to the main menu
 			if(evt.getX() >= 993 && evt.getX() <= 1201 && evt.getY() >= 26 && evt.getY() <= 81){
 				thepanel.blnMainMenu = true;
+				thepanel.blnSettings = false;
 				// copying text field contents to a text file
 				try{
 					connections = new PrintWriter(new FileWriter("connections.txt"));
@@ -327,6 +308,10 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 		thepanel.addMouseListener(this);
 		thepanel.addMouseMotionListener(this);
 		
+		// button to lock pieces in 
+		lockIn.setBounds(830, 20, 430, 325);
+		lockIn.addActionListener(this);
+		
 		// the chat
 		thescroll.setBounds(830, 30, 430, 255);
 		chat.setBounds(830, 295, 320, 50);
@@ -372,6 +357,5 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
     //MAIN METHOD
     public static void main(String[] args){
       new main();
-      System.out.println(strBoard[0][1]);
     }   
 }
