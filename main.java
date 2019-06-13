@@ -82,6 +82,7 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 	public void mouseMoved(MouseEvent evt){
 	}
 	public void mouseDragged(MouseEvent evt){
+		/*
 		for(int xLower = 70; xLower <= 670; xLower += 75){
 			for(int xUpper = 135; xUpper <= 735; xUpper += 75){
 				for(int yLower = 70; yLower <= 595; yLower += 75){
@@ -95,6 +96,7 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 				}
 			}
 		}
+		*/
 		// if the game just started and the players are rearranging their pieces on the board
 		if(thepanel.blnGameStart == true){
 			
@@ -116,6 +118,19 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 	public void mouseEntered(MouseEvent evt){
 	}
 	public void mousePressed(MouseEvent evt){
+		for(int xLower = 70; xLower <= 670; xLower += 75){
+			for(int xUpper = 135; xUpper <= 735; xUpper += 75){
+				for(int yLower = 70; yLower <= 595; yLower += 75){
+					for(int yUpper = 135; yUpper <= 660; yUpper += 75){
+						if(evt.getX() >= xLower && evt.getX() <= xUpper && evt.getX() >= yLower && evt.getX() <= yUpper){
+							strTemp = strBoard[xLower/70 - 1][yLower/70 - 1].split("/");
+							System.out.println(strTemp[0]+strTemp[1]+strTemp[2]);
+							strBoard[xLower/70 - 1][yLower/70 - 1] = "N/N/N";
+						}
+					}
+				}
+			}
+		}
 	}
 	public void mouseReleased(MouseEvent evt){
 	}
