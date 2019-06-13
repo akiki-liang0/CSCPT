@@ -162,8 +162,6 @@ public class animation extends JPanel{
 			for(int col = 0; col < 9; col++){
 				try{
 					strPieceInfo = Board[row][col];
-					System.out.print(Board[row][col] + "\t");
-					//System.out.println(strPieceInfo);
 					pieceSplit = strPieceInfo.split("/");// split into an array by "/"
 					if(pieceSplit[2].equals("W")){// if piece is white
 						if (pieceSplit[0].equals("0")){// if id = flag
