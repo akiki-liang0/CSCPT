@@ -124,7 +124,7 @@ public class animation extends JPanel{
 		}else if(blnConnect == true){
 			g.drawImage(connectionScreen, 0, 0, null);
 		}else if(blnGameStart == true){
-			drawPieces(main.strBoard, g);
+			
 			/*BufferedImage pieceImage = null;
 			int intX = 70, intY = 70;
 			System.out.println(main.strBoard[0][0]);
@@ -159,7 +159,7 @@ public class animation extends JPanel{
 			// rankings
 			g.setColor(Color.BLACK);
 			g.drawString("Rankings", 1025, 385);
-			
+			drawPieces(main.strBoard, g);
 			//g.drawImage(fiveStarB, 70+(75*3), 70+(75*3), null);
 		}else if(blnwin == true){
 			//load font
@@ -185,7 +185,7 @@ public class animation extends JPanel{
 		for(int row = 0; row < 8; row++){
 			for(int col = 0; col < 9; col++){
 					strPieceInfo = Board[row][col];
-					//System.out.println(Board[row][col] + "\t");
+					System.out.print(Board[row][col] + "\t");
 					//System.out.println(strPieceInfo);
 					pieceSplit = strPieceInfo.split("/");// split into an array by "/"
 					if(pieceSplit[2].equals("W")){// if piece is white
@@ -257,7 +257,7 @@ public class animation extends JPanel{
 					g.drawImage(ImageIO.read(new File(strImageName)), intX, intY, null);
 					intX += 75;
 			}
-			intX = 0;
+			intX = 70;
 			intY += 75;
 		}
 		}catch(ArrayIndexOutOfBoundsException e){

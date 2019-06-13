@@ -18,7 +18,7 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 	JButton darkOFF = new JButton("OFF");
 	JButton lockIn = new JButton("LOCK IN");
 	// draw map methods
-	static String[][] strBoard = Board(true);
+	static String[][] strBoard = Board(false);
 	// Settings
 	JTextField portNumber = new JTextField();
 	JTextField serverIP = new JTextField();
