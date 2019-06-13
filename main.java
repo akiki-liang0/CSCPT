@@ -18,7 +18,7 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 	JButton darkOFF = new JButton("OFF");
 	JButton lockIn = new JButton("LOCK IN");
 	// draw map methods
-	static String[][] strBoard = Board(false);
+	static String[][] strBoard = Board(true);
 	// Settings
 	JTextField portNumber = new JTextField();
 	JTextField serverIP = new JTextField();
@@ -28,6 +28,7 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 	SuperSocketMaster ssm;
 	// the game logic
 	int intTurn = 1;
+	String strTemp[];
   
 	int intPort = 3000;
 	
@@ -81,11 +82,24 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 	public void mouseMoved(MouseEvent evt){
 	}
 	public void mouseDragged(MouseEvent evt){
-	// if the game just started and the players are rearranging their pieces on the board
+		for(int xLower = 70; xLower <= 670; xLower += 75){
+			for(int xUpper = 135; xUpper <= 735; xUpper += 75){
+				for(int yLower = 70; yLower <= 595; yLower += 75){
+					for(int yUpper = 135; yUpper <= 660; yUpper += 75){
+						if(evt.getX() >= xLower && evt.getX() <= xUpper && evt.getX() >= yLower && evt.getX() <= yUpper){
+							strTemp = strBoard[xLower/70 - 1][yLower/70 - 1].split("/");
+							System.out.println(strTemp[0]+strTemp[1]+strTemp[2]);
+							strBoard[xLower/70 - 1][yLower/70 - 1] = "N/N/N";
+						}
+					}
+				}
+			}
+		}
+		// if the game just started and the players are rearranging their pieces on the board
 		if(thepanel.blnGameStart == true){
 			
 		// if the player has locked in their pieces
-		}/*else if(thepanel.blnLockedIn == true){
+		}else if(thepanel.blnLockedIn == true){
 			// if it's the server's turn
 			if(intTurn == 1){
 				// stuff happens and then: 
@@ -95,9 +109,8 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 				// stuff happens and then:
 				intTurn = 1;
 			}
-		}*/
+		}
     }
-
 	public void mouseExited(MouseEvent evt){
 	}
 	public void mouseEntered(MouseEvent evt){
@@ -213,7 +226,6 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 			}
 		// user on the game screen
 		}else if(thepanel.blnGameStart == true){ 
-			
 			// going back to the main menu
 			if(evt.getX() >= 0 && evt.getX() <= 200 && evt.getY() >= 0 && evt.getY() <= 50){
 				thepanel.blnMainMenu = true;
@@ -255,7 +267,7 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 		}
 	}
 	//returns array representative of requested view of board
-	public static String[][] Board(boolean server){
+		public static String[][] Board(boolean server){
 		String strLine, strSplit[] = new String[9];
 		String[][] serverBoard = new String[8][9], clientBoard = new String[8][9];// server = white, client = black
 		//read csv to array
@@ -291,7 +303,7 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 			return clientBoard;
 		}
 	}
-
+	
     //CONSTRUCTOR
 	public main(){
 		// panel
@@ -342,10 +354,9 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 		thetimer.start();
     }
   
-  
     //MAIN METHOD
     public static void main(String[] args){
       new main();
-      
-    }
+      System.out.println(strBoard[0][1]);
+    }   
 }

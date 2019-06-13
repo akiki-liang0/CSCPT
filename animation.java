@@ -17,12 +17,11 @@ public class animation extends JPanel{
 	// Game Screen
 	public BufferedImage gameBoard;
 	public BufferedImage gameBoardDark;
-	public BufferedImage drawPiecesImage;
-	public boolean blnGameStart = true;
+	public boolean blnGameStart =  true;
 	public boolean blnDarkMode = false;
 	public boolean blnGameInProgress = false;
 	public boolean blnLockedIn = false;
-//comment
+	
 	//Pieces Images
 	public BufferedImage fiveStarB, fourStarB, threeStarB, twoStarB, oneStarB, colonelB, ltColonelB, majorB, captainB, firstLieutB, secondLieutB, sergeantB, privateB, spyB, flagB;
 	public BufferedImage fiveStarW, fourStarW, threeStarW, twoStarW, oneStarW, colonelW, ltColonelW, majorW, captainW, firstLieutW, secondLieutW, sergeantW, privateW, spyW, flagW;
@@ -49,9 +48,7 @@ public class animation extends JPanel{
 	public boolean blnConnect = false;
 	
 	//METHODS
-	
 	public void paintComponent(Graphics g){
-		
 		// loading all the images
 		try{
 			gameBoard = ImageIO.read(new File("Pics/board.png"));
@@ -97,8 +94,8 @@ public class animation extends JPanel{
 			spyB = ImageIO.read(new File("Pics/Black/SpyB.png"));
 			spyW = ImageIO.read(new File("Pics/White/SpyW.png"));
 			flagB = ImageIO.read(new File("Pics/Black/FlagB.png"));
-			flagW = ImageIO.read(new File("Pics/White/FlagW.png"));
-			
+			flagW = ImageIO.read(new File("Pics/White/F;agW.png")); 
+
 		}catch(IOException e){
 			System.out.println("Interrupted Exception");
 		}
@@ -127,7 +124,6 @@ public class animation extends JPanel{
 		}else if(blnConnect == true){
 			g.drawImage(connectionScreen, 0, 0, null);
 		}else if(blnGameStart == true){
-
 			drawPieces(main.strBoard, g);
 			/*BufferedImage pieceImage = null;
 			int intX = 70, intY = 70;
@@ -164,20 +160,22 @@ public class animation extends JPanel{
 			g.setColor(Color.BLACK);
 			g.drawString("Rankings", 1025, 385);
 			
-			g.drawImage(fiveStarB, 214, 214, null);
+			//g.drawImage(fiveStarB, 70+(75*3), 70+(75*3), null);
 		}else if(blnwin == true){
 			//load font
-			/*try {
+			/*
+			try {
 				g.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("Stencil Std Bold.ttf")));
 		   } catch (IOException|FontFormatException e) {
 				//Handle exception
-		   }*/
+		   }
+		   */
 		}else if(blnloss == true){
 
 		}
 		
 	}
-	 public static void drawPieces(String[][] Board, Graphics g){
+	public static void drawPieces(String[][] Board, Graphics g){
 		// drawing to board
 		String[] pieceSplit = new String[3];//splits "///" format in each cell of array
 		String strPieceInfo = "";// "///" string
