@@ -103,6 +103,7 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 	public void mouseEntered(MouseEvent evt){
 	}
 	public void mousePressed(MouseEvent evt){
+		/*
 		for(int row = 0; row < 8; row++){
 			for(int col = 0; col < 9; col++){
 				if(evt.getX() >= (col * 75) + 70 && evt.getX() <= (col * 75) +  135 && evt.getY() >= (row * 75) + 70 && evt.getY() <= (row * 75) +  135){
@@ -111,6 +112,7 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 				}
 			}
 		}
+		*/
 	}
 	public void mouseReleased(MouseEvent evt){
 	}
@@ -234,6 +236,59 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 				darkON.setVisible(false);
 				darkOFF.setVisible(false);
 			}
+			// piece selection and moving process
+			for(int row = 0; row < 8; row++){
+				for(int col = 0; col < 9; col++){
+					if(evt.getX() >= (col * 75) + 70 && evt.getX() <= (col * 75) + 135 && evt.getY() >= (row * 75) + 70 && evt.getY() <= (row * 75) + 135){
+						// if the piece has already been selected
+						if(thepanel.blnPieceSelected == true){
+							// user moves right
+							if(evt.getX() >= ((col + 1) * 75) + 70 && evt.getX() <= ((col + 1) * 75) + 135 && evt.getY() >= (row * 75) + 70 && evt.getY() <= (row * 75) + 135){
+								System.out.println(strBoard[col + 1][row]);
+								thepanel.blnPieceMoved = true;
+								thepanel.intFinalX = col * 75 + 135;
+								thepanel.intFinalY = row * 75 + 60;
+							// user moves left	
+							}else if(evt.getX() >= (col * 75) - 5 && evt.getX() <= (col * 75) + 60 && evt.getY() >= (row * 75) + 70 && evt.getY() <= (row * 75) + 135){
+						
+							// user moves down	
+							}else if(evt.getX() >= (col * 75) + 70 && evt.getX() <= (col * 75) +  135 && evt.getY() >= (row * 75) + 145 && evt.getY() <= (row * 75) + 210){
+										
+							// user moves up	
+							}else if(evt.getX() >= (col * 75) + 70 && evt.getX() <= (col * 75) +  135 && evt.getY() >= (row * 75) - 5 && evt.getY() <= (row * 75) + 60){
+							
+							}
+						// if the piece is being selected
+						}else if(!strBoard[row][col].equals("N/N/N")){
+							String strTemp = strBoard[row][col];
+							thepanel.blnPieceSelected = true;
+							thepanel.intSelectX = col * 75 + 60;
+							thepanel.intSelectY = row * 75 + 60;
+						}
+						// if the piece has already been selected	
+						/*}else if(thepanel.blnPieceSelected == true){
+							// user moves right
+							if(evt.getX() >= ((col + 1) * 75) + 70 && evt.getX() <= ((col + 1) * 75) + 135 && evt.getY() >= (row * 75) + 70 && evt.getY() <= (row * 75) + 135){
+								System.out.println(strBoard[col + 1][row]);
+								thepanel.blnPieceMoved = true;
+								thepanel.intFinalX = col * 75 + 135;
+								thepanel.intFinalY = row * 75 + 60;
+							// user moves left	
+							}else if(evt.getX() >= (col * 75) - 5 && evt.getX() <= (col * 75) + 60 && evt.getY() >= (row * 75) + 70 && evt.getY() <= (row * 75) + 135){
+						
+							// user moves down	
+							}else if(evt.getX() >= (col * 75) + 70 && evt.getX() <= (col * 75) +  135 && evt.getY() >= (row * 75) + 145 && evt.getY() <= (row * 75) + 210){
+										
+							// user moves up	
+							}else if(evt.getX() >= (col * 75) + 70 && evt.getX() <= (col * 75) +  135 && evt.getY() >= (row * 75) - 5 && evt.getY() <= (row * 75) + 60){
+							
+							}
+						}
+						*/
+					}
+				}
+			}
+			
 		}
 	}
 	public void keyReleased(KeyEvent evt){
