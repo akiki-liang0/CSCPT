@@ -12,16 +12,16 @@ public class animation extends JPanel{
 	public BufferedImage menuPlayPressed;
 	public BufferedImage menuHelpPressed;
 	public BufferedImage menuSettingsPressed;
-	public boolean blnMainMenu = false;
+	public boolean blnMainMenu = true;
 	
 	// Game Screen
 	public BufferedImage gameBoard;
 	public BufferedImage gameBoardDark;
-	public boolean blnGameStart =  true;
+	public boolean blnGameStart =  false;
 	public boolean blnDarkMode = false;
 	public boolean blnGameInProgress = false;
 	public boolean blnLockedIn = false;
-	static Boolean blnServer = new Boolean(false);
+	static boolean blnServer = false;
 	
 	//Pieces Images
 	public BufferedImage fiveStarB, fourStarB, threeStarB, twoStarB, oneStarB, colonelB, ltColonelB, majorB, captainB, firstLieutB, secondLieutB, sergeantB, privateB, spyB, flagB;
@@ -58,7 +58,13 @@ public class animation extends JPanel{
 	public static boolean blnloss = false;
 	// Connection Screen
 	public BufferedImage connectionScreen;
+	public BufferedImage connectionServerPressed;
+	public BufferedImage connectionClientPressed;
+	public boolean blnConnectionServerPressed = false;
+	public boolean blnConnectionClientPressed = false;
 	public boolean blnConnect = false;
+	public boolean blnServerConnect = false;
+	public boolean blnClientConnect = false;
 	
 	//METHODS
 	public void paintComponent(Graphics g){
@@ -77,8 +83,11 @@ public class animation extends JPanel{
 			menuPlayPressed = ImageIO.read(new File("Pics/ButtonPressed/MenuPlayPressed.png"));
 			menuHelpPressed = ImageIO.read(new File("Pics/ButtonPressed/MenuHelpPressed.png"));
 			menuSettingsPressed = ImageIO.read(new File("Pics/ButtonPressed/MenuSettingsPressed.png"));
-			//selection box
+			// selection box
 			selectionBox = ImageIO.read(new File("Pics/selectionSquare.png"));
+			// button pressed
+			connectionServerPressed = ImageIO.read(new File("Pics/ButtonPressed/connectServerPressed.png"));
+			connectionClientPressed = ImageIO.read(new File("Pics/ButtonPressed/connectClientPressed.png"));
 		}catch(IOException e){
 			System.out.println("Interrupted Exception");
 		}
@@ -101,6 +110,11 @@ public class animation extends JPanel{
 		// drawing things when the game starts
 		}else if(blnConnect == true){
 			g.drawImage(connectionScreen, 0, 0, null);
+			if(blnConnectionServerPressed == true){
+				g.drawImage(connectionServerPressed, 0, 0, null);
+			}else if(blnConnectionClientPressed == true){
+				g.drawImage(connectionClientPressed, 0, 0, null);
+			}
 		}else if(blnGameStart == true){
 			if(blnDarkMode == true){
 				g.drawImage(gameBoardDark, 0, 0, null);
@@ -129,32 +143,12 @@ public class animation extends JPanel{
 				main.nextDetect(main.strBoard, nextRow, nextCol, curRow, curCol, blnServer);
 			}
 		}else if(blnwin == true){
-			//load font
-			/*
-			try {
-				g.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("Stencil Std Bold.ttf")));
-		   } catch (IOException|FontFormatException e) {
-				//Handle exception
-		   }
-		   */
 		}else if(blnloss == true){
-
 		}
 		// selecting the piece
 		if(blnPieceSelected == true){
 			g.drawImage(selectionBox, intSelectX, intSelectY, null);
-		}
-		if(blnPieceMoved == true){
-			/*System.out.println("moved");
-			blnPieceSelected = false;
-			try{
-				g.drawImage(ImageIO.read(new File (main.strBoard[intSelectX * 75 + 60][intSelectY * 75 + 60])), intFinalX, intFinalY, null);
-			}catch(IOException e){
-				
-			}
-			blnPieceMoved = false;*/
-		}
-		
+		}		
 	}
 	public static void drawPieces(String[][] Board, boolean blnServer, Graphics g){
 		// drawing to board

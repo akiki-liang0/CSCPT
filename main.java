@@ -104,16 +104,6 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 	public void mouseEntered(MouseEvent evt){
 	}
 	public void mousePressed(MouseEvent evt){
-		/*
-		for(int row = 0; row < 8; row++){
-			for(int col = 0; col < 9; col++){
-				if(evt.getX() >= (col * 75) + 70 && evt.getX() <= (col * 75) +  135 && evt.getY() >= (row * 75) + 70 && evt.getY() <= (row * 75) +  135){
-					strTemp = strBoard[row][col].split("/");
-					strBoard[row][col] = "N/N/N";
-				}
-			}
-		}
-		*/
 	}
 	public void mouseReleased(MouseEvent evt){
 	}
@@ -141,8 +131,8 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 					thepanel.blnConnect = true;
 					thepanel.add(username);
 					thepanel.add(portIPConnect);
-					username.setForeground(Color.GRAY);
-					portIPConnect.setForeground(Color.GRAY);
+					username.setForeground(Color.GRAY);// username placeholder
+					portIPConnect.setForeground(Color.GRAY);// port and IP placeholder
 				// resuming game after already having connected
 				}else{
 					thepanel.blnGameStart = true;
@@ -151,6 +141,9 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 					chat.setVisible(true);
 					darkON.setVisible(true);
 					darkOFF.setVisible(true);
+					if(thepanel.blnLockedIn == true){
+						lockIn.setVisible(true);
+					}
 				}
 				
 			}
@@ -222,6 +215,17 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 				username.setVisible(false);
 				portIPConnect.setVisible(false);
 				thepanel.add(lockIn);
+			
+			// if player clicks on server
+			}else if(evt.getX() >= 470 && evt.getX() <= 670 && evt.getY() >= 210 && evt.getY() <= 260){// if user clicks server and enters information
+						thepanel.blnConnectionClientPressed = false;
+						thepanel.blnConnectionServerPressed = true;
+						animation.blnServer = true;
+			// if player clicks on client
+			}else if(evt.getX() >= 690 && evt.getX() <= 890 && evt.getY() >= 210 && evt.getY() <= 260){// if user clicks client and enters information
+						thepanel.blnConnectionServerPressed = false;
+						thepanel.blnConnectionClientPressed = true;
+						animation.blnServer = false;
 			}
 		// user on the game screen
 		}else if(thepanel.blnGameStart == true){ 
@@ -230,12 +234,14 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 				thepanel.blnMainMenu = true;
 				thepanel.blnGameStart = false;
 				thepanel.blnGameInProgress = true;
+				thepanel.blnPieceSelected = false;
 				// removing components of the chat from game screen
 				thescroll.setVisible(false);
 				send.setVisible(false);
 				chat.setVisible(false);
 				darkON.setVisible(false);
 				darkOFF.setVisible(false);
+				lockIn.setVisible(false);
 			}else if(thepanel.blnPieceSelected == false){
 				
 				// piece selection and moving process
@@ -246,7 +252,6 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 								String strTemp = strBoard[row][col];// save piece in temp value
 								System.out.println(strBoard[row][col]);
 								// draw seletion box on selected cell
-								System.out.println(col);
 								thepanel.intSelectX = (col * 75) + 60;
 								thepanel.intSelectY = (row * 75) + 60;
 								thepanel.blnPieceSelected = true;
@@ -342,10 +347,6 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 							serverBoard[7-row][8-col] = strSplit[col];
 						}
 					}
-					for(int row = 0; row < 8; row++){
-						for(int col = 0; col < 9; col++){
-						}
-					}
 				file.close();
 		}catch (IOException e){
 			System.out.println("Error loading file");
@@ -369,23 +370,6 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 			int nextRank = Integer.parseInt(strNextID[0]);
 			int ownRank = Integer.parseInt(strPieceID[0]);
 			if(!strNextID[0].equals(strPieceID[0])){// if the pieces aren't equivalent
-				if(ownRank - nextRank > 0){// if your piece stronger than next piece
-					strBoard[nextRow][nextCol] = "N/N/N";
-				}else if(ownRank - nextRank < 0){// if your piece weaker than next piece
-					strBoard[curRow][curCol] = "N/N/N";
-				}
-				animation.blnPieceSelected = false;
-				
-			}else if (strNextID[0].equals(strPieceID[0])){// if pieces are equal in rank
-				if(nextRank == 0 && ownRank == 0){
-					animation.blnloss = true;
-					animation.blnPieceSelected = false;
-				}else{
-					strBoard[nextRow][nextCol] = "N/N/N";
-					strBoard[curRow][curCol] = "N/N/N";
-					animation.blnPieceSelected = false;
-				}
-			}else if(nextRank == 0 || nextRank == 1 || nextRank == 2 || ownRank == 0 || ownRank == 1 || ownRank == 2){// if next cell or you contain flag, spy, or private 
 				if(nextRank == 0 && ownRank != 0){// if enemy is flag
 					animation.blnwin = true;
 					animation.blnPieceSelected = false;
@@ -411,6 +395,21 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 					strTemp = strBoard[curRow][curCol];
 					strBoard[curRow][curCol] = "N/N/N";
 					strBoard[nextRow][nextCol] = strTemp;
+					animation.blnPieceSelected = false;
+				}else if(ownRank - nextRank > 0){// if your piece stronger than next piece
+					strBoard[nextRow][nextCol] = "N/N/N";
+				}else if(ownRank - nextRank < 0){// if your piece weaker than next piece
+					strBoard[curRow][curCol] = "N/N/N";
+				}
+				animation.blnPieceSelected = false;
+				
+			}else if (strNextID[0].equals(strPieceID[0])){// if pieces are equal in rank
+				if(nextRank == 0 && ownRank == 0){
+					animation.blnloss = true;
+					animation.blnPieceSelected = false;
+				}else{
+					strBoard[nextRow][nextCol] = "N/N/N";
+					strBoard[curRow][curCol] = "N/N/N";
 					animation.blnPieceSelected = false;
 				}
 			}
