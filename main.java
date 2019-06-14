@@ -266,7 +266,7 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 							System.out.println(strBoard[tstRow][tstCol + 1]);
 							//break;
 						// user moves left and selected spot isn't the left most one 
-						}else if((tstCol - 1) > 0 && evt.getX() >= ((tstCol - 1) * 75) + 70 && evt.getX() <= ((tstCol - 1) * 75) + 135 && evt.getY() >= (tstRow * 75) + 70 && evt.getY() <= (tstRow * 75) + 135){
+						}else if((tstCol - 1) >= 0 && evt.getX() >= ((tstCol - 1) * 75) + 70 && evt.getX() <= ((tstCol - 1) * 75) + 135 && evt.getY() >= (tstRow * 75) + 70 && evt.getY() <= (tstRow * 75) + 135){
 							thepanel.blnPieceLeft = true;
 							System.out.println(strBoard[tstRow][tstCol - 1]);
 							//break;
@@ -276,7 +276,7 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 							System.out.println(strBoard[tstRow + 1][tstCol]);
 							//break;	
 						// user moves up and selected spot isn't the highest one
-						}else if((tstRow - 1) > 0 && evt.getX() >= (tstCol * 75) + 70 && evt.getX() <= (tstCol * 75) +  135 && evt.getY() >= ((tstRow - 1) * 75) + 70 && evt.getY() <= ((tstRow - 1) * 75) + 135){
+						}else if((tstRow - 1) >= 0 && evt.getX() >= (tstCol * 75) + 70 && evt.getX() <= (tstCol * 75) +  135 && evt.getY() >= ((tstRow - 1) * 75) + 70 && evt.getY() <= ((tstRow - 1) * 75) + 135){
 							thepanel.blnPieceUp = true;
 							System.out.println(strBoard[tstRow - 1][tstCol]);
 							//break;
