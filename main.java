@@ -263,31 +263,35 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 						// if next box clicked is box to right of selected one and user can move right
 						if((tstCol + 1) < 9 && evt.getX() >= ((tstCol + 1) * 75) + 70 && evt.getX() <= ((tstCol + 1) * 75) + 135 && evt.getY() >= (tstRow * 75) + 70 && evt.getY() <= (tstRow * 75) + 135){
 							thepanel.blnPieceRight = true;
-							break;
+							System.out.println(strBoard[tstRow][tstCol + 1]);
+							//break;
 						// user moves left and selected spot isn't the left most one 
-						}else if((tstCol - 1) > 0 && evt.getX() >= (tstCol * 75) - 5 && evt.getX() <= (tstCol * 75) + 60 && evt.getY() >= (row * 75) + 70 && evt.getY() <= (row * 75) + 135){
+						}else if((tstCol - 1) > 0 && evt.getX() >= ((tstCol - 1) * 75) + 70 && evt.getX() <= ((tstCol - 1) * 75) + 135 && evt.getY() >= (tstRow * 75) + 70 && evt.getY() <= (tstRow * 75) + 135){
 							thepanel.blnPieceLeft = true;
-							break;
+							System.out.println(strBoard[tstRow][tstCol - 1]);
+							//break;
 						// user moves down and selected spot isn't the lowest one 	
-						}else if((tstRow + 1) < 8 && evt.getX() >= (col * 75) + 70 && evt.getX() <= (col * 75) +  135 && evt.getY() >= (row * 75) + 145 && evt.getY() <= (row * 75) + 210){
+						}else if((tstRow + 1) < 8 && evt.getX() >= (tstCol * 75) + 70 && evt.getX() <= (tstCol * 75) +  135 && evt.getY() >= ((tstRow + 1) * 75) + 70 && evt.getY() <= ((tstRow + 1) * 75) + 135){
 							thepanel.blnPieceDown = true;
-							break;	
+							System.out.println(strBoard[tstRow + 1][tstCol]);
+							//break;	
 						// user moves up and selected spot isn't the highest one
-						}else if((tstRow - 1) > 0 && evt.getX() >= (col * 75) + 70 && evt.getX() <= (col * 75) +  135 && evt.getY() >= (row * 75) - 5 && evt.getY() <= (row * 75) + 60){
+						}else if((tstRow - 1) > 0 && evt.getX() >= (tstCol * 75) + 70 && evt.getX() <= (tstCol * 75) +  135 && evt.getY() >= ((tstRow - 1) * 75) + 70 && evt.getY() <= ((tstRow - 1) * 75) + 135){
 							thepanel.blnPieceUp = true;
-							break;
+							System.out.println(strBoard[tstRow - 1][tstCol]);
+							//break;
 						}
 					}
 				}	
 				
 			}else if(thepanel.blnPieceLeft == true){
-				System.out.println(strBoard[tstRow][tstCol - 1]);
+				
 			}else if(thepanel.blnPieceRight == true){
-				System.out.println(strBoard[tstRow][tstCol + 1]);
+				
 			}else if(thepanel.blnPieceUp == true){
-				System.out.println(strBoard[tstRow - 1][tstCol]);
+				
 			}else if(thepanel.blnPieceDown == true){
-				System.out.println(strBoard[tstRow + 1][tstCol]);
+				
 			}
 			/**for(int row = 0; row < 8; row++){
 				for(int col = 0; col < 9; col++){
