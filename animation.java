@@ -31,7 +31,7 @@ public class animation extends JPanel{
 	public boolean blnPieceRight = false;
 	public boolean blnPieceUp = false;
 	public boolean blnPieceDown = false;
-	public boolean blnPieceSelected = false;
+	public static boolean blnPieceSelected = false;
 	public BufferedImage selectionBox;
 	public int intSelectX = 0, intSelectY = 0;
 	public static int curRow = 0, curCol = 0;// x and y positions of currently selected cell in 2d array
@@ -53,9 +53,9 @@ public class animation extends JPanel{
 	public boolean blnHelp3 = false;
 	public boolean blnHelp4 = false;
 	// Win Screen
-	boolean blnwin = false;
+	public static boolean blnwin = false;
 	// Lose Screen
-	boolean blnloss = false;
+	public static boolean blnloss = false;
 	// Connection Screen
 	public BufferedImage connectionScreen;
 	public boolean blnConnect = false;
@@ -118,6 +118,9 @@ public class animation extends JPanel{
 			drawPieces(main.strBoard, blnServer, g);// drawing pieces
 			if(blnPieceLeft == true){
 				main.nextDetect(main.strBoard, nextRow, nextCol, curRow, curCol, blnServer);
+				// draw background
+				// load from csv?
+				// draw csv
 			}else if (blnPieceRight == true){
 				main.nextDetect(main.strBoard, nextRow, nextCol, curRow, curCol, blnServer);
 			}else if(blnPieceUp == true){

@@ -335,19 +335,12 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 						for(int col = 0; col < 9; col++){
 							clientBoard[row][col] = strSplit[col];
 							serverBoard[7-row][8-col] = strSplit[col];
-							//System.out.print(clientBoard[row][col] + "\t");
-							//System.out.print(serverBoard[7-row][8-col] + "\t");
 						}
 					}
-					//System.out.println("TESTTTTTTTTTTTTTTTT");
 					for(int row = 0; row < 8; row++){
 						for(int col = 0; col < 9; col++){
-							//System.out.print(clientBoard[row][col] + "\t");
-							//System.out.print(serverBoard[7-row][8-col] + "\t");
 						}
-						//System.out.println("");
 					}
-					//System.out.println("END TESTTTTTTTTTTTTT");
 				file.close();
 		}catch (IOException e){
 			System.out.println("Error loading file");
@@ -367,25 +360,63 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 		if(blnServer == true) strOppSide = "B";// if you're server, your opponent's colour is black
 		else strOppSide = "W";// if client, your opponent's colour is white
 		
-		if(strNextID[2].equals(strOppSide)){// if next cell contains enemy
+		if(!strNextID[2].equals(strPieceID[2])){// if next cell contains enemy
 			int nextRank = Integer.parseInt(strNextID[0]);
 			int ownRank = Integer.parseInt(strPieceID[0]);
-			if(nextRank == 0 || nextRank == 1 || nextRank == 2){// if next cell contains flag, spy, or private
-			}else{
+			if(!strNextID[0].equals(strPieceID[0])){// if the pieces aren't equivalent
 				if(ownRank - nextRank > 0){// if your piece stronger than next piece
 					strBoard[nextRow][nextCol] = "N/N/N";
 				}else if(ownRank - nextRank < 0){// if your piece weaker than next piece
 					strBoard[curRow][curCol] = "N/N/N";
-				}else{// if both your pieces are equal
+				}
+				animation.blnPieceSelected = false;
+				
+			}else if (strNextID[0].equals(strPieceID[0])){// if pieces are equal in rank
+				if(nextRank == 0 && ownRank == 0){
+					animation.blnloss = true;
+					animation.blnPieceSelected = false;
+				}else{
 					strBoard[nextRow][nextCol] = "N/N/N";
 					strBoard[curRow][curCol] = "N/N/N";
+					animation.blnPieceSelected = false;
+				}
+			}else if(nextRank == 0 || nextRank == 1 || nextRank == 2 || ownRank == 0 || ownRank == 1 || ownRank == 2){// if next cell or you contain flag, spy, or private 
+				if(nextRank == 0 && ownRank != 0){// if enemy is flag
+					animation.blnwin = true;
+					animation.blnPieceSelected = false;
+				}else if(ownRank == 0 && nextRank != 0){// if you're flag
+					animation.blnloss = true;
+					animation.blnPieceSelected = false;
+				}else if(nextRank == 1 && ownRank == 2){// if enemy is spy and you're private
+					strTemp = strBoard[curRow][curCol];
+					strBoard[curRow][curCol] = "N/N/N";
+					strBoard[nextRow][nextCol] = strTemp;
+					animation.blnPieceSelected = false;
+				}else if(nextRank == 1 && ownRank != 2){// if enemy is spy and you're not private
+					strTemp = strBoard[nextRow][nextCol];
+					strBoard[nextRow][nextCol] = "N/N/N";
+					strBoard[curRow][curCol] = strTemp;
+					animation.blnPieceSelected = false;
+				}else if(ownRank == 1 && nextRank == 2){// if you're spy and enemy is private
+					strTemp = strBoard[nextRow][nextCol];
+					strBoard[nextRow][nextCol] = "N/N/N";
+					strBoard[curRow][curCol] = strTemp;
+					animation.blnPieceSelected = false;
+				}else if(ownRank == 1 && nextRank != 2){// if you're spy and enemy isn't private
+					strTemp = strBoard[curRow][curCol];
+					strBoard[curRow][curCol] = "N/N/N";
+					strBoard[nextRow][nextCol] = strTemp;
+					animation.blnPieceSelected = false;
 				}
 			}
 		}else if(strNextID[0].equals("N")){// if next cell is empty
 			strTemp = strBoard[curRow][curCol];
 			strBoard[nextRow][nextCol] = strTemp;
-		}else{// if next cell contains self
+			animation.blnPieceSelected = false;
+		}else if(strNextID[2].equals(strPieceID[2])){// if next cell contains self
+			animation.blnPieceSelected = false;//deselect curr piect
 			// select next clicked piece
+			animation.blnPieceSelected = true;// select clicked piece
 		}
 	}
     //CONSTRUCTOR
