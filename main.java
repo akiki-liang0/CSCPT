@@ -263,33 +263,38 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 						// if next box clicked is box to right of selected one and user can move right
 						if((thepanel.curCol + 1) < 9 && evt.getX() >= ((thepanel.curCol + 1) * 75) + 70 && evt.getX() <= ((thepanel.curCol + 1) * 75) + 135 && evt.getY() >= (thepanel.curRow * 75) + 70 && evt.getY() <= (thepanel.curRow * 75) + 135){
 							System.out.println(strBoard[thepanel.curRow][thepanel.curCol + 1]);
-							thepanel.nextRow = row;
-							thepanel.nextCol = col;
+							thepanel.nextRow = thepanel.curRow;
+							thepanel.nextCol = thepanel.curCol + 1;
+							System.out.println(thepanel.nextRow + "\t" + thepanel.nextCol);
 							thepanel.blnPieceRight = true;
-							//break;
+							break;
 						// user moves left and selected spot isn't the left most one 
 						}else if((thepanel.curCol - 1) >= 0 && evt.getX() >= ((thepanel.curCol - 1) * 75) + 70 && evt.getX() <= ((thepanel.curCol - 1) * 75) + 135 && evt.getY() >= (thepanel.curRow * 75) + 70 && evt.getY() <= (thepanel.curRow * 75) + 135){
 							System.out.println(strBoard[thepanel.curRow][thepanel.curCol - 1]);
-							thepanel.nextRow = row;
-							thepanel.nextCol = col;
+							thepanel.nextRow = thepanel.curRow;
+							thepanel.nextCol = thepanel.curCol - 1;
+							System.out.println(thepanel.nextRow + "\t" + thepanel.nextCol);
 							thepanel.blnPieceLeft = true;
-							//break;
+							break;
 						// user moves down and selected spot isn't the lowest one 	
 						}else if((thepanel.curRow + 1) < 8 && evt.getX() >= (thepanel.curCol * 75) + 70 && evt.getX() <= (thepanel.curCol * 75) +  135 && evt.getY() >= ((thepanel.curRow + 1) * 75) + 70 && evt.getY() <= ((thepanel.curRow + 1) * 75) + 135){
 							System.out.println(strBoard[thepanel.curRow + 1][thepanel.curCol]);
-							thepanel.nextRow = row;
-							thepanel.nextCol = col;
+							thepanel.nextRow = thepanel.curRow + 1;
+							thepanel.nextCol = thepanel.curCol;
+							System.out.println(thepanel.nextRow + "\t" + thepanel.nextCol);
 							thepanel.blnPieceDown = true;
-							//break;	
+							break;	
 						// user moves up and selected spot isn't the highest one
 						}else if((thepanel.curRow - 1) >= 0 && evt.getX() >= (thepanel.curCol * 75) + 70 && evt.getX() <= (thepanel.curCol * 75) +  135 && evt.getY() >= ((thepanel.curRow - 1) * 75) + 70 && evt.getY() <= ((thepanel.curRow - 1) * 75) + 135){
 							System.out.println(strBoard[thepanel.curRow - 1][thepanel.curCol]);
-							thepanel.nextRow = row;
-							thepanel.nextCol = col;
+							thepanel.nextRow = thepanel.curRow - 1;
+							thepanel.nextCol = thepanel.curCol;
+							System.out.println(thepanel.nextRow + "\t" + thepanel.nextCol);
 							thepanel.blnPieceUp = true;
-							//break;
+							break;
 						}
 					}
+					break;
 				}	
 				
 			}
