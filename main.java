@@ -330,22 +330,21 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 		}
 	}
 	//returns array representative of requested view of board
-		public static String[][] Board(boolean server){
+	public static String[][] Board(boolean server){
 		String strLine, strSplit[] = new String[9];
 		String[][] serverBoard = new String[8][9], clientBoard = new String[8][9];// server = white, client = black
 		//read csv to array
 		try{	
-			BufferedReader file = new BufferedReader(new FileReader("csv.csv"));
-					
-					for(int row = 0; row < 8; row++){
-						strLine = file.readLine();
-						strSplit = strLine.split(",");
-						for(int col = 0; col < 9; col++){
-							clientBoard[row][col] = strSplit[col];
-							serverBoard[7-row][8-col] = strSplit[col];
-						}
-					}
-				file.close();
+			BufferedReader file = new BufferedReader(new FileReader("csv.csv"));	
+			for(int row = 0; row < 8; row++){
+				strLine = file.readLine();
+				strSplit = strLine.split(",");
+				for(int col = 0; col < 9; col++){
+					clientBoard[row][col] = strSplit[col];
+					serverBoard[7-row][8-col] = strSplit[col];
+				}
+			}
+			file.close();
 		}catch (IOException e){
 			System.out.println("Error loading file");
 		}
