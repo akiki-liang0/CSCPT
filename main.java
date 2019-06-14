@@ -18,7 +18,7 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 	JButton darkOFF = new JButton("OFF");
 	JButton lockIn = new JButton("LOCK IN");
 	// draw map methods
-	static String[][] strBoard = Board(animation.blnServer);
+	static String[][] strBoard;
 	// Settings
 	JTextField portNumber = new JTextField();
 	JTextField serverIP = new JTextField();
@@ -221,11 +221,13 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 						thepanel.blnConnectionClientPressed = false;
 						thepanel.blnConnectionServerPressed = true;
 						animation.blnServer = true;
+						strBoard = Board(animation.blnServer);
 			// if player clicks on client
 			}else if(evt.getX() >= 690 && evt.getX() <= 890 && evt.getY() >= 210 && evt.getY() <= 260){// if user clicks client and enters information
 						thepanel.blnConnectionServerPressed = false;
 						thepanel.blnConnectionClientPressed = true;
 						animation.blnServer = false;
+						strBoard = Board(animation.blnServer);
 			}
 		// user on the game screen
 		}else if(thepanel.blnGameStart == true){ 

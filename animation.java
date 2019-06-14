@@ -21,7 +21,7 @@ public class animation extends JPanel{
 	public boolean blnDarkMode = false;
 	public boolean blnGameInProgress = false;
 	public boolean blnLockedIn = false;
-	static boolean blnServer = false;
+	public static boolean blnServer;
 	
 	public boolean blnArrangePieces = true; //this is a test
 	
