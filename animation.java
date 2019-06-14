@@ -31,7 +31,7 @@ public class animation extends JPanel{
 	public boolean blnPieceRight = false;
 	public boolean blnPieceUp = false;
 	public boolean blnPieceDown = false;
-	public boolean blnPieceSelected = false;
+	public static boolean blnPieceSelected = false;
 	public BufferedImage selectionBox;
 	public int intSelectX = 0, intSelectY = 0;
 	public static int curRow = 0, curCol = 0;// x and y positions of currently selected cell in 2d array
