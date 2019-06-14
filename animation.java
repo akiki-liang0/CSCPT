@@ -23,6 +23,8 @@ public class animation extends JPanel{
 	public boolean blnLockedIn = false;
 	static Boolean blnServer = new Boolean(false);
 	
+	public boolean blnArrangePieces = true; //this is a test
+	
 	//Pieces Images
 	public BufferedImage fiveStarB, fourStarB, threeStarB, twoStarB, oneStarB, colonelB, ltColonelB, majorB, captainB, firstLieutB, secondLieutB, sergeantB, privateB, spyB, flagB;
 	public BufferedImage fiveStarW, fourStarW, threeStarW, twoStarW, oneStarW, colonelW, ltColonelW, majorW, captainW, firstLieutW, secondLieutW, sergeantW, privateW, spyW, flagW;
@@ -36,9 +38,6 @@ public class animation extends JPanel{
 	public int intSelectX = 0, intSelectY = 0;
 	public static int curRow = 0, curCol = 0;// x and y positions of currently selected cell in 2d array
 	public static int nextRow = 0, nextCol = 0;// x and y positions of next selected cell in 2d array
-	//Piece moved
-	public boolean blnPieceMoved = false;
-	public int intFinalX = 0, intFinalY = 0;
 	// Settings
 	public BufferedImage settingsScreen;
 	public boolean blnSettings = false;
@@ -53,9 +52,9 @@ public class animation extends JPanel{
 	public boolean blnHelp3 = false;
 	public boolean blnHelp4 = false;
 	// Win Screen
-	boolean blnwin = false;
+	static boolean blnwin = false;
 	// Lose Screen
-	boolean blnloss = false;
+	static boolean blnloss = false;
 	// Connection Screen
 	public BufferedImage connectionScreen;
 	public boolean blnConnect = false;
@@ -118,12 +117,16 @@ public class animation extends JPanel{
 			drawPieces(main.strBoard, blnServer, g);// drawing pieces
 			if(blnPieceLeft == true){
 				main.nextDetect(main.strBoard, nextRow, nextCol, curRow, curCol, blnServer);
+				drawPieces(main.strBoard, blnServer, g);
 			}else if (blnPieceRight == true){
 				main.nextDetect(main.strBoard, nextRow, nextCol, curRow, curCol, blnServer);
+				drawPieces(main.strBoard, blnServer, g);
 			}else if(blnPieceUp == true){
 				main.nextDetect(main.strBoard, nextRow, nextCol, curRow, curCol, blnServer);
+				drawPieces(main.strBoard, blnServer, g);
 			}else if(blnPieceDown == true){
 				main.nextDetect(main.strBoard, nextRow, nextCol, curRow, curCol, blnServer);
+				drawPieces(main.strBoard, blnServer, g);
 			}
 		}else if(blnwin == true){
 			//load font
@@ -141,17 +144,6 @@ public class animation extends JPanel{
 		if(blnPieceSelected == true){
 			g.drawImage(selectionBox, intSelectX, intSelectY, null);
 		}
-		if(blnPieceMoved == true){
-			/*System.out.println("moved");
-			blnPieceSelected = false;
-			try{
-				g.drawImage(ImageIO.read(new File (main.strBoard[intSelectX * 75 + 60][intSelectY * 75 + 60])), intFinalX, intFinalY, null);
-			}catch(IOException e){
-				
-			}
-			blnPieceMoved = false;*/
-		}
-		
 	}
 	public static void drawPieces(String[][] Board, boolean blnServer, Graphics g){
 		// drawing to board
