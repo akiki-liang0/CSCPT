@@ -1,0 +1,31 @@
+What our program can do:
+- settings
+  - settings screen
+  - textfield enter port and IP
+  - go back to menu from settings
+- help screens
+  - 4 help screens
+  - go back and forth between help screens
+  - go back to menu from last help screen
+- play game
+  - connections screen
+    - choose between server or client
+    - textfield enter username
+    - textfield enter IP and port number
+    - play button
+  - game play screen
+    - go back to menu with button
+    - lock in button for after rearanging pieces for formation
+      - can't see chat until locked in
+      - can't see theme change (light/dark mode) until locked in
+    - select pieces by clicking 
+    - select next piece by clicking on cell in cardinal direction one away on the cell
+    - server vs client 2d array
+    - rankings displayed at all times
+    - move piece if next cell selected is empty or doen't contain own piece
+    - detects rank of next piece and finds who gets captured
+    - when going back to menu after entering game play, then going back to play, saves state of your game
+     
+     
+    
+ 
