@@ -130,15 +130,14 @@ public class animation extends JPanel{
 		if(blnPieceSelected == true){
 			g.drawImage(selectionBox, intSelectX, intSelectY, null);
 		}
-		if(blnPieceMoved == true){
-			/*System.out.println("moved");
+		if(blnPieceRight == true){
 			blnPieceSelected = false;
 			try{
 				g.drawImage(ImageIO.read(new File (main.strBoard[intSelectX * 75 + 60][intSelectY * 75 + 60])), intFinalX, intFinalY, null);
 			}catch(IOException e){
 				
 			}
-			blnPieceMoved = false;*/
+			blnPieceMoved = false;
 		}
 		
 	}
