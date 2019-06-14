@@ -363,28 +363,51 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 		if(!strNextID[2].equals(strPieceID[2])){// if next cell contains enemy
 			int nextRank = Integer.parseInt(strNextID[0]);
 			int ownRank = Integer.parseInt(strPieceID[0]);
-			if(nextRank == 0 || nextRank == 1 || nextRank == 2){// if next cell contains flag, spy, or private
-				/*if(){// if enemy is flag and you're not
-					
-				}else if(){// if you're flag and enemy is not
-					
-				}else if(){// if enemy is spy and you're private
-					
-				}else if(){// if enemy is spy and you're not private
-					
-				}else if(){// if enemy is 
-					
-				}*/
-			}else{
+			if(!strNextID[0].equals(strPieceID[0])){// if the pieces aren't equivalent
 				if(ownRank - nextRank > 0){// if your piece stronger than next piece
 					strBoard[nextRow][nextCol] = "N/N/N";
 				}else if(ownRank - nextRank < 0){// if your piece weaker than next piece
 					strBoard[curRow][curCol] = "N/N/N";
-				}else{// if both your pieces are equal
-					strBoard[nextRow][nextCol] = "N/N/N";
-					strBoard[curRow][curCol] = "N/N/N";
 				}
 				animation.blnPieceSelected = false;
+				
+			}else if (strNextID[0].equals(strPieceID[0])){// if pieces are equal in rank
+				if(nextRank == 0 && ownRank == 0){
+					animation.blnloss = true;
+					animation.blnPieceSelected = false;
+				}else{
+					strBoard[nextRow][nextCol] = "N/N/N";
+					strBoard[curRow][curCol] = "N/N/N";
+					animation.blnPieceSelected = false;
+				}
+			}else if(nextRank == 0 || nextRank == 1 || nextRank == 2 || ownRank == 0 || ownRank == 1 || ownRank == 2){// if next cell or you contain flag, spy, or private 
+				if(nextRank == 0 && ownRank != 0){// if enemy is flag
+					animation.blnwin = true;
+					animation.blnPieceSelected = false;
+				}else if(ownRank == 0 && nextRank != 0){// if you're flag
+					animation.blnloss = true;
+					animation.blnPieceSelected = false;
+				}else if(nextRank == 1 && ownRank == 2){// if enemy is spy and you're private
+					strTemp = strBoard[curRow][curCol];
+					strBoard[curRow][curCol] = "N/N/N";
+					strBoard[nextRow][nextCol] = strTemp;
+					animation.blnPieceSelected = false;
+				}else if(nextRank == 1 && ownRank != 2){// if enemy is spy and you're not private
+					strTemp = strBoard[nextRow][nextCol];
+					strBoard[nextRow][nextCol] = "N/N/N";
+					strBoard[curRow][curCol] = strTemp;
+					animation.blnPieceSelected = false;
+				}else if(ownRank == 1 && nextRank == 2){// if you're spy and enemy is private
+					strTemp = strBoard[nextRow][nextCol];
+					strBoard[nextRow][nextCol] = "N/N/N";
+					strBoard[curRow][curCol] = strTemp;
+					animation.blnPieceSelected = false;
+				}else if(ownRank == 1 && nextRank != 2){// if you're spy and enemy isn't private
+					strTemp = strBoard[curRow][curCol];
+					strBoard[curRow][curCol] = "N/N/N";
+					strBoard[nextRow][nextCol] = strTemp;
+					animation.blnPieceSelected = false;
+				}
 			}
 		}else if(strNextID[0].equals("N")){// if next cell is empty
 			strTemp = strBoard[curRow][curCol];
