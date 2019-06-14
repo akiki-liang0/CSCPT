@@ -270,7 +270,6 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 							System.out.println(strBoard[thepanel.curRow][thepanel.curCol + 1]);
 							thepanel.nextRow = thepanel.curRow;
 							thepanel.nextCol = thepanel.curCol + 1;
-							System.out.println(thepanel.nextRow + "\t" + thepanel.nextCol);
 							thepanel.blnPieceRight = true;
 							break;
 						// user moves left and selected spot isn't the left most one 
@@ -278,7 +277,6 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 							System.out.println(strBoard[thepanel.curRow][thepanel.curCol - 1]);
 							thepanel.nextRow = thepanel.curRow;
 							thepanel.nextCol = thepanel.curCol - 1;
-							System.out.println(thepanel.nextRow + "\t" + thepanel.nextCol);
 							thepanel.blnPieceLeft = true;
 							break;
 						// user moves down and selected spot isn't the lowest one 	
@@ -286,7 +284,6 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 							System.out.println(strBoard[thepanel.curRow + 1][thepanel.curCol]);
 							thepanel.nextRow = thepanel.curRow + 1;
 							thepanel.nextCol = thepanel.curCol;
-							System.out.println(thepanel.nextRow + "\t" + thepanel.nextCol);
 							thepanel.blnPieceDown = true;
 							break;	
 						// user moves up and selected spot isn't the highest one
@@ -294,7 +291,6 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 							System.out.println(strBoard[thepanel.curRow - 1][thepanel.curCol]);
 							thepanel.nextRow = thepanel.curRow - 1;
 							thepanel.nextCol = thepanel.curCol;
-							System.out.println(thepanel.nextRow + "\t" + thepanel.nextCol);
 							thepanel.blnPieceUp = true;
 							break;
 						}
@@ -363,6 +359,7 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 		strPieceID = strBoard[curRow][curCol].split("/");// find id of selected piece
 		strNextID = strBoard[nextRow][nextCol].split("/");// find id of cell you want to move to
 		String strTemp = "";// store current cell id for moving
+		System.out.println(strNextID[0]+strNextID[1]+strNextID[2]);
 		if(blnServer == true) strOppSide = "B";// if you're server, your opponent's colour is black
 		else strOppSide = "W";// if client, your opponent's colour is white
 		
@@ -402,8 +399,8 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 					strBoard[curRow][curCol] = "N/N/N";
 				}
 				animation.blnPieceSelected = false;
-				
-			}else if (strNextID[0].equals(strPieceID[0])){// if pieces are equal in rank
+
+			}else if(strNextID[0].equals(strPieceID[0])){// if pieces are equal in rank
 				if(nextRank == 0 && ownRank == 0){
 					animation.blnloss = true;
 					animation.blnPieceSelected = false;

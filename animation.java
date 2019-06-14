@@ -23,6 +23,8 @@ public class animation extends JPanel{
 	public boolean blnLockedIn = false;
 	static boolean blnServer = false;
 	
+	public boolean blnArrangePieces = true; //this is a test
+	
 	//Pieces Images
 	public BufferedImage fiveStarB, fourStarB, threeStarB, twoStarB, oneStarB, colonelB, ltColonelB, majorB, captainB, firstLieutB, secondLieutB, sergeantB, privateB, spyB, flagB;
 	public BufferedImage fiveStarW, fourStarW, threeStarW, twoStarW, oneStarW, colonelW, ltColonelW, majorW, captainW, firstLieutW, secondLieutW, sergeantW, privateW, spyW, flagW;
@@ -36,9 +38,6 @@ public class animation extends JPanel{
 	public int intSelectX = 0, intSelectY = 0;
 	public static int curRow = 0, curCol = 0;// x and y positions of currently selected cell in 2d array
 	public static int nextRow = 0, nextCol = 0;// x and y positions of next selected cell in 2d array
-	//Piece moved
-	public boolean blnPieceMoved = false;
-	public int intFinalX = 0, intFinalY = 0;
 	// Settings
 	public BufferedImage settingsScreen;
 	public boolean blnSettings = false;
@@ -130,17 +129,21 @@ public class animation extends JPanel{
 			g.setColor(Color.BLACK);
 			g.drawString("Rankings", 1025, 385);
 			drawPieces(main.strBoard, blnServer, g);// drawing pieces
+			// draw background
+			// load from csv?
+			// draw csv
 			if(blnPieceLeft == true){
 				main.nextDetect(main.strBoard, nextRow, nextCol, curRow, curCol, blnServer);
-				// draw background
-				// load from csv?
-				// draw csv
+				drawPieces(main.strBoard, blnServer, g);
 			}else if (blnPieceRight == true){
 				main.nextDetect(main.strBoard, nextRow, nextCol, curRow, curCol, blnServer);
+				drawPieces(main.strBoard, blnServer, g);
 			}else if(blnPieceUp == true){
 				main.nextDetect(main.strBoard, nextRow, nextCol, curRow, curCol, blnServer);
+				drawPieces(main.strBoard, blnServer, g);
 			}else if(blnPieceDown == true){
 				main.nextDetect(main.strBoard, nextRow, nextCol, curRow, curCol, blnServer);
+				drawPieces(main.strBoard, blnServer, g);
 			}
 		}else if(blnwin == true){
 		}else if(blnloss == true){
@@ -148,7 +151,7 @@ public class animation extends JPanel{
 		// selecting the piece
 		if(blnPieceSelected == true){
 			g.drawImage(selectionBox, intSelectX, intSelectY, null);
-		}		
+		}
 	}
 	public static void drawPieces(String[][] Board, boolean blnServer, Graphics g){
 		// drawing to board
