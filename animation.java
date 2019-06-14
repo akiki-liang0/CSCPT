@@ -52,9 +52,9 @@ public class animation extends JPanel{
 	public boolean blnHelp3 = false;
 	public boolean blnHelp4 = false;
 	// Win Screen
-	static boolean blnwin = false;
+	public static boolean blnwin = false;
 	// Lose Screen
-	static boolean blnloss = false;
+	public static boolean blnloss = false;
 	// Connection Screen
 	public BufferedImage connectionScreen;
 	public boolean blnConnect = false;
@@ -115,6 +115,9 @@ public class animation extends JPanel{
 			g.setColor(Color.BLACK);
 			g.drawString("Rankings", 1025, 385);
 			drawPieces(main.strBoard, blnServer, g);// drawing pieces
+			// draw background
+			// load from csv?
+			// draw csv
 			if(blnPieceLeft == true){
 				main.nextDetect(main.strBoard, nextRow, nextCol, curRow, curCol, blnServer);
 				drawPieces(main.strBoard, blnServer, g);
