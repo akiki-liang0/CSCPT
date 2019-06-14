@@ -34,6 +34,8 @@ public class animation extends JPanel{
 	public boolean blnPieceSelected = false;
 	public BufferedImage selectionBox;
 	public int intSelectX = 0, intSelectY = 0;
+	public static int curRow = 0, curCol = 0;// x and y positions of currently selected cell in 2d array
+	public static int nextRow = 0, nextCol = 0;// x and y positions of next selected cell in 2d array
 	//Piece moved
 	public boolean blnPieceMoved = false;
 	public int intFinalX = 0, intFinalY = 0;
@@ -114,6 +116,15 @@ public class animation extends JPanel{
 			g.setColor(Color.BLACK);
 			g.drawString("Rankings", 1025, 385);
 			drawPieces(main.strBoard, blnServer, g);// drawing pieces
+			if(blnPieceLeft == true){
+				main.nextDetect(main.strBoard, nextRow, nextCol, curRow, curCol, blnServer);
+			}else if (blnPieceRight == true){
+				main.nextDetect(main.strBoard, nextRow, nextCol, curRow, curCol, blnServer);
+			}else if(blnPieceUp == true){
+				main.nextDetect(main.strBoard, nextRow, nextCol, curRow, curCol, blnServer);
+			}else if(blnPieceDown == true){
+				main.nextDetect(main.strBoard, nextRow, nextCol, curRow, curCol, blnServer);
+			}
 		}else if(blnwin == true){
 			//load font
 			/*
