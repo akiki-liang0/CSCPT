@@ -364,7 +364,7 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 		if(blnServer == true) strOppSide = "B";// if you're server, your opponent's colour is black
 		else strOppSide = "W";// if client, your opponent's colour is white
 		
-		if(!strNextID[2].equals(strPieceID[2])){// if next cell contains enemy
+		if(!strNextID[2].equals(strPieceID[2]) && !strNextID[0].equals("N")){// if next cell contains enemy
 			int nextRank = Integer.parseInt(strNextID[0]);
 			int ownRank = Integer.parseInt(strPieceID[0]);
 			if(!strNextID[0].equals(strPieceID[0])){// if the pieces aren't equivalent
