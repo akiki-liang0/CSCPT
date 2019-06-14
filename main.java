@@ -263,33 +263,34 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 						// if next box clicked is box to right of selected one and user can move right
 						if((thepanel.curCol + 1) < 9 && evt.getX() >= ((thepanel.curCol + 1) * 75) + 70 && evt.getX() <= ((thepanel.curCol + 1) * 75) + 135 && evt.getY() >= (thepanel.curRow * 75) + 70 && evt.getY() <= (thepanel.curRow * 75) + 135){
 							System.out.println(strBoard[thepanel.curRow][thepanel.curCol + 1]);
-							thepanel.nextRow = row;
-							thepanel.nextCol = col;
+							thepanel.nextRow = thepanel.curRow;
+							thepanel.nextCol = thepanel.curCol + 1;
 							thepanel.blnPieceRight = true;
-							//break;
+							break;
 						// user moves left and selected spot isn't the left most one 
 						}else if((thepanel.curCol - 1) >= 0 && evt.getX() >= ((thepanel.curCol - 1) * 75) + 70 && evt.getX() <= ((thepanel.curCol - 1) * 75) + 135 && evt.getY() >= (thepanel.curRow * 75) + 70 && evt.getY() <= (thepanel.curRow * 75) + 135){
 							System.out.println(strBoard[thepanel.curRow][thepanel.curCol - 1]);
-							thepanel.nextRow = row;
-							thepanel.nextCol = col;
+							thepanel.nextRow = thepanel.curRow;
+							thepanel.nextCol = thepanel.curCol - 1;
 							thepanel.blnPieceLeft = true;
-							//break;
+							break;
 						// user moves down and selected spot isn't the lowest one 	
 						}else if((thepanel.curRow + 1) < 8 && evt.getX() >= (thepanel.curCol * 75) + 70 && evt.getX() <= (thepanel.curCol * 75) +  135 && evt.getY() >= ((thepanel.curRow + 1) * 75) + 70 && evt.getY() <= ((thepanel.curRow + 1) * 75) + 135){
 							System.out.println(strBoard[thepanel.curRow + 1][thepanel.curCol]);
-							thepanel.nextRow = row;
-							thepanel.nextCol = col;
+							thepanel.nextRow = thepanel.curRow + 1;
+							thepanel.nextCol = thepanel.curCol;
 							thepanel.blnPieceDown = true;
-							//break;	
+							break;	
 						// user moves up and selected spot isn't the highest one
 						}else if((thepanel.curRow - 1) >= 0 && evt.getX() >= (thepanel.curCol * 75) + 70 && evt.getX() <= (thepanel.curCol * 75) +  135 && evt.getY() >= ((thepanel.curRow - 1) * 75) + 70 && evt.getY() <= ((thepanel.curRow - 1) * 75) + 135){
 							System.out.println(strBoard[thepanel.curRow - 1][thepanel.curCol]);
-							thepanel.nextRow = row;
-							thepanel.nextCol = col;
+							thepanel.nextRow = thepanel.curRow - 1;
+							thepanel.nextCol = thepanel.curCol;
 							thepanel.blnPieceUp = true;
-							//break;
+							break;
 						}
 					}
+					break;
 				}	
 				
 			}
@@ -357,34 +358,55 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 		strPieceID = strBoard[curRow][curCol].split("/");// find id of selected piece
 		strNextID = strBoard[nextRow][nextCol].split("/");// find id of cell you want to move to
 		String strTemp = "";// store current cell id for moving
+		System.out.println(strNextID[0]+strNextID[1]+strNextID[2]);
 		if(blnServer == true) strOppSide = "B";// if you're server, your opponent's colour is black
 		else strOppSide = "W";// if client, your opponent's colour is white
 		
 		if(!strNextID[2].equals(strPieceID[2])){// if next cell contains enemy
 			int nextRank = Integer.parseInt(strNextID[0]);
 			int ownRank = Integer.parseInt(strPieceID[0]);
-			if(nextRank == 0 || nextRank == 1 || nextRank == 2){// if next cell contains flag, spy, or private
-				/*if(){// if enemy is flag and you're not
-					
-				}else if(){// if you're flag and enemy is not
-					
-				}else if(){// if enemy is spy and you're private
-					
-				}else if(){// if enemy is spy and you're not private
-					
-				}else if(){// if enemy is 
-					
-				}*/
-			}else{
-				if(ownRank - nextRank > 0){// if your piece stronger than next piece
+			if(!strNextID[0].equals(strPieceID[0])){// if the pieces aren't equivalent
+				if(nextRank == 0 && ownRank != 0){// if enemy is flag
+					animation.blnwin = true;
+					animation.blnPieceSelected = false;
+				}else if(ownRank == 0 && nextRank != 0){// if you're flag
+					animation.blnloss = true;
+					animation.blnPieceSelected = false;
+				}else if(nextRank == 1 && ownRank == 2){// if enemy is spy and you're private
+					strTemp = strBoard[curRow][curCol];
+					strBoard[curRow][curCol] = "N/N/N";
+					strBoard[nextRow][nextCol] = strTemp;
+					animation.blnPieceSelected = false;
+				}else if(nextRank == 1 && ownRank != 2){// if enemy is spy and you're not private
+					strTemp = strBoard[nextRow][nextCol];
+					strBoard[nextRow][nextCol] = "N/N/N";
+					strBoard[curRow][curCol] = strTemp;
+					animation.blnPieceSelected = false;
+				}else if(ownRank == 1 && nextRank == 2){// if you're spy and enemy is private
+					strTemp = strBoard[nextRow][nextCol];
+					strBoard[nextRow][nextCol] = "N/N/N";
+					strBoard[curRow][curCol] = strTemp;
+					animation.blnPieceSelected = false;
+				}else if(ownRank == 1 && nextRank != 2){// if you're spy and enemy isn't private
+					strTemp = strBoard[curRow][curCol];
+					strBoard[curRow][curCol] = "N/N/N";
+					strBoard[nextRow][nextCol] = strTemp;
+					animation.blnPieceSelected = false;
+				}else if(ownRank - nextRank > 0){// if your piece stronger than next piece
 					strBoard[nextRow][nextCol] = "N/N/N";
 				}else if(ownRank - nextRank < 0){// if your piece weaker than next piece
 					strBoard[curRow][curCol] = "N/N/N";
-				}else{// if both your pieces are equal
-					strBoard[nextRow][nextCol] = "N/N/N";
-					strBoard[curRow][curCol] = "N/N/N";
 				}
 				animation.blnPieceSelected = false;
+			}else if(strNextID[0].equals(strPieceID[0])){// if pieces are equal in rank
+				if(nextRank == 0 && ownRank == 0){
+					animation.blnloss = true;
+					animation.blnPieceSelected = false;
+				}else{
+					strBoard[nextRow][nextCol] = "N/N/N";
+					strBoard[curRow][curCol] = "N/N/N";
+					animation.blnPieceSelected = false;
+				}
 			}
 		}else if(strNextID[0].equals("N")){// if next cell is empty
 			strTemp = strBoard[curRow][curCol];
