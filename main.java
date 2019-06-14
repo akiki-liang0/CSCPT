@@ -24,18 +24,19 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 	JTextField serverIP = new JTextField();
 	// Connection Screen
 	JTextField username = new JTextField("Username");
-	JTextField portIPConnect = new JTextField("Port #, IP Address");
+	JTextField portIPConnect = new JTextField("Port #,IP Address");
 	SuperSocketMaster ssm;
 	
 	// the game logic
 	int intTurn = 1;
 	String strTemp[];
-  
-	int intPort = 3000;
 	
 	PrintWriter connections = null;
 	
-	int test = 0;
+	String strUsername = "";
+	String strIP = "";
+	int intPort = 3000;
+	String portIP[] = new String[2];
 		
 	//METHODS
 	public void actionPerformed(ActionEvent evt){
@@ -76,6 +77,10 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 			ssm.sendText(chat.getText());
 			chatArea.append("me: "+chat.getText()+"\n");
 			chat.setText("");
+		}else if(evt.getSource() == username){
+			strUsername = username.getText();
+		}else if(evt.getSource() == portIPConnect){
+			
 		}else if(evt.getSource() == ssm){
 			chatArea.append("opponent: "+ssm.readText() + "\n");
 		}
@@ -210,6 +215,12 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 		}else if(thepanel.blnConnect == true){
 			// if user clicks play and they have filled in the connection requirements
 			if(evt.getX() >= 580 && evt.getX() <= 770 && evt.getY() >= 420 && evt.getY() <= 480 && !username.getText().equals("Username") && !portIPConnect.getText().equals("Port #, IP Address")){
+				// getting the port # and IP from the text fields
+				portIP = portIPConnect.getText().split(",");
+				intPort = Integer.parseInt(portIP[0]);
+				strIP = portIP[1];
+				System.out.println(intPort+strIP);
+				
 				thepanel.blnGameStart = true;
 				thepanel.blnConnect = false;
 				username.setVisible(false);
@@ -229,6 +240,7 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 						animation.blnServer = false;
 						strBoard = Board(animation.blnServer);
 			}
+			
 		// user on the game screen
 		}else if(thepanel.blnGameStart == true){ 
 			// going back to the main menu
@@ -314,7 +326,7 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 		if(username.getText().equals("Username") && username.isFocusOwner() == true){
 			username.setText("");
 			username.setForeground(Color.BLACK);
-		}else if(portIPConnect.getText().equals("Port #, IP Address") && portIPConnect.isFocusOwner() == true){
+		}else if(portIPConnect.getText().equals("Port #,IP Address") && portIPConnect.isFocusOwner() == true){
 			portIPConnect.setText("");
 			portIPConnect.setForeground(Color.BLACK);
 		}
@@ -326,7 +338,7 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 		}
 		if(portIPConnect.getText().equals("")){
 			portIPConnect.setForeground(Color.GRAY);
-			portIPConnect.setText("Port #, IP Address");
+			portIPConnect.setText("Port #,IP Address");
 		}
 	}
 	//returns array representative of requested view of board
@@ -467,7 +479,11 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 		theframe.setVisible(true);
 		
 		// super socket master
-		ssm = new SuperSocketMaster(intPort, this);
+		if(thepanel.blnServer == true){ //for server
+			ssm = new SuperSocketMaster(intPort, this);
+		}else{ //for client
+			ssm = new SuperSocketMaster(strIP, intPort, this);
+		}
 		ssm.connect();
 		System.out.println(ssm.getMyAddress());
 		
