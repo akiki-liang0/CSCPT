@@ -364,7 +364,7 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 			int nextRank = Integer.parseInt(strNextID[0]);
 			int ownRank = Integer.parseInt(strPieceID[0]);
 			if(nextRank == 0 || nextRank == 1 || nextRank == 2){// if next cell contains flag, spy, or private
-				if(){// if enemy is flag and you're not
+				/*if(){// if enemy is flag and you're not
 					
 				}else if(){// if you're flag and enemy is not
 					
@@ -374,7 +374,7 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 					
 				}else if(){// if enemy is 
 					
-				}
+				}*/
 			}else{
 				if(ownRank - nextRank > 0){// if your piece stronger than next piece
 					strBoard[nextRow][nextCol] = "N/N/N";
