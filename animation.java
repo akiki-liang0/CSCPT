@@ -21,7 +21,7 @@ public class animation extends JPanel{
 	public boolean blnDarkMode = false;
 	public boolean blnGameInProgress = false;
 	public boolean blnLockedIn = false;
-	public boolean blnServer = false;
+	static Boolean blnServer = new Boolean(false);
 	
 	//Pieces Images
 	public BufferedImage fiveStarB, fourStarB, threeStarB, twoStarB, oneStarB, colonelB, ltColonelB, majorB, captainB, firstLieutB, secondLieutB, sergeantB, privateB, spyB, flagB;
@@ -150,7 +150,7 @@ public class animation extends JPanel{
 		int intX = 70, intY = 70;
 		for(int row = 0; row < 8; row++){
 			for(int col = 0; col < 9; col++){
-				if(blnServer == false){
+				if(blnServer == true){
 					try{
 						strPieceInfo = Board[row][col];
 						pieceSplit = strPieceInfo.split("/");// split into an array by "/"
@@ -194,18 +194,12 @@ public class animation extends JPanel{
 					}catch(ArrayIndexOutOfBoundsException e){
 						
 					}
-					try{
-						//draw image;
-						g.drawImage(ImageIO.read(new File(strImageName)), intX, intY, null);
-					}
-					catch(IOException e){
-						
-					}
-		}else{
+					
+				}else{
 					try{
 						strPieceInfo = Board[row][col];
 						pieceSplit = strPieceInfo.split("/");// split into an array by "/"
-						if(pieceSplit[2].equals("W")){// if piece is white
+						if(pieceSplit[2].equals("B")){// if piece is white
 							if (pieceSplit[0].equals("0")){// if id = flag
 								strImageName = "Pics/Black/FlagB.png";
 							}else if (pieceSplit[0].equals("1")){// if id = spy
@@ -237,7 +231,7 @@ public class animation extends JPanel{
 							}else if (pieceSplit[0].equals("14")){// if id = general 5
 								strImageName = "Pics/Black/FiveStarGeneralB.png";
 							}
-						}else if(pieceSplit[2].equals("B")){// if piece is black
+						}else if(pieceSplit[2].equals("W")){// if piece is black
 							strImageName = "Pics/White/EnemyW.png";
 						}else if(pieceSplit[2].equals("N")){
 								strImageName = "";
@@ -245,13 +239,14 @@ public class animation extends JPanel{
 					}catch(ArrayIndexOutOfBoundsException e){
 						
 					}
-					try{
+					
+				}
+				try{
 						//draw image;
 						g.drawImage(ImageIO.read(new File(strImageName)), intX, intY, null);
 					}
 					catch(IOException e){
 					}
-				}
 				intX += 75;
 			}
 			intX = 70;
