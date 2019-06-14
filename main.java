@@ -26,7 +26,7 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 	JTextField username = new JTextField("Username");
 	JTextField portIPConnect = new JTextField("Port #, IP Address");
 	SuperSocketMaster ssm;
-	int tstCol = 0, tstRow = 0;
+	
 	// the game logic
 	int intTurn = 1;
 	String strTemp[];
@@ -34,8 +34,6 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 	int intPort = 3000;
 	
 	PrintWriter connections = null;
-	
-	int intFinalX = 0, intFinalY = 0;
 		
 	//METHODS
 	public void actionPerformed(ActionEvent evt){
@@ -250,8 +248,8 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 								thepanel.intSelectX = (col * 75) + 60;
 								thepanel.intSelectY = (row * 75) + 60;
 								thepanel.blnPieceSelected = true;
-								tstCol = col; 
-								tstRow = row;
+								thepanel.curCol = col; 
+								thepanel.curRow = row;
 								break;
 							}
 						}
@@ -261,101 +259,39 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 				for(int row = 0; row < 8; row++){
 					for(int col = 0; col < 9; col++){
 						// if next box clicked is box to right of selected one and user can move right
-						if((tstCol + 1) < 9 && evt.getX() >= ((tstCol + 1) * 75) + 70 && evt.getX() <= ((tstCol + 1) * 75) + 135 && evt.getY() >= (tstRow * 75) + 70 && evt.getY() <= (tstRow * 75) + 135){
+						if((thepanel.curCol + 1) < 9 && evt.getX() >= ((thepanel.curCol + 1) * 75) + 70 && evt.getX() <= ((thepanel.curCol + 1) * 75) + 135 && evt.getY() >= (thepanel.curRow * 75) + 70 && evt.getY() <= (thepanel.curRow * 75) + 135){
+							System.out.println(strBoard[thepanel.curRow][thepanel.curCol + 1]);
+							thepanel.nextRow = row;
+							thepanel.nextCol = col;
 							thepanel.blnPieceRight = true;
-							intFinalX = tstRow * 75 + 60;
-							intFinalY = (tstCol + 1) * 75 + 60;
 							System.out.println(strBoard[tstRow][tstCol + 1]);
 							//break;
 						// user moves left and selected spot isn't the left most one 
-						}else if((tstCol - 1) >= 0 && evt.getX() >= ((tstCol - 1) * 75) + 70 && evt.getX() <= ((tstCol - 1) * 75) + 135 && evt.getY() >= (tstRow * 75) + 70 && evt.getY() <= (tstRow * 75) + 135){
+						}else if((thepanel.curCol - 1) >= 0 && evt.getX() >= ((thepanel.curCol - 1) * 75) + 70 && evt.getX() <= ((thepanel.curCol - 1) * 75) + 135 && evt.getY() >= (thepanel.curRow * 75) + 70 && evt.getY() <= (thepanel.curRow * 75) + 135){
+							System.out.println(strBoard[thepanel.curRow][thepanel.curCol - 1]);
+							thepanel.nextRow = row;
+							thepanel.nextCol = col;
 							thepanel.blnPieceLeft = true;
-							System.out.println(strBoard[tstRow][tstCol - 1]);
 							//break;
 						// user moves down and selected spot isn't the lowest one 	
-						}else if((tstRow + 1) < 8 && evt.getX() >= (tstCol * 75) + 70 && evt.getX() <= (tstCol * 75) +  135 && evt.getY() >= ((tstRow + 1) * 75) + 70 && evt.getY() <= ((tstRow + 1) * 75) + 135){
+						}else if((thepanel.curRow + 1) < 8 && evt.getX() >= (thepanel.curCol * 75) + 70 && evt.getX() <= (thepanel.curCol * 75) +  135 && evt.getY() >= ((thepanel.curRow + 1) * 75) + 70 && evt.getY() <= ((thepanel.curRow + 1) * 75) + 135){
+							System.out.println(strBoard[thepanel.curRow + 1][thepanel.curCol]);
+							thepanel.nextRow = row;
+							thepanel.nextCol = col;
 							thepanel.blnPieceDown = true;
-							System.out.println(strBoard[tstRow + 1][tstCol]);
 							//break;	
 						// user moves up and selected spot isn't the highest one
-						}else if((tstRow - 1) >= 0 && evt.getX() >= (tstCol * 75) + 70 && evt.getX() <= (tstCol * 75) +  135 && evt.getY() >= ((tstRow - 1) * 75) + 70 && evt.getY() <= ((tstRow - 1) * 75) + 135){
+						}else if((thepanel.curRow - 1) >= 0 && evt.getX() >= (thepanel.curCol * 75) + 70 && evt.getX() <= (thepanel.curCol * 75) +  135 && evt.getY() >= ((thepanel.curRow - 1) * 75) + 70 && evt.getY() <= ((thepanel.curRow - 1) * 75) + 135){
+							System.out.println(strBoard[thepanel.curRow - 1][thepanel.curCol]);
+							thepanel.nextRow = row;
+							thepanel.nextCol = col;
 							thepanel.blnPieceUp = true;
-							System.out.println(strBoard[tstRow - 1][tstCol]);
 							//break;
 						}
 					}
 				}	
 				
-			}else if(thepanel.blnPieceLeft == true){
-				
-			}else if(thepanel.blnPieceRight == true){
-				
-			}else if(thepanel.blnPieceUp == true){
-				
-			}else if(thepanel.blnPieceDown == true){
-				
 			}
-			/**for(int row = 0; row < 8; row++){
-				for(int col = 0; col < 9; col++){
-					if(evt.getX() >= (col * 75) + 70 && evt.getX() <= (col * 75) + 135 && evt.getY() >= (row * 75) + 70 && evt.getY() <= (row * 75) + 135){
-						// if the piece has already been selected
-						if(!strBoard[row][col].equals("N/N/N") && thepanel.blnPieceSelected == false){// is clicked box not empty and hasn't been selected
-							String strTemp = strBoard[row][col];// save piece in temp value
-							// draw seletion box on selected cell
-							thepanel.intSelectX = (col * 75) + 60;
-							thepanel.intSelectY = (row * 75) + 60;
-							thepanel.blnPieceSelected = true;
-							System.out.println(col);
-						}//else if(thepanel.blnPieceSelected == true){
-							//System.out.println(col);
-							// user moves right
-							
-						// if the piece is being selected
-						/*}else if(!strBoard[row][col].equals("N/N/N")){
-							String strTemp = strBoard[row][col];
-							thepanel.blnPieceSelected = true;
-							thepanel.intSelectX = col * 75 + 60;
-							thepanel.intSelectY = row * 75 + 60;
-						}
-						// if the piece has already been selected	
-						/*}else if(thepanel.blnPieceSelected == true){
-							// user moves right
-							if(evt.getX() >= ((col + 1) * 75) + 70 && evt.getX() <= ((col + 1) * 75) + 135 && evt.getY() >= (row * 75) + 70 && evt.getY() <= (row * 75) + 135){
-								System.out.println(strBoard[col + 1][row]);
-								thepanel.blnPieceMoved = true;
-								thepanel.intFinalX = col * 75 + 135;
-								thepanel.intFinalY = row * 75 + 60;
-							// user moves left	
-							}else if(evt.getX() >= (col * 75) - 5 && evt.getX() <= (col * 75) + 60 && evt.getY() >= (row * 75) + 70 && evt.getY() <= (row * 75) + 135){
-						
-							// user moves down	
-							}else if(evt.getX() >= (col * 75) + 70 && evt.getX() <= (col * 75) +  135 && evt.getY() >= (row * 75) + 145 && evt.getY() <= (row * 75) + 210){
-										
-							// user moves up	
-							}else if(evt.getX() >= (col * 75) + 70 && evt.getX() <= (col * 75) +  135 && evt.getY() >= (row * 75) - 5 && evt.getY() <= (row * 75) + 60){
-							
-							}
-						}
-					}else if(thepanel.blnPieceSelected == true && evt.getX() >= ((col + 1) * 75) + 70 && evt.getX() <= ((col + 1) * 75) + 135 && evt.getY() >= (row * 75) + 70 && evt.getY() <= (row * 75) + 135){
-								System.out.println("Test");
-								System.out.println(col);
-								System.out.println(strBoard[row][col]);
-								thepanel.blnPieceMoved = true;
-								thepanel.intFinalX = col * 75 + 135;
-								thepanel.intFinalY = row * 75 + 60;
-							// user moves left	
-							}else if(thepanel.blnPieceSelected == true && evt.getX() >= (col * 75) - 5 && evt.getX() <= (col * 75) + 60 && evt.getY() >= (row * 75) + 70 && evt.getY() <= (row * 75) + 135){
-						
-							// user moves down	
-							}else if(thepanel.blnPieceSelected == true &&evt.getX() >= (col * 75) + 70 && evt.getX() <= (col * 75) +  135 && evt.getY() >= (row * 75) + 145 && evt.getY() <= (row * 75) + 210){
-										
-							// user moves up	
-							}else if(thepanel.blnPieceSelected == true && evt.getX() >= (col * 75) + 70 && evt.getX() <= (col * 75) +  135 && evt.getY() >= (row * 75) - 5 && evt.getY() <= (row * 75) + 60){
-							
-							}
-				}
-			}**/
-			
 		}
 	}
 	public void keyReleased(KeyEvent evt){
@@ -421,7 +357,7 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 			return clientBoard;
 		}
 	}
-	public void nextDetect(String[][] strBoard, int nextRow, int nextCol, int curRow, int curCol, boolean blnServer){
+	public static void nextDetect(String[][] strBoard, int nextRow, int nextCol, int curRow, int curCol, boolean blnServer){
 		String[] strPieceID = new String[3], strNextID = new String[3];// get id of selected piece and next piece
 		String strOppSide = "";// initialize opponent side
 		strPieceID = strBoard[curRow][curCol].split("/");// find id of selected piece
@@ -446,7 +382,6 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 			}
 		}else if(strNextID[0].equals("N")){// if next cell is empty
 			strTemp = strBoard[curRow][curCol];
-			strBoard[curRow][curCol] = "N/N/N";
 			strBoard[nextRow][nextCol] = strTemp;
 		}else{// if next cell contains self
 			// select next clicked piece
