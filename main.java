@@ -35,7 +35,7 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 	
 	PrintWriter connections = null;
 	
-	int test = 0;
+	int intFinalX = 0, intFinalY = 0;
 		
 	//METHODS
 	public void actionPerformed(ActionEvent evt){
@@ -263,6 +263,8 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 						// if next box clicked is box to right of selected one and user can move right
 						if((tstCol + 1) < 9 && evt.getX() >= ((tstCol + 1) * 75) + 70 && evt.getX() <= ((tstCol + 1) * 75) + 135 && evt.getY() >= (tstRow * 75) + 70 && evt.getY() <= (tstRow * 75) + 135){
 							thepanel.blnPieceRight = true;
+							intFinalX = tstRow * 75 + 60;
+							intFinalY = (tstCol + 1) * 75 + 60;
 							System.out.println(strBoard[tstRow][tstCol + 1]);
 							//break;
 						// user moves left and selected spot isn't the left most one 
