@@ -34,6 +34,7 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 	int intPort = 3000;
 	
 	PrintWriter connections = null;
+	
 		
 	//METHODS
 	public void actionPerformed(ActionEvent evt){
@@ -264,7 +265,6 @@ public class main implements ActionListener, MouseListener, MouseMotionListener,
 							thepanel.nextRow = row;
 							thepanel.nextCol = col;
 							thepanel.blnPieceRight = true;
-							System.out.println(strBoard[tstRow][tstCol + 1]);
 							//break;
 						// user moves left and selected spot isn't the left most one 
 						}else if((thepanel.curCol - 1) >= 0 && evt.getX() >= ((thepanel.curCol - 1) * 75) + 70 && evt.getX() <= ((thepanel.curCol - 1) * 75) + 135 && evt.getY() >= (thepanel.curRow * 75) + 70 && evt.getY() <= (thepanel.curRow * 75) + 135){
