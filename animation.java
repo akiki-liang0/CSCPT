@@ -113,7 +113,7 @@ public class animation extends JPanel{
 			// rankings
 			g.setColor(Color.BLACK);
 			g.drawString("Rankings", 1025, 385);
-			drawPieces(main.strBoard, g);// drawing pieces
+			drawPieces(main.strBoard, blnServer, g);// drawing pieces
 		}else if(blnwin == true){
 			//load font
 			/*
@@ -142,7 +142,7 @@ public class animation extends JPanel{
 		}
 		
 	}
-	public static void drawPieces(String[][] Board, Graphics g){
+	public static void drawPieces(String[][] Board, boolean blnServer, Graphics g){
 		// drawing to board
 		String[] pieceSplit = new String[3];//splits "///" format in each cell of array
 		String strPieceInfo = "";// "///" string
@@ -150,85 +150,107 @@ public class animation extends JPanel{
 		int intX = 70, intY = 70;
 		for(int row = 0; row < 8; row++){
 			for(int col = 0; col < 9; col++){
-				try{
-					strPieceInfo = Board[row][col];
-					pieceSplit = strPieceInfo.split("/");// split into an array by "/"
-					if(pieceSplit[2].equals("W")){// if piece is white
-						if (pieceSplit[0].equals("0")){// if id = flag
-							strImageName = "Pics/White/FlagW.png";
-						}else if (pieceSplit[0].equals("1")){// if id = spy
-							strImageName = "Pics/White/SpyW.png";
-						}else if (pieceSplit[0].equals("2")){// if id = private
-							strImageName = "Pics/White/PrivateW.png";
-						}else if (pieceSplit[0].equals("3")){// if id = sergeant
-							strImageName = "Pics/White/SergeantW.png";
-						}else if (pieceSplit[0].equals("4")){// if id = 2nd lieut
-							strImageName = "Pics/White/SecondLtW.png";
-						}else if (pieceSplit[0].equals("5")){// if id = 1st lieut
-							strImageName = "Pics/White/FirstLtW.png";
-						}else if (pieceSplit[0].equals("6")){// if id = captain
-							strImageName = "Pics/White/CaptainW.png";
-						}else if (pieceSplit[0].equals("7")){// if id = major
-							strImageName = "Pics/White/MajorW.png";
-						}else if (pieceSplit[0].equals("8")){// if id = Lt Colonel
-							strImageName = "Pics/White/LtColonelW.png";
-						}else if (pieceSplit[0].equals("9")){// if id = Colonel
-							strImageName = "Pics/White/ColonelW.png";
-						}else if (pieceSplit[0].equals("10")){// if id = general 1
-							strImageName = "Pics/White/OneStarGeneralW.png";
-						}else if (pieceSplit[0].equals("11")){// if id = general 2
-							strImageName = "Pics/White/TwoStarGeneralW.png";
-						}else if (pieceSplit[0].equals("12")){// if id = general 3
-							strImageName = "Pics/White/ThreeStarGeneralW.png";
-						}else if (pieceSplit[0].equals("13")){// if id = general 4
-							strImageName = "Pics/White/FourStarGeneralW.png";
-						}else if (pieceSplit[0].equals("14")){// if id = general 5
-							strImageName = "Pics/White/FiveStarGeneralW.png";
+				if(blnServer == false){
+					try{
+						strPieceInfo = Board[row][col];
+						pieceSplit = strPieceInfo.split("/");// split into an array by "/"
+						if(pieceSplit[2].equals("W")){// if piece is white
+							if (pieceSplit[0].equals("0")){// if id = flag
+								strImageName = "Pics/White/FlagW.png";
+							}else if (pieceSplit[0].equals("1")){// if id = spy
+								strImageName = "Pics/White/SpyW.png";
+							}else if (pieceSplit[0].equals("2")){// if id = private
+								strImageName = "Pics/White/PrivateW.png";
+							}else if (pieceSplit[0].equals("3")){// if id = sergeant
+								strImageName = "Pics/White/SergeantW.png";
+							}else if (pieceSplit[0].equals("4")){// if id = 2nd lieut
+								strImageName = "Pics/White/SecondLtW.png";
+							}else if (pieceSplit[0].equals("5")){// if id = 1st lieut
+								strImageName = "Pics/White/FirstLtW.png";
+							}else if (pieceSplit[0].equals("6")){// if id = captain
+								strImageName = "Pics/White/CaptainW.png";
+							}else if (pieceSplit[0].equals("7")){// if id = major
+								strImageName = "Pics/White/MajorW.png";
+							}else if (pieceSplit[0].equals("8")){// if id = Lt Colonel
+								strImageName = "Pics/White/LtColonelW.png";
+							}else if (pieceSplit[0].equals("9")){// if id = Colonel
+								strImageName = "Pics/White/ColonelW.png";
+							}else if (pieceSplit[0].equals("10")){// if id = general 1
+								strImageName = "Pics/White/OneStarGeneralW.png";
+							}else if (pieceSplit[0].equals("11")){// if id = general 2
+								strImageName = "Pics/White/TwoStarGeneralW.png";
+							}else if (pieceSplit[0].equals("12")){// if id = general 3
+								strImageName = "Pics/White/ThreeStarGeneralW.png";
+							}else if (pieceSplit[0].equals("13")){// if id = general 4
+								strImageName = "Pics/White/FourStarGeneralW.png";
+							}else if (pieceSplit[0].equals("14")){// if id = general 5
+								strImageName = "Pics/White/FiveStarGeneralW.png";
+							}
+						}else if(pieceSplit[2].equals("B")){// if piece is black
+							strImageName = "Pics/Black/EnemyB.png";
+						}else if(pieceSplit[2].equals("N")){
+								strImageName = "";
 						}
-					}else if(pieceSplit[2].equals("B")){// if piece is black
-						if (pieceSplit[0].equals("0")){// if id = flag
-							strImageName = "Pics/Black/FlagB.png";
-						}else if (pieceSplit[0].equals("1")){// if id = spy
-							strImageName = "Pics/Black/SpyB.png";
-						}else if (pieceSplit[0].equals("2")){// if id = private
-							strImageName = "Pics/Black/PrivateB.png";
-						}else if (pieceSplit[0].equals("3")){// if id = sergeant
-							strImageName = "Pics/Black/SergeantB.png";
-						}else if (pieceSplit[0].equals("4")){// if id = 2nd lieut
-							strImageName = "Pics/Black/SecondLtB.png";
-						}else if (pieceSplit[0].equals("5")){// if id = 1st lieut
-							strImageName = "Pics/Black/FirstLtB.png";
-						}else if (pieceSplit[0].equals("6")){// if id = captain
-							strImageName = "Pics/Black/CaptainB.png";
-						}else if (pieceSplit[0].equals("7")){// if id = major
-							strImageName = "Pics/Black/MajorB.png";
-						}else if (pieceSplit[0].equals("8")){// if id = Lt Colonel
-							strImageName = "Pics/Black/LtColonelB.png";
-						}else if (pieceSplit[0].equals("9")){// if id = Colonel
-							strImageName = "Pics/Black/ColonelB.png";
-						}else if (pieceSplit[0].equals("10")){// if id = general 1
-							strImageName = "Pics/Black/OneStarGeneralB.png";
-						}else if (pieceSplit[0].equals("11")){// if id = general 2
-							strImageName = "Pics/Black/TwoStarGeneralB.png";
-						}else if (pieceSplit[0].equals("12")){// if id = general 3
-							strImageName = "Pics/Black/ThreeStarGeneralB.png";
-						}else if (pieceSplit[0].equals("13")){// if id = general 4
-							strImageName = "Pics/Black/FourStarGeneralB.png";
-						}else if (pieceSplit[0].equals("14")){// if id = general 5
-							strImageName = "Pics/Black/FiveStarGeneralB.png";
-						}
-					}else if(pieceSplit[2].equals("N")){
-							strImageName = "";
+					}catch(ArrayIndexOutOfBoundsException e){
+						
 					}
-				}catch(ArrayIndexOutOfBoundsException e){
-					
-				}
-				try{
-					//draw image;
-					g.drawImage(ImageIO.read(new File(strImageName)), intX, intY, null);
-				}
-				catch(IOException e){
-					
+					try{
+						//draw image;
+						g.drawImage(ImageIO.read(new File(strImageName)), intX, intY, null);
+					}
+					catch(IOException e){
+						
+					}
+		}else{
+					try{
+						strPieceInfo = Board[row][col];
+						pieceSplit = strPieceInfo.split("/");// split into an array by "/"
+						if(pieceSplit[2].equals("W")){// if piece is white
+							if (pieceSplit[0].equals("0")){// if id = flag
+								strImageName = "Pics/Black/FlagB.png";
+							}else if (pieceSplit[0].equals("1")){// if id = spy
+								strImageName = "Pics/Black/SpyB.png";
+							}else if (pieceSplit[0].equals("2")){// if id = private
+								strImageName = "Pics/Black/PrivateB.png";
+							}else if (pieceSplit[0].equals("3")){// if id = sergeant
+								strImageName = "Pics/Black/SergeantB.png";
+							}else if (pieceSplit[0].equals("4")){// if id = 2nd lieut
+								strImageName = "Pics/Black/SecondLtB.png";
+							}else if (pieceSplit[0].equals("5")){// if id = 1st lieut
+								strImageName = "Pics/Black/FirstLtB.png";
+							}else if (pieceSplit[0].equals("6")){// if id = captain
+								strImageName = "Pics/Black/CaptainB.png";
+							}else if (pieceSplit[0].equals("7")){// if id = major
+								strImageName = "Pics/Black/MajorB.png";
+							}else if (pieceSplit[0].equals("8")){// if id = Lt Colonel
+								strImageName = "Pics/Black/LtColonelB.png";
+							}else if (pieceSplit[0].equals("9")){// if id = Colonel
+								strImageName = "Pics/Black/ColonelB.png";
+							}else if (pieceSplit[0].equals("10")){// if id = general 1
+								strImageName = "Pics/Black/OneStarGeneralB.png";
+							}else if (pieceSplit[0].equals("11")){// if id = general 2
+								strImageName = "Pics/Black/TwoStarGeneralB.png";
+							}else if (pieceSplit[0].equals("12")){// if id = general 3
+								strImageName = "Pics/Black/ThreeStarGeneralB.png";
+							}else if (pieceSplit[0].equals("13")){// if id = general 4
+								strImageName = "Pics/Black/FourStarGeneralB.png";
+							}else if (pieceSplit[0].equals("14")){// if id = general 5
+								strImageName = "Pics/Black/FiveStarGeneralB.png";
+							}
+						}else if(pieceSplit[2].equals("B")){// if piece is black
+							strImageName = "Pics/White/EnemyW.png";
+						}else if(pieceSplit[2].equals("N")){
+								strImageName = "";
+						}
+					}catch(ArrayIndexOutOfBoundsException e){
+						
+					}
+					try{
+						//draw image;
+						g.drawImage(ImageIO.read(new File(strImageName)), intX, intY, null);
+					}
+					catch(IOException e){
+					}
 				}
 				intX += 75;
 			}
